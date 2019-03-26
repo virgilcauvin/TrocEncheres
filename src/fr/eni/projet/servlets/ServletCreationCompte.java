@@ -60,8 +60,6 @@ public class ServletCreationCompte extends HttpServlet {
 		String ville;
 		String motDePasse;
 		
-		UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-		
 		//Reste à faire : contrôle des types champs et de luer non nullité
 		
 		pseudo = request.getParameter("pseudo");
@@ -76,7 +74,7 @@ public class ServletCreationCompte extends HttpServlet {
 		
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 		
-		utilisateurDAO.insertUtilisateur(utilisateur);
+		UtilisateurDAO.insertUtilisateur(utilisateur);
 		
 		System.out.println("utilisateur : " + utilisateur.toString() + "créé.");
 		

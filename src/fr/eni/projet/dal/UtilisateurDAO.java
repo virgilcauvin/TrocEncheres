@@ -17,7 +17,7 @@ public class UtilisateurDAO {
 	private static final String delete = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 	private static final String selectById = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
 
-	public Utilisateur selectById(int NoUtilisateur){
+	public static Utilisateur selectById(int NoUtilisateur){
 		Utilisateur utilisateur = null;
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -49,7 +49,7 @@ public class UtilisateurDAO {
 		return utilisateur;
 	}
 	
-	public void insertUtilisateur(Utilisateur utilisateur) {
+	public static void insertUtilisateur(Utilisateur utilisateur) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			try {
@@ -86,7 +86,7 @@ public class UtilisateurDAO {
 	}
 
 
-	public List<Utilisateur> selectAll() {
+	public static List<Utilisateur> selectAll() {
 
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -105,7 +105,7 @@ public class UtilisateurDAO {
 		return listeUtilisateur;
 	}
 
-	private Utilisateur UtilisateurBuilder(ResultSet rs) throws Exception {
+	private static Utilisateur UtilisateurBuilder(ResultSet rs) throws Exception {
 
 		Utilisateur UtilisateurCourant;
 		UtilisateurCourant = new Utilisateur();
@@ -126,7 +126,7 @@ public class UtilisateurDAO {
 
 	}
 	
-	public void deleteUtilisateur(int NoUtilisateur) {
+	public static void deleteUtilisateur(int NoUtilisateur) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(delete);
