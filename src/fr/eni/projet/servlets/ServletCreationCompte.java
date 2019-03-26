@@ -78,6 +78,8 @@ public class ServletCreationCompte extends HttpServlet {
 		
 		utilisateurDAO.insertUtilisateur(utilisateur);
 		
+		System.out.println("utilisateur : " + utilisateur.toString() + "créé.");
+		
 		//Reste à faire : redirection "/WEB-INF/..."
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
 		rd.forward(request, response);
