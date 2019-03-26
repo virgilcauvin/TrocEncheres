@@ -49,7 +49,8 @@ public class UtilisateurDAO {
 		return utilisateur;
 	}
 	
-	public static void insertUtilisateur(Utilisateur utilisateur) {
+	public void insertUtilisateur(Utilisateur utilisateur) {
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			try {
 				cnx.setAutoCommit(false);
@@ -84,7 +85,9 @@ public class UtilisateurDAO {
 		}
 	}
 
-	public static List<Utilisateur> selectAll() {
+
+	public List<Utilisateur> selectAll() {
+
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL);
@@ -102,7 +105,8 @@ public class UtilisateurDAO {
 		return listeUtilisateur;
 	}
 
-	private static Utilisateur UtilisateurBuilder(ResultSet rs) throws Exception {
+	private Utilisateur UtilisateurBuilder(ResultSet rs) throws Exception {
+
 		Utilisateur UtilisateurCourant;
 		UtilisateurCourant = new Utilisateur();
 		UtilisateurCourant.setNoUtilisateur(rs.getInt("no_utilisateur"));
@@ -122,7 +126,8 @@ public class UtilisateurDAO {
 
 	}
 	
-	public static void deleteUtilisateur(int NoUtilisateur) {
+	public void deleteUtilisateur(int NoUtilisateur) {
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(delete);
 
