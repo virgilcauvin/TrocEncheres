@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class Utilisateur implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int noUtilisateur;
 	private String pseudo;
 	private String nom;
@@ -35,6 +37,19 @@ public class Utilisateur implements Serializable {
 		this.administrateur = administrateur;
 	}
 
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse){
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+	}
+	
+	
 	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}

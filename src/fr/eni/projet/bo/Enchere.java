@@ -1,9 +1,12 @@
 package fr.eni.projet.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Enchere {
+public class Enchere implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private LocalDate dateEnchere;
 	
 	public Enchere() {}
