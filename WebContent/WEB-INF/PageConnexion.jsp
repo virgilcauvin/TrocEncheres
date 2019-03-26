@@ -19,7 +19,7 @@
 		    <p class="lead">Identification</p>
 		  </div>
 		</div>
-	<form action="">
+	<form action="${pageContext.request.contextPath}/ServletConnexionCompte" method="post">
 		<div class="container">
 			<div class="row">
 				<div class="col-1"></div>
@@ -83,7 +83,7 @@
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<a href="creationCompte.jsp"><button type="button" style="padding: 48px 16px"
+					<a href="${pageContext.request.contextPath}/ServletCreationCompte?creationCompte=oui"><button type="button" style="padding: 48px 16px"
 						class="btn btn-primary btn-lg btn-block">Créer un compte</button></a>
 				</div>
 				<div class="col-1"></div>

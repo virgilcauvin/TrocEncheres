@@ -49,6 +49,12 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 	}
 	
+	public Utilisateur(int noUtilisateur, String pseudo, String email, String motDePasse){
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
 	
 	public int getNoUtilisateur() {
 		return noUtilisateur;
