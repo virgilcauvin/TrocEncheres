@@ -39,7 +39,7 @@ public class ServletCreationCompte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/creationCompte.jsp");
 		rd.forward(request, response);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -79,7 +79,7 @@ public class ServletCreationCompte extends HttpServlet {
 		System.out.println("utilisateur : " + utilisateur.toString() + "créé.");
 		
 		//Reste à faire : redirection "/WEB-INF/..."
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
 		rd.forward(request, response);
 		
 	}

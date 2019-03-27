@@ -56,12 +56,14 @@ public class ServletConnexionCompte extends HttpServlet {
 		if (pseudo != null || email != null) {
 			if (pseudo.getMotDePasse().equals(password) || email.getMotDePasse().equals(password)) {
 				session.setAttribute("utilisateurIdentifie", "oui");
+				RequestDispatcher rd = request.getRequestDispatcher("PageListeEncheres.jsp");
+				rd.forward(httpRequest, httpResponse);
 			} else {
 				session.setAttribute("utilisateurIdentifie", "non");
+				RequestDispatcher rd = request.getRequestDispatcher("PageConnexion.jsp");
+				rd.forward(httpRequest, httpResponse);
 			}
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("ServletAccueil.java");
-		rd.forward(httpRequest, httpResponse);
 	}
 
 }

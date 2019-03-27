@@ -43,16 +43,22 @@ public class FiltreIdentification implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
-		if (session.getAttribute("creationCompte").equals("oui")) {
-			session.setAttribute("creationCompte", "non");
-			chain.doFilter(request, response);
+		if (httpRequest.getParameter("creationCompte") != null) {
+			if (httpRequest.getParameter("creationCompte").equals("oui")) {
+				session.setAttribute("creationCompte", "non");
+				chain.doFilter(request, response);
+			}
 		}
-		if (session.getAttribute("utilisateurIdentifie").equals("oui")) {
-			chain.doFilter(request, response);
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("PageConnexion.jsp");
-			rd.forward(httpRequest, httpResponse);
+		if (session.getAttribute("utilisateurIdentifie") != null) {
+			if (session.getAttribute("utilisateurIdentifie").equals("oui")) {
+				chain.doFilter(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
+				rd.forward(httpRequest, httpResponse);
+			}
 		}
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
+		rd.forward(httpRequest, httpResponse);
 	}
 
 	/**
