@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.UtilisateurDAO;
@@ -78,6 +79,10 @@ public class ServletCreationCompte extends HttpServlet {
 		
 		System.out.println("utilisateur : " + utilisateur.toString() + "créé.");
 		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		HttpSession session = httpRequest.getSession();
+		session.setAttribute("utilisateurIdentifie", "oui");
 		//Reste à faire : redirection "/WEB-INF/..."
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
 		rd.forward(request, response);

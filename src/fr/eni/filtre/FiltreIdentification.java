@@ -45,7 +45,7 @@ public class FiltreIdentification implements Filter {
 		HttpSession session = httpRequest.getSession();
 		if (httpRequest.getParameter("creationCompte") != null) {
 			if (httpRequest.getParameter("creationCompte").equals("oui")) {
-				session.setAttribute("creationCompte", "non");
+				//session.setAttribute("creationCompte", "non");
 				chain.doFilter(request, response);
 			}
 		}
