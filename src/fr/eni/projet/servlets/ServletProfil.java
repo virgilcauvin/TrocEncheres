@@ -32,10 +32,10 @@ public class ServletProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//HttpSession session = request.getSession();
-		//Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
-		//request.setAttribute("utilisateur", utilisateur);
-		//System.out.println(session.getAttribute("pseudo"));
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
+		request.setAttribute("utilisateur", utilisateur);
+		System.out.println(session.getAttribute("pseudo"+ "servlet profil"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MonProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -44,8 +44,41 @@ public class ServletProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String pseudo;
+		String nom;
+		String prenom;
+		String email;
+		String telephone;
+		String rue;
+		String codePostal;
+		String ville;
+		String motDePasse;
+		
+		pseudo = request.getParameter("pseudo");
+		nom = request.getParameter("nom");
+		prenom = request.getParameter("prenom");
+		email = request.getParameter("email");
+		telephone = request.getParameter("telephone");
+		rue = request.getParameter("rue");
+		codePostal = request.getParameter("codePostal");
+		ville = request.getParameter("ville");
+		motDePasse = request.getParameter("motDePasse");
+		
+		HttpSession session = request.getSession();
+		
+		Utilisateur noUtilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
+		
+		Utilisateur utilisateur = new Utilisateur(noUtilisateur.getNoUtilisateur() ,pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, noUtilisateur.getCredit(), noUtilisateur.isAdministrateur());
+		
+		UtilisateurDAO.updateProfil(utilisateur);
+		
+		session.setAttribute("pseudo",request.getParameter("pseudo"));
+		request.setAttribute("utilisateur", utilisateur);
+		
+		System.out.println("utilisateur : " + utilisateur.toString() + "modifié.");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
+		rd.forward(request, response);
 	}
 
 }

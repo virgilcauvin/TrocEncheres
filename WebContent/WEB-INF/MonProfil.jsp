@@ -9,45 +9,45 @@
 <title>Mon Profil</title>
 </head>
 <body>
-	<form action="/Secure/ServletProfil" method="post">
+	<form action="${pageContext.request.contextPath}/Secure/ServletProfil" method="post">
 		<div class="container">
 	  		<h1>TrocEncheres.org</h1>
 	  		<h2>Mon Profil</h2>
 	  		<div>
 	  			<label for="pseudo">Pseudo : </label>
-	  			<input type="text" name="pseudo" placeholder="${utilisateur.pseudo}" required>
+	  			<input type="text" name="pseudo" value="${utilisateur.pseudo}" required>
 	  		</div>
 	  		<div>
 	  			<label for="nom">Nom : </label>
-	  			<input type="text" name="nom" placeholder="${utilisateur.nom}" required>
+	  			<input type="text" name="nom" value="${utilisateur.nom}" required>
 	  		</div>
 	  		<div>
 	  			<label for="prenom">Prénom :</label>
-	  			<input type="text" name="prenom" placeholder="${utilisateur.prenom}" required>
+	  			<input type="text" name="prenom" value="${utilisateur.prenom}" required>
 	  		</div>
 	  		<div>
 	  			<label for="email">Email :</label>
-	  			<input type="text" name="email" placeholder="${utilisateur.email}" required>
+	  			<input type="text" name="email" value="${utilisateur.email}" required>
 	  		</div>
 	  		<div>
 	  			<label for="telephone">Téléphone : </label>
-	  			<input type="text" name="telephone" placeholder="${utilisateur.telephone}" required>
+	  			<input type="text" name="telephone" value="${utilisateur.telephone}" required>
 	  		</div>
 	  		<div>
 	  			<label for="rue">Rue : </label>
-	  			<input type="text" name="rue" placeholder="${utilisateur.rue}" required>
+	  			<input type="text" name="rue" value="${utilisateur.rue}" required>
 	  		</div>
 	  		<div>
 	  			<label for="codePostal">Code postal : </label>
-	  			<input type="text" name="codePostal" placeholder="${utilisateur.codePostal}" required>
+	  			<input type="text" name="codePostal" value="${utilisateur.codePostal}" required>
 	  		</div>
 	  		<div>
 	  			<label for="ville">Ville : </label>
-	  			<input type="text" name="ville" placeholder="${utilisateur.ville}" required>
+	  			<input type="text" name="ville" value="${utilisateur.ville}" required>
 	  		</div>
 	  		<div>
 	  			<label for="credit">Crédit : </label>
-	  			<input type="text" name="credit" placeholder="${utilisateur.credit}" required>
+	  			<span>${utilisateur.credit}</span>
 	  		</div>
 	  		<div>
 	  			<label for="motDePasse">Mot de passe :</label>
@@ -61,8 +61,8 @@
 		<div class="container">
 			<button name="enregistrer" type="submit">Enregistrer</button>
 			<button name="supprimer">Supprimer mon compte</button>
-			<button name="retour">Retour</button>
 		</div>
 	</form>
+	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil"><button name="retour">Retour</button></a>
 </body>
 </html>

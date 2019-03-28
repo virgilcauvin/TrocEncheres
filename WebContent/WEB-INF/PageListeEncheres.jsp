@@ -12,7 +12,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-11 offset-1">
-				<h1 >TrocEncheres.org</h1>
+				<div>
+					<h1 >TrocEncheres.org</h1>
+				</div>
+				<div>
+					<p>${utilisateur.pseudo} est connecté !</p>
+				</div>
 				<div>
 					<a href="" >Vendre un article</a>
 				</div>

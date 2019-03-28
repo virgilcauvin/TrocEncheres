@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import fr.eni.projet.dal.ConnectionProvider;
 import fr.eni.projet.bo.Utilisateur;
 
