@@ -27,7 +27,7 @@
 					<p class="text-right">Identifiant :
 				</div>
 				<div class="col-7">
-					<input class="form-control form-control-sm" type="text"
+					<input class="form-control form-control-sm" name="identifiant" type="text"
 						placeholder="Votre identifiant ici">
 				</div>
 				<div class="col-1"></div>
@@ -40,7 +40,7 @@
 					<p class="text-right">Mot de passe :
 				</div>
 				<div class="col-7">
-					<input class="form-control form-control-sm" type="password"
+					<input class="form-control form-control-sm" name="password" type="password"
 						placeholder="Votre identifiant ici">
 				</div>
 				<div class="col-1"></div>
@@ -83,7 +83,7 @@
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<a href="${pageContext.request.contextPath}/ServletCreationCompte?creationCompte=oui"><button type="button" style="padding: 48px 16px"
+					<a href="${pageContext.request.contextPath}/ServletCreationCompte"><button type="button" style="padding: 48px 16px"
 						class="btn btn-primary btn-lg btn-block">Créer un compte</button></a>
 				</div>
 				<div class="col-1"></div>

@@ -79,12 +79,7 @@ public class ServletCreationCompte extends HttpServlet {
 		
 		System.out.println("utilisateur : " + utilisateur.toString() + "créé.");
 		
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = httpRequest.getSession();
-		session.setAttribute("utilisateurIdentifie", "oui");
-		//Reste à faire : redirection "/WEB-INF/..."
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
 		rd.forward(request, response);
 		
 	}

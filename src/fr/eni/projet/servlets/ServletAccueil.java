@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ServletAccueil
  */
-@WebServlet("/ServletAccueil")
+@WebServlet("/Secure/ServletAccueil")
 public class ServletAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,9 +29,7 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = httpRequest.getSession();	
+		HttpSession session = request.getSession();	
 		session.setAttribute("creationCompte", "non");
 		session.setAttribute("utilisateurIdentifie", "non");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");

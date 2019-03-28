@@ -46,24 +46,26 @@ public class ServletConnexionCompte extends HttpServlet {
 			throws ServletException, IOException {
 		String identifiant = request.getParameter("identifiant");
 		String password = request.getParameter("password");
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = httpRequest.getSession();
+		HttpSession session = request.getSession();
 		Utilisateur pseudo = new Utilisateur();
-		Utilisateur email = new Utilisateur();
+		//Utilisateur email = new Utilisateur();
 		pseudo = UtilisateurDAO.selectByPseudo(identifiant);
-		email = UtilisateurDAO.selectByEmail(identifiant);
-		if (pseudo != null || email != null) {
-			if (pseudo.getMotDePasse().equals(password) || email.getMotDePasse().equals(password)) {
-				session.setAttribute("utilisateurIdentifie", "oui");
-				RequestDispatcher rd = request.getRequestDispatcher("PageListeEncheres.jsp");
-				rd.forward(httpRequest, httpResponse);
+		//email = UtilisateurDAO.selectByEmail(identifiant);
+		if (pseudo != null /*|| email != null*/) {
+			if (pseudo.getMotDePasse().equals(password) /*|| email.getMotDePasse().equals(password)*/) {
+				session.setAttribute("connecte", true);
+				session.setAttribute("pseudo", true);
+				System.out.println("L'utilisateur existant dans la BDD est : " + pseudo);
+				//System.out.println("L'utilisateur existant dans la BDD est : " + email);
+				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
+				rd.forward(request, response);
 			} else {
-				session.setAttribute("utilisateurIdentifie", "non");
-				RequestDispatcher rd = request.getRequestDispatcher("PageConnexion.jsp");
-				rd.forward(httpRequest, httpResponse);
+				System.out.println("L'utilisateur n'a pas été retrouvé dans la BDD");
+				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
+				rd.forward(request, response);
 			}
 		}
+	
 	}
 
 }
