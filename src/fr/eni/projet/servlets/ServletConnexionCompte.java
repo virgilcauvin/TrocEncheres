@@ -54,7 +54,7 @@ public class ServletConnexionCompte extends HttpServlet {
 		if (pseudo != null /*|| email != null*/) {
 			if (pseudo.getMotDePasse().equals(password) /*|| email.getMotDePasse().equals(password)*/) {
 				session.setAttribute("connecte", true);
-				session.setAttribute("pseudo", true);
+				session.setAttribute("pseudo", identifiant);
 				System.out.println("L'utilisateur existant dans la BDD est : " + pseudo);
 				//System.out.println("L'utilisateur existant dans la BDD est : " + email);
 				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");

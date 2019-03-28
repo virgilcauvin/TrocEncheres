@@ -38,13 +38,15 @@
 	  		</div>
 	  		<div>
 	  			<label name="adresse">Retrait : </label>
-	  			Insere le code pour afficher l'adresse du vendeur!
+	  			${rue}
+	  			${ville}
+	  			${codePostal}
 	  		</div>
 		</div>
 		<div class="container">
-			<button name="publier">Publier</button>
-			<button name="enregistrer">Enregistrer</button>
-			<button name="annuler">Annuler</button>
+			<a href=""><button name="publier">Publier</button></a>
+			<a href=""><button name="enregistrer">Enregistrer</button></a>
+			<a href=""><button name="annuler">Annuler</button></a>
 		</div>
 	</form>
 </body>
