@@ -13,6 +13,10 @@ public class Vente implements Serializable {
 	private LocalDate dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
+	private int noUtilisateur;
+	private int noCategorie;
+	private String photo;
+	
 	
 	public Vente() {}
 	
@@ -23,6 +27,27 @@ public class Vente implements Serializable {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
+	}
+	
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
+		this.noVente = noVente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+	
+	public Vente(String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int noUtilisateur, int noCategorie, String photo) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.photo = photo;
 	}
 
 	public int getNoVente() {
@@ -78,6 +103,30 @@ public class Vente implements Serializable {
 		return "Vente [noVente=" + noVente + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix=" + miseAPrix + ", prixVente=" + prixVente
 				+ "]";
+	}
+
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	
