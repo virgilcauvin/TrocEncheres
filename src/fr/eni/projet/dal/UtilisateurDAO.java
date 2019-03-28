@@ -18,7 +18,30 @@ public class UtilisateurDAO {
 	private static final String selectById = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_PSEUDO = "SELECT no_utilisateur, pseudo, email, mot_de_passe FROM UTILISATEURS WHERE pseudo = ?";
 	private static final String SELECT_BY_EMAIL = "SELECT no_utilisateur, pseudo, email, mot_de_passe FROM UTILISATEURS WHERE email = ?";
+	private static final String UPDATE_PROFIL = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur = ?";
 
+	public static void updateProfil(Utilisateur utilisateur) {
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_PROFIL);
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(3, utilisateur.getPrenom());
+			pstmt.setString(4, utilisateur.getEmail());
+			pstmt.setString(5, utilisateur.getTelephone());
+			pstmt.setString(6, utilisateur.getRue());
+			pstmt.setString(7, utilisateur.getCodePostal());
+			pstmt.setString(8, utilisateur.getVille());
+			pstmt.setString(9, utilisateur.getMotDePasse());
+			pstmt.setInt(10, utilisateur.getNoUtilisateur());
+			pstmt.executeUpdate();
+			cnx.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static Utilisateur selectById(int NoUtilisateur){
 		Utilisateur utilisateur = null;
 		
