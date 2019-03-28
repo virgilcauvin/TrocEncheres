@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class FiltreIdentification
  */
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/Secure/*" })
 public class FiltreIdentification implements Filter {
 
 	/**
@@ -38,27 +38,23 @@ public class FiltreIdentification implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
-		if (httpRequest.getParameter("creationCompte") != null) {
-			if (httpRequest.getParameter("creationCompte").equals("oui")) {
-				//session.setAttribute("creationCompte", "non");
-				chain.doFilter(request, response);
-			}
+		
+		System.out.println(httpRequest.getServletPath());
+		System.out.println(session.getAttribute("connecte"));
+		
+		if (session.getAttribute("connexionCompte") == null) {
+			System.out.println("c'est le premier passage dans le filtre");
+			RequestDispatcher rd = httpRequest.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
+			rd.forward(httpRequest, httpResponse);
+		} else {
+			chain.doFilter(request, response);
 		}
-		if (session.getAttribute("utilisateurIdentifie") != null) {
-			if (session.getAttribute("utilisateurIdentifie").equals("oui")) {
-				chain.doFilter(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
-				rd.forward(httpRequest, httpResponse);
-			}
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
-		rd.forward(httpRequest, httpResponse);
+		
+		
 	}
 
 	/**

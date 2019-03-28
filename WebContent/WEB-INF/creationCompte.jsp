@@ -18,7 +18,7 @@
 		</div>
 		
 		
-			<form action="${pageContext.request.contextPath}/ServletCreationCompte?creationCompte=oui" method="post">
+			<form action="${pageContext.request.contextPath}/ServletCreationCompte" method="post">
 			  <div class="row">
 			  	<span class="col-sm-1"></span>
 			    <label for="pseudo" class="col-sm-4">Pseudo :</label>
