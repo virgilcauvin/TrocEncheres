@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,12 +12,17 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-11 offset-1">
-				<h1 >TrocEncheres.org</h1>
+				<div>
+					<h1 >TrocEncheres.org</h1>
+				</div>
+				<div>
+					<p>${utilisateur.pseudo} est connecté !</p>
+				</div>
 				<div>
 					<a href="" >Vendre un article</a>
 				</div>
 				<div>
-					<a href="" >Mon profil</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletProfil" >Mon profil</a>
 				</div>
 				<div>
 					<a href="" >Déconnexion</a>

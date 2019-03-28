@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.UtilisateurDAO;
+
 /**
  * Servlet implementation class ServletAccueil
  */
@@ -30,8 +33,9 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();	
-		session.setAttribute("creationCompte", "non");
-		session.setAttribute("utilisateurIdentifie", "non");
+		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
+		request.setAttribute("utilisateur", utilisateur);
+		System.out.println(session.getAttribute("pseudo" + "servlet accueil"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
 		rd.forward(request, response);
 	}
