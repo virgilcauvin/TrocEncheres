@@ -79,18 +79,20 @@
 			    <input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required>
 			  </div>
 			  <br>
-			  <div class="row">
+			  
 			  	<span class="col-sm-2"></span>
 			  	<span class="col-sm-4">
 		  			<button type="submit" class="btn btn-primary" style="width:100px">Créer</button>
 			  	</span>
-			  	<span class="col-sm-4">
-			  		<button class="btn btn-primary" style="width:100px">Annuler</button>
+			  	
+			  
+			</form>
+				<span class="col-sm-4">
+			  		<a href="${pageContext.request.contextPath}/ServletConnexionCompte"><button class="btn btn-primary" style="width:100px">Annuler</button></a>
 			  	</span>
 			  	<span class="col-sm-2"></span>
-			  </div>
-			</form>
-		</section>
+			  
+		
 	</main>
 </body>
 </html>

@@ -46,7 +46,7 @@ public class FiltreIdentification implements Filter {
 		System.out.println(httpRequest.getServletPath());
 		System.out.println(session.getAttribute("connecte"));
 		
-		if (session.getAttribute("connexionCompte") == null) {
+		if (session.getAttribute("connecte") == null) {
 			System.out.println("c'est le premier passage dans le filtre");
 			RequestDispatcher rd = httpRequest.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
 			rd.forward(httpRequest, httpResponse);

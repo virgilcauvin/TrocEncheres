@@ -35,7 +35,9 @@ public class ServletConnexionCompte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -54,15 +56,17 @@ public class ServletConnexionCompte extends HttpServlet {
 		if (pseudo != null /*|| email != null*/) {
 			if (pseudo.getMotDePasse().equals(password) /*|| email.getMotDePasse().equals(password)*/) {
 				session.setAttribute("connecte", true);
-				session.setAttribute("pseudo", true);
+				session.setAttribute("pseudo", identifiant);
+				request.setAttribute("utilisateur", pseudo);
 				System.out.println("L'utilisateur existant dans la BDD est : " + pseudo);
 				//System.out.println("L'utilisateur existant dans la BDD est : " + email);
 				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
 				rd.forward(request, response);
 			} else {
 				System.out.println("L'utilisateur n'a pas été retrouvé dans la BDD");
+				request.setAttribute("messageErreurConnexion", "Ce compte n'existe pas : veuillez réessayez");
 				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
-				rd.forward(request, response);
+				rd.forward(request, response);	
 			}
 		}
 	
