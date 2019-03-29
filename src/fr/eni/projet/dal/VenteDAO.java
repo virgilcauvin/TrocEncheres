@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import fr.eni.projet.bo.Vente;
 
 public class VenteDAO {
-	private static final String INSERT_VENTE = "insert into VENTES(nomarticle, description, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie ) values(?,?,?,?,?,?,?)";
+	private static final String INSERT_VENTE = "insert into VENTES(nomarticle, description, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie,photo ) values(?,?,?,?,?,?,?,?)";
 	
 	public static void insertVente(Vente vente) {
 
@@ -23,15 +23,15 @@ public class VenteDAO {
 				pstmt.setInt(5, vente.getPrixVente());
 				pstmt.setInt(6, vente.getNoUtilisateur());
 				pstmt.setInt(7, vente.getNoCategorie());
-				pstmt.setInt(8, vente.getNoCategorie());
+				pstmt.setString(8, vente.getPhoto());
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
-					vente.setNoUtilisateur(rs.getInt(1));
+					vente.setNoVente(rs.getInt(1));
 				}
 				rs.close();
 				pstmt.close();
-				cnx.commit();
+				cnx.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 				cnx.rollback();

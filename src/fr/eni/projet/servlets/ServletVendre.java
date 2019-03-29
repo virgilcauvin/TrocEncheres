@@ -39,13 +39,14 @@ public class ServletVendre extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("doGet servletVendre");
 		HttpSession session = request.getSession();
-		int idUtilisateur = (int) session.getAttribute("id_utilisateur");
-		Utilisateur utilisateur = UtilisateurDAO.selectById(idUtilisateur);
+		String pseudo = (String) session.getAttribute("pseudo");
+		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo(pseudo);
 		request.setAttribute("rue", utilisateur.getRue());
 		request.setAttribute("codePostal", utilisateur.getCodePostal());
 		request.setAttribute("ville", utilisateur.getVille());
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageVendreUnArticle.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouvelleVente.jsp");
 		rd.forward(request, response);
 	}
 
@@ -55,26 +56,43 @@ public class ServletVendre extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LocalDate finEcnhere;
-		int prixInitial;
-		String photo;
-		Vente vente;
+		System.out.println("doPost servletVendre");
 		Utilisateur utilisateur = new Utilisateur();
 		Categorie categorie = new Categorie();
 		HttpSession session = request.getSession();
 
 		utilisateur = UtilisateurDAO.selectByPseudo((String) session.getAttribute("pseudo"));
-		categorie = CategorieDAO.selectByLibelle(request.getParameter("libelle"));
+		System.out.println(utilisateur);
 
-		photo = (String) request.getParameter("photo");
-		prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
-		finEcnhere = LocalDate.parse(request.getParameter("finEnchere"));
+		String nomArticle = request.getParameter("article");
+		System.out.println(nomArticle);
+		String libelle = request.getParameter("libelle");
+		System.out.println(libelle);
+		
+		categorie = CategorieDAO.selectByLibelle(libelle);
+		categorie.toString();
 
-		vente = new Vente((String) request.getParameter("article"), (String) request.getParameter("descritpion"),
-				finEcnhere, prixInitial, utilisateur.getNoUtilisateur(), categorie.getNoCategorie(),photo);
-		VenteDAO.insertVente(vente);
+		String description = request.getParameter("descritpion");
+		LocalDate finEcnhere = LocalDate.parse(request.getParameter("finEnchere"));
+		int prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
+		int noUtililisateur = utilisateur.getNoUtilisateur();
+		int noCategorie = categorie.getNoCategorie();
+		String photo = request.getParameter("lienPhoto");
 
-		RequestDispatcher rd = request.getRequestDispatcher("ServletAccueil.java");
+		Vente vente = new Vente(nomArticle, description, finEcnhere, prixInitial, noUtililisateur, noCategorie, photo);
+		if (request.getParameter("bouton").equals("publier")) {
+			VenteDAO.insertVente(vente);
+		}
+		if (request.getParameter("bouton").equals("enregistrer")) {
+			session.setAttribute("libelle", libelle);
+			session.setAttribute("article", nomArticle);
+			session.setAttribute("descritpion", description);
+			session.setAttribute("prixInitial", prixInitial);
+			session.setAttribute("finEchere", finEcnhere);
+			session.setAttribute("lienPhoto", photo);
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
 		rd.forward(request, response);
 	}
 

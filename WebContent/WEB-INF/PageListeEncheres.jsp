@@ -19,7 +19,7 @@
 					<p>${utilisateur.pseudo} est connecté !</p>
 				</div>
 				<div>
-					<a href="" >Vendre un article</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletVendre" >Vendre un article</a>
 				</div>
 				<div>
 					<a href="${pageContext.request.contextPath}/Secure/ServletProfil" >Mon profil</a>
