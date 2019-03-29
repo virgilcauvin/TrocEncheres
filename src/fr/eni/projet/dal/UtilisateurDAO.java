@@ -19,7 +19,7 @@ public class UtilisateurDAO {
 	private static final String delete = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 	private static final String selectById = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
-	private static final String SELECT_BY_EMAIL = "SELECT no_utilisateur, pseudo, email, mot_de_passe FROM UTILISATEURS WHERE email = ?";
+	private static final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
 	private static final String UPDATE_PROFIL = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur = ?";
 
 	public static void updateProfil(Utilisateur utilisateur) {
