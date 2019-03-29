@@ -19,6 +19,11 @@
 		    <p class="lead">Identification</p>
 		  </div>
 		</div>
+		<c:if test="${sessionScope.compteCree}">
+			<div>
+				<p>Votre compte est créé : vous pouvez vous connecter.</p>
+			</div>
+		</c:if>
 	<form action="${pageContext.request.contextPath}/ServletConnexionCompte" method="post">
 		<div class="container">
 			<div class="row">

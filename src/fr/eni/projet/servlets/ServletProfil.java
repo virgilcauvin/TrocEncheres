@@ -53,6 +53,9 @@ public class ServletProfil extends HttpServlet {
 		String codePostal;
 		String ville;
 		String motDePasse;
+		String confirmationMDP;
+		
+		HttpSession session = request.getSession();
 		
 		pseudo = request.getParameter("pseudo");
 		nom = request.getParameter("nom");
@@ -63,8 +66,13 @@ public class ServletProfil extends HttpServlet {
 		codePostal = request.getParameter("codePostal");
 		ville = request.getParameter("ville");
 		motDePasse = request.getParameter("motDePasse");
+		confirmationMDP = request.getParameter("confirmation");
 		
-		HttpSession session = request.getSession();
+		if (!confirmationMDP.equals(motDePasse)) {
+			request.setAttribute("messageErreurConfirmationMDP", "Veuillez confirmer votre mot de passe");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MonProfil.jsp");
+			rd.forward(request, response);
+		}
 		
 		Utilisateur noUtilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
 		

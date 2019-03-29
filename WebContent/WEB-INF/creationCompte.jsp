@@ -24,60 +24,70 @@
 			    <label for="pseudo" class="col-sm-4">Pseudo :</label>
 			    <input type="text" name="pseudo" class="col-sm-6" placeholder="Votre pseudo" autofocus required>
 			  </div>
+			  <div>${messageErreurPseudo}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="nom" class="col-sm-4">Nom :</label>
 			    <input type="text" name="nom" class="col-sm-6" placeholder="Votre nom" required>
 			  </div>
+			  <div>${messageErreurNom}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="prenom" class="col-sm-4">Prénom :</label>
 			    <input type="text" name="prenom" class="col-sm-6" placeholder="Votre prénom" required>
 			  </div>
+			  <div>${messageErreurPrenom}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="email" class="col-sm-4">Email :</label>
 			    <input type="text" name="email" class="col-sm-6" placeholder="Votre email" required>
 			  </div>
+			  <div>${messageErreurEmail}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="telephone" class="col-sm-4">Téléphone :</label>
 			    <input type="text" name="telephone" class="col-sm-6" placeholder="Votre téléphone" required>
 			  </div>
+			  <div>${messageErreurTelephone}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="rue" class="col-sm-4">Rue :</label>
 			    <input type="text" name="rue" class="col-sm-6" placeholder="Votre rue" required>
 			  </div>
+			  <div>${messageErreurRue}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="codePostal" class="col-sm-4">Code postal :</label>
 			    <input type="text" name="codePostal" class="col-sm-6" placeholder="Votre code postal" required>
 			  </div>
+			  <div>${messageErreurCodePostal}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="ville" class="col-sm-4">Ville :</label>
 			    <input type="text" name="ville" class="col-sm-6" placeholder="Votre ville" required>
 			  </div>
+			  <div>${messageErreurVille}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="motDePasse" class="col-sm-4">Mot de passe :</label>
 			    <input type="password" name="motDePasse" class="col-sm-6" placeholder="Votre mot de passe" required>
 			  </div>
+			  <div>${messageErreurMotDePasse}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="confirmation" class="col-sm-4">Confirmation :</label>
 			    <input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required>
 			  </div>
+			  <div>${messageErreurConfirmationMDP}</div>
 			  <br>
 			  
 			  	<span class="col-sm-2"></span>

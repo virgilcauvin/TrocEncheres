@@ -19,13 +19,13 @@
 					<p>${utilisateur.pseudo} est connecté !</p>
 				</div>
 				<div>
-					<a href="${pageContext.request.contextPath}/Secure/ServletVendre" >Vendre un article</a>
+					<a href="" >Vendre un article</a>
 				</div>
 				<div>
 					<a href="${pageContext.request.contextPath}/Secure/ServletProfil" >Mon profil</a>
 				</div>
 				<div>
-					<a href="" >Déconnexion</a>
+					<!-- /!\NEW --><a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion" >Déconnexion</a>
 				</div>
 				<h2 >Filtres :</h2>
 				<div>

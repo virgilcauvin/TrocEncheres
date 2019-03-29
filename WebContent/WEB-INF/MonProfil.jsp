@@ -27,7 +27,7 @@
 	  		</div>
 	  		<div>
 	  			<label for="email">Email :</label>
-	  			<input type="text" name="email" value="${utilisateur.email}" required>
+	  			<input type="email" name="email" value="${utilisateur.email}" required>
 	  		</div>
 	  		<div>
 	  			<label for="telephone">Téléphone : </label>
@@ -57,6 +57,7 @@
 			    <label for="confirmation">Confirmation :</label>
 			    <input type="password" name="confirmation" required>
 			</div>
+			<div>${messageErreurConfirmationMDP}</div>
 		</div>
 		<div class="container">
 			<button name="enregistrer" type="submit">Enregistrer</button>
