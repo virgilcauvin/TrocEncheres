@@ -36,6 +36,14 @@ public class ServletConnexionCompte extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		// /!\NEW : gestion de la deconnexion du profil avec suppression du paramètre de session "connecte"
+		if(request.getParameter("deconnexion") !=null) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("connecte");
+			session.removeAttribute("compteCree");
+			System.out.println("Vous êtes déconnecté : " + session.getAttribute("connecte"));
+		} // FIN NEW
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
 		rd.forward(request, response);
 	}
@@ -46,27 +54,36 @@ public class ServletConnexionCompte extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String identifiant = request.getParameter("identifiant");
-		String password = request.getParameter("password");
-		HttpSession session = request.getSession();
-		Utilisateur pseudo = new Utilisateur();
-		//Utilisateur email = new Utilisateur();
-		pseudo = UtilisateurDAO.selectByPseudo(identifiant);
-		//email = UtilisateurDAO.selectByEmail(identifiant);
-		if (pseudo != null /*|| email != null*/) {
-			if (pseudo.getMotDePasse().equals(password) /*|| email.getMotDePasse().equals(password)*/) {
-				session.setAttribute("connecte", true);
-				session.setAttribute("pseudo", identifiant);
-				request.setAttribute("utilisateur", pseudo);
-				System.out.println("L'utilisateur existant dans la BDD est : " + pseudo);
-				//System.out.println("L'utilisateur existant dans la BDD est : " + email);
-				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
-				rd.forward(request, response);
-			} else {
-				System.out.println("L'utilisateur n'a pas été retrouvé dans la BDD");
-				request.setAttribute("messageErreurConnexion", "Ce compte n'existe pas : veuillez réessayez");
-				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
-				rd.forward(request, response);	
+		
+		// /!\NEW : gestion de la redirection sur la page de connexion si l'identifiant ou le mot de passe n'a pas été saisi
+		System.out.println("Je suis rentré dans : " + request.getContextPath() + request.getServletPath());
+		if(request.getParameter("identifiant") == "" || request.getParameter("password") == ""){
+			request.setAttribute("messageErreurConnexion", "Veuillez saisir votre identifiant (pseudo ou mail) et votre mot de passe puis appuyez sur \"Connexion\" pour vous connecter");
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
+			rd.forward(request, response);
+		} else {// FIN NEW
+			String identifiant = request.getParameter("identifiant");
+			String password = request.getParameter("password");
+			HttpSession session = request.getSession();
+			Utilisateur pseudo = new Utilisateur();
+			//Utilisateur email = new Utilisateur();
+			pseudo = UtilisateurDAO.selectByPseudo(identifiant);
+			//email = UtilisateurDAO.selectByEmail(identifiant);
+			if (pseudo != null /*|| email != null*/) {
+				if (pseudo.getMotDePasse().equals(password) /*|| email.getMotDePasse().equals(password)*/) {
+					session.setAttribute("connecte", true);
+					session.setAttribute("pseudo", identifiant);
+					request.setAttribute("utilisateur", pseudo);
+					System.out.println("L'utilisateur existant dans la BDD est : " + pseudo);
+					//System.out.println("L'utilisateur existant dans la BDD est : " + email);
+					RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
+					rd.forward(request, response);
+				} else {
+					System.out.println("L'utilisateur n'a pas été retrouvé dans la BDD");
+					request.setAttribute("messageErreurConnexion", "Ce compte n'existe pas : veuillez réessayez");
+					RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
+					rd.forward(request, response);	
+				}
 			}
 		}
 	

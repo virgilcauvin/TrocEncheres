@@ -43,7 +43,7 @@
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="email" class="col-sm-4">Email :</label>
-			    <input type="text" name="email" class="col-sm-6" placeholder="Votre email" required>
+			    <input type="email" name="email" class="col-sm-6" placeholder="Votre email" required>
 			  </div>
 			  <div>${messageErreurEmail}</div>
 			  <br>
