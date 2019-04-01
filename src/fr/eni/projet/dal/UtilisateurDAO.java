@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import fr.eni.projet.dal.ConnectionProvider;
 import fr.eni.projet.bo.Utilisateur;
 
@@ -20,6 +18,7 @@ public class UtilisateurDAO {
 	private static final String selectById = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private static final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
+	private static final String SELECT_BY_TELEPHONE = "SELECT * FROM UTILISATEURS WHERE telephone = ?";
 	private static final String UPDATE_PROFIL = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur = ?";
 
 	public static void updateProfil(Utilisateur utilisateur) {
@@ -147,6 +146,41 @@ public class UtilisateurDAO {
 		return utilisateur;
 	}
 	
+	/* /!\ NEW : pour tester unicite telephone pour creation et modification compte utilisateur*/ 
+	public static Utilisateur selectByTelephone(String telephone) {
+		
+		Utilisateur utilisateur = null;
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_TELEPHONE);
+			pstmt.setString(1, telephone);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"),
+						rs.getString("pseudo"), 
+						rs.getString("nom"), 
+						rs.getString("prenom"), 
+						rs.getString("email"), 
+						rs.getString("telephone"), 
+						rs.getString("rue"),
+						rs.getString("code_postal"),
+						rs.getString("ville"),
+						rs.getString("mot_de_passe"),
+						rs.getInt("credit"),
+						rs.getBoolean("administrateur")
+						);
+				}
+			rs.close();
+			pstmt.close();
+			cnx.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return utilisateur;
+	}/* /!\ FIN NEW*/
+	
 	
 	public static void insertUtilisateur(Utilisateur utilisateur) {
 
@@ -237,4 +271,6 @@ public class UtilisateurDAO {
 			e.printStackTrace();
 		}
 	}
+
+
 }

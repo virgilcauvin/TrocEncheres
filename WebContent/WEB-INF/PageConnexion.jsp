@@ -33,7 +33,7 @@
 				</div>
 				<div class="col-7">
 					<input class="form-control form-control-sm" name="identifiant" type="text"
-						placeholder="Votre identifiant ici">
+						placeholder="Votre identifiant ici" value="${pseudo}">
 				</div>
 				<div class="col-1"></div>
 			</div>
@@ -46,7 +46,7 @@
 				</div>
 				<div class="col-7">
 					<input class="form-control form-control-sm" name="password" type="password"
-						placeholder="Votre identifiant ici">
+						placeholder="Votre identifiant ici"  value="${motDePasse}">
 				</div>
 				<div class="col-1"></div>
 			</div>
