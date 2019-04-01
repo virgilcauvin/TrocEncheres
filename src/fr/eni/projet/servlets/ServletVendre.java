@@ -2,7 +2,6 @@ package fr.eni.projet.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.bo.Vente;
@@ -39,7 +37,6 @@ public class ServletVendre extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doGet servletVendre");
 		HttpSession session = request.getSession();
 		String pseudo = (String) session.getAttribute("pseudo");
 		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo(pseudo);
@@ -56,43 +53,105 @@ public class ServletVendre extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost servletVendre");
 		Utilisateur utilisateur = new Utilisateur();
 		Categorie categorie = new Categorie();
 		HttpSession session = request.getSession();
+		String messageErreurArticle = null;
+		String messageErreurCategorie = null;
+		String messageErreurDescription = null;
+		String messageErreurFinEnchere = null;
+		String messageErreurPrixPositif = null;
+		String messageErreurPrix = null;
 
 		utilisateur = UtilisateurDAO.selectByPseudo((String) session.getAttribute("pseudo"));
-		System.out.println(utilisateur);
+		String nomArticle = null;
+		String libelle = null;
+		String description = null;
+		LocalDate finEcnhere = null;
+		int prixInitial = 0;
+		RequestDispatcher rd;
+		String destination;
+		if (!request.getParameter("article").trim().equals("")) {
+			nomArticle = request.getParameter("article");
+		} else {
+			messageErreurArticle = "Veuillez entrer un article";
+		}
 
-		String nomArticle = request.getParameter("article");
-		System.out.println(nomArticle);
-		String libelle = request.getParameter("libelle");
-		System.out.println(libelle);
-		
-		categorie = CategorieDAO.selectByLibelle(libelle);
-		categorie.toString();
+		if (!request.getParameter("libelle").trim().equals("")) {
+			libelle = request.getParameter("libelle");
 
-		String description = request.getParameter("descritpion");
-		LocalDate finEcnhere = LocalDate.parse(request.getParameter("finEnchere"));
-		int prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
+			categorie = CategorieDAO.selectByLibelle(libelle);
+		} else {
+			messageErreurCategorie = "Veuillez sélectionner une catégorie";
+		}
+
+		if (!request.getParameter("descritpion").trim().equals("")) {
+			description = request.getParameter("descritpion");
+		} else {
+			messageErreurDescription = "Veuillez entrer une description";
+		}
+
+		if (!request.getParameter("finEnchere").trim().equals("")) {
+			finEcnhere = LocalDate.parse(request.getParameter("finEnchere"));
+		} else {
+			messageErreurFinEnchere = "Veuillez entrer une date de fin d'enchère";
+		}
+
+		if (!request.getParameter("prixInitial").trim().equals("")) {
+			if (Integer.parseInt(request.getParameter("prixInitial")) > 0) {
+				prixInitial = Integer.parseInt(request.getParameter("prixInitial"));
+			} else {
+				messageErreurPrixPositif = "Veuillez entrer une valeure positive";
+			}
+		} else {
+			messageErreurPrix = "Veuillez entrer un chiffre";
+		}
+
 		int noUtililisateur = utilisateur.getNoUtilisateur();
 		int noCategorie = categorie.getNoCategorie();
 		String photo = request.getParameter("lienPhoto");
-
-		Vente vente = new Vente(nomArticle, description, finEcnhere, prixInitial, noUtililisateur, noCategorie, photo);
-		if (request.getParameter("bouton").equals("publier")) {
-			VenteDAO.insertVente(vente);
-		}
-		if (request.getParameter("bouton").equals("enregistrer")) {
+		if (messageErreurArticle==null && messageErreurCategorie==null
+				&& messageErreurDescription==null && messageErreurFinEnchere==null
+				&& messageErreurPrixPositif==null && messageErreurPrix==null) {
+			Vente vente = new Vente(nomArticle, description, finEcnhere, prixInitial, noUtililisateur, noCategorie,
+					photo);
+			if (request.getParameter("bouton").equals("publier")) {
+				VenteDAO.insertVente(vente);
+				if (session.getAttribute("libelle") != null) {
+					session.removeAttribute("libelle");
+					session.removeAttribute("article");
+					session.removeAttribute("descritpion");
+					session.removeAttribute("prixInitial");
+					session.removeAttribute("finEchere");
+					session.removeAttribute("lienPhoto");
+				}
+			}
+			if (request.getParameter("bouton").equals("enregistrer")) {
+				session.setAttribute("libelle", libelle);
+				session.setAttribute("article", nomArticle);
+				session.setAttribute("descritpion", description);
+				session.setAttribute("prixInitial", prixInitial);
+				session.setAttribute("finEchere", finEcnhere);
+				session.setAttribute("lienPhoto", photo);
+			}
+			destination = "/WEB-INF/PageListeEncheres.jsp";
+		} else {
+			request.setAttribute("messageErreurArticle", messageErreurArticle);
+			request.setAttribute("messageErreurCategorie", messageErreurCategorie);
+			request.setAttribute("messageErreurDescription", messageErreurDescription);
+			request.setAttribute("messageErreurFinEnchere", messageErreurFinEnchere);
+			request.setAttribute("messageErreurPrixPositif", messageErreurPrixPositif);
+			request.setAttribute("messageErreurPrix", messageErreurPrix);
 			session.setAttribute("libelle", libelle);
 			session.setAttribute("article", nomArticle);
 			session.setAttribute("descritpion", description);
 			session.setAttribute("prixInitial", prixInitial);
 			session.setAttribute("finEchere", finEcnhere);
 			session.setAttribute("lienPhoto", photo);
-		}
+			destination = "/WEB-INF/NouvelleVente.jsp";
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
+		}
+		rd = request.getRequestDispatcher(destination);
 		rd.forward(request, response);
 	}
 

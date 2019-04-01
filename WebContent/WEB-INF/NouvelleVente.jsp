@@ -21,6 +21,15 @@
 			<p class="lead">Nouvelle vente</p>
 		</div>
 	</div>
+	<div>
+		<h3>${requestScope.messageErreurArticle}</h3>
+		<h3>${requestScope.messageErreurCategorie}</h3>
+		<h3>${requestScope.messageErreurDescription}</h3>
+		<h3>${requestScope.messageErreurFinEnchere}</h3>
+		<h3>${requestScope.messageErreurPrixPositif}</h3>
+		<h3>${requestScope.messageErreurPrix}</h3>
+		
+	</div>
 	<form action="${pageContext.request.contextPath}/Secure/ServletVendre"
 		method="post">
 		<div class="container">
@@ -48,8 +57,7 @@
 				<label for="exampleFormControlTextarea1" name="descritpion">Description
 					:</label>
 				<textarea required class="form-control"
-					id="exampleFormControlTextarea1" rows="3" name="descritpion"
-					>${sessionScope.descritpion}</textarea>
+					id="exampleFormControlTextarea1" rows="3" name="descritpion">${sessionScope.descritpion}</textarea>
 			</div>
 
 			<div class="form-group">
