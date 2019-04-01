@@ -22,72 +22,72 @@
 			  <div class="row">
 			  	<span class="col-sm-1"></span>
 			    <label for="pseudo" class="col-sm-4">Pseudo :</label>
-			    <input type="text" name="pseudo" class="col-sm-6" placeholder="Votre pseudo" autofocus required>
+			    <input type="text" name="pseudo" class="col-sm-6" placeholder="Votre pseudo" autofocus required value="${pseudoValide}">
 			  </div>
-			  <div>${messageErreurPseudo}</div>
+			  <div>${pseudoMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="nom" class="col-sm-4">Nom :</label>
-			    <input type="text" name="nom" class="col-sm-6" placeholder="Votre nom" required>
+			    <input type="text" name="nom" class="col-sm-6" placeholder="Votre nom" required value="${nomValide}">
 			  </div>
-			  <div>${messageErreurNom}</div>
+			  <div>${nomMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="prenom" class="col-sm-4">Prénom :</label>
-			    <input type="text" name="prenom" class="col-sm-6" placeholder="Votre prénom" required>
+			    <input type="text" name="prenom" class="col-sm-6" placeholder="Votre prénom" required value="${prenomValide}">
 			  </div>
-			  <div>${messageErreurPrenom}</div>
+			  <div>${prenomMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="email" class="col-sm-4">Email :</label>
-			    <input type="email" name="email" class="col-sm-6" placeholder="Votre email" required>
+			    <input type="email" name="email" class="col-sm-6" placeholder="Votre email" required value="${emailValide}">
 			  </div>
-			  <div>${messageErreurEmail}</div>
+			  <div>${emailMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="telephone" class="col-sm-4">Téléphone :</label>
-			    <input type="text" name="telephone" class="col-sm-6" placeholder="Votre téléphone" required>
+			    <input type="tel" name="telephone" class="col-sm-6" placeholder="Votre téléphone" required value="${telephoneValide}">
 			  </div>
-			  <div>${messageErreurTelephone}</div>
+			  <div>${telephoneMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="rue" class="col-sm-4">Rue :</label>
-			    <input type="text" name="rue" class="col-sm-6" placeholder="Votre rue" required>
+			    <input type="text" name="rue" class="col-sm-6" placeholder="Votre rue" required value="${rueValide}">
 			  </div>
-			  <div>${messageErreurRue}</div>
+			  <div>${rueMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="codePostal" class="col-sm-4">Code postal :</label>
-			    <input type="text" name="codePostal" class="col-sm-6" placeholder="Votre code postal" required>
+			    <input type="text" name="codePostal" class="col-sm-6" placeholder="Votre code postal" required value="${codePostalValide}">
 			  </div>
-			  <div>${messageErreurCodePostal}</div>
+			  <div>${codePostalMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="ville" class="col-sm-4">Ville :</label>
-			    <input type="text" name="ville" class="col-sm-6" placeholder="Votre ville" required>
+			    <input type="text" name="ville" class="col-sm-6" placeholder="Votre ville" required value="${villeValide}">
 			  </div>
-			  <div>${messageErreurVille}</div>
+			  <div>${villeMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="motDePasse" class="col-sm-4">Mot de passe :</label>
-			    <input type="password" name="motDePasse" class="col-sm-6" placeholder="Votre mot de passe" required>
+			    <input type="password" name="motDePasse" class="col-sm-6" placeholder="Votre mot de passe" required value="${motDePasseValide}">
 			  </div>
-			  <div>${messageErreurMotDePasse}</div>
+			  <div>${motDePasseMessageErreur}</div>
 			  <br>
 			  <div class="row">
 			    <span class="col-sm-1"></span>
 			    <label for="confirmation" class="col-sm-4">Confirmation :</label>
-			    <input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required>
+			    <input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required value="${confirmationMDPValide}">
 			  </div>
-			  <div>${messageErreurConfirmationMDP}</div>
+			  <div>${confirmationMDPMessageErreur}</div>
 			  <br>
 			  
 			  	<span class="col-sm-2"></span>

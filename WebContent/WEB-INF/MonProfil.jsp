@@ -15,49 +15,58 @@
 	  		<h2>Mon Profil</h2>
 	  		<div>
 	  			<label for="pseudo">Pseudo : </label>
-	  			<input type="text" name="pseudo" value="${utilisateur.pseudo}" required>
+	  			<input type="text" name="pseudo" value="${!empty pseudoValide?pseudoValide:utilisateur.pseudo}" required>
 	  		</div>
+	  		<div>${pseudoMessageErreur}</div>
 	  		<div>
 	  			<label for="nom">Nom : </label>
-	  			<input type="text" name="nom" value="${utilisateur.nom}" required>
+	  			<input type="text" name="nom" value="${!empty nomValide?nomValide:utilisateur.nom}" required>
 	  		</div>
+	  		<div>${nomMessageErreur}</div>
 	  		<div>
 	  			<label for="prenom">Prénom :</label>
-	  			<input type="text" name="prenom" value="${utilisateur.prenom}" required>
+	  			<input type="text" name="prenom" value="${!empty prenomValide?prenomValide:utilisateur.prenom}" required>
 	  		</div>
+	  		<div>${prenomMessageErreur}</div>
 	  		<div>
 	  			<label for="email">Email :</label>
-	  			<input type="email" name="email" value="${utilisateur.email}" required>
+	  			<input type="email" name="email" value="${!empty emailValide?emailValide:utilisateur.email}" required>
 	  		</div>
+	  		<div>${emailMessageErreur}</div>
 	  		<div>
 	  			<label for="telephone">Téléphone : </label>
-	  			<input type="text" name="telephone" value="${utilisateur.telephone}" required>
+	  			<input type="tel" name="telephone" value="${!empty telephoneValide?telephoneValide:utilisateur.telephone}" required>
 	  		</div>
+	  		<div>${telephoneMessageErreur}</div>
 	  		<div>
 	  			<label for="rue">Rue : </label>
-	  			<input type="text" name="rue" value="${utilisateur.rue}" required>
+	  			<input type="text" name="rue" value="${!empty rueValide?rueValide:utilisateur.rue}" required>
 	  		</div>
+	  		<div>${rueMessageErreur}</div>
 	  		<div>
 	  			<label for="codePostal">Code postal : </label>
-	  			<input type="text" name="codePostal" value="${utilisateur.codePostal}" required>
+	  			<input type="text" name="codePostal" value="${!empty codePostalValide?codePostalValide:utilisateur.codePostal}" required>
 	  		</div>
+	  		<div>${codePostalMessageErreur}</div>
 	  		<div>
 	  			<label for="ville">Ville : </label>
-	  			<input type="text" name="ville" value="${utilisateur.ville}" required>
+	  			<input type="text" name="ville" value="${!empty villeValide?villeValide:utilisateur.ville}" required>
 	  		</div>
+	  		<div>${villeMessageErreur}</div>
 	  		<div>
 	  			<label for="credit">Crédit : </label>
-	  			<span>${utilisateur.credit}</span>
+	  			<span>${!empty credit?credit:utilisateur.credit}</span>
 	  		</div>
 	  		<div>
 	  			<label for="motDePasse">Mot de passe :</label>
-			    <input type="password" name="motDePasse" required>
+			    <input type="password" name="motDePasse" required value="${!empty motDePasseValide?motDePasseValide:utilisateur.motDePasse}">
 	  		</div>
+	  		<div>${motDePasseMessageErreur}</div>
 	  		<div>
 			    <label for="confirmation">Confirmation :</label>
-			    <input type="password" name="confirmation" required>
+			    <input type="password" name="confirmation" required value="${!empty confirmationMDPValide?confirmationMDPValide:utilisateur.motDePasse}">
 			</div>
-			<div>${messageErreurConfirmationMDP}</div>
+			<div>${confirmationMDPMessageErreur}</div>
 		</div>
 		<div class="container">
 			<button name="enregistrer" type="submit">Enregistrer</button>
