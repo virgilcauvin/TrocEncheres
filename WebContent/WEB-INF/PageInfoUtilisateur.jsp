@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,9 @@
 <body>
 	<div>Pseudo : ${requestScope.pseudo}</div>
 	<div>Nom : ${requestScope.nom}</div>
-	<div>Prénom : ${requestScope.prenom}</div>
+	<div>PrÃ©nom : ${requestScope.prenom}</div>
 	<div>Email : ${requestScope.email}</div>
-	<div>Téléphone : ${requestScope.telephone}</div>
+	<div>TÃ©lÃ©phone : ${requestScope.telephone}</div>
 	<div>Rue : ${requestScope.rue}</div>
 	<div>Code postal : ${requestScope.codePostal}</div>
 	<div>Ville : ${requestScope.ville}</div>
