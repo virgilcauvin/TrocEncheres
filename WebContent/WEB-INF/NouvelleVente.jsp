@@ -8,37 +8,33 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-
+<link rel="stylesheet" href="../css/nouvelleVente.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Nouvelle Vente</title>
 </head>
 <body>
-	<main class="container-fluid">
-	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
-			<h1 class="display-4">TrocEncheres.org</h1>
-			<p class="lead">Nouvelle vente</p>
+	<div class="container-fluid">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">TrocEncheres.org</h1>
+				<p class="lead">Nouvelle vente</p>
+			</div>
 		</div>
 	</div>
 	<div>
-		<h3>${requestScope.messageErreurArticle}</h3>
-		<h3>${requestScope.messageErreurCategorie}</h3>
-		<h3>${requestScope.messageErreurDescription}</h3>
-		<h3>${requestScope.messageErreurFinEnchere}</h3>
-		<h3>${requestScope.messageErreurPrixPositif}</h3>
-		<h3>${requestScope.messageErreurPrix}</h3>
-
+		<h3 class="text-center">${requestScope.messageErreurArticle}</h3>
+		<h3 class="text-center">${requestScope.messageErreurCategorie}</h3>
+		<h3 class="text-center">${requestScope.messageErreurDescription}</h3>
+		<h3 class="text-center">${requestScope.messageErreurFinEnchere}</h3>
+		<h3 class="text-center">${requestScope.messageErreurPrixPositif}</h3>
+		<h3 class="text-center">${requestScope.messageErreurPrix}</h3>
 	</div>
-	<form action="${pageContext.request.contextPath}/Secure/ServletVendre"
-		method="post">
+	<form action="${pageContext.request.contextPath}/Secure/ServletVendre" method="post">
 		<div class="container">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text" for="inputGroupSelect01"
-						name="libelle">Choisissez une catégorie</label>
-				</div>
-				<select class="custom-select" id="inputGroupSelect01" name="libelle"
+			<div class="row">
+				<label class="col-3" for="inputGroupSelect01" name="libelle" id="libelle">Catégorie</label>
+				<select class="col-7 custom-select" id="inputGroupSelect01" name="libelle"
 					required>
 					<option selected>${sessionScope.libelle}</option>
 					<option value="animaux">Animaux</option>
@@ -47,52 +43,40 @@
 				</select>
 			</div>
 			<div class="row">
-				<div class="form-group">
-					<label name="article">Article : </label> <input required
-						type="text" name="article" value="${sessionScope.article}">
-				</div>
+				<label name="article" class="col-3">Article : </label>
+				<input class="col-7" required type="text" name="article" value="${sessionScope.article}">
 			</div>
-
-			<div class="form-group">
-				<label for="exampleFormControlTextarea1" name="descritpion">Description
-					:</label>
-				<textarea required class="form-control"
-					id="exampleFormControlTextarea1" rows="3" name="descritpion">${sessionScope.descritpion}</textarea>
+			<div  class="row">
+				<label  class="col-4" for="exampleFormControlTextarea1" name="descritpion" id="description">Description :</label>
+				<span class="container"><textarea required id="exampleFormControlTextarea1" name="descritpion">${sessionScope.descritpion}</textarea></span>
 			</div>
-
-			<div class="form-group">
-				<label name="lienPhoto">Lien vers la photo : </label> <input
-					type="text" name="lienPhoto" value="${sessionScope.lienPhoto}">
+			<div class="row">
+				<label class="col-5" name="lienPhoto">Lien vers la photo : </label>
+				<input class="col-5" type="text" name="lienPhoto" value="${sessionScope.lienPhoto}">
 			</div>
-			<div>
-				<label name="photo">Photo de l'article :</label> <img
-					src="${sessionScope.lienPhoto}">
+			<div  class="row">
+				<label class="col-12" name="photo">Photo de l'article :</label>
+				<img src="${sessionScope.lienPhoto}">
 			</div>
-
-			<div>
-				<label name="prixInitial">Prix initial : </label> <input required
-					value="${sessionScope.prixInitial}" type="number" value="0" min="1"
-					max="10000" name="prixInitial">
+			<div  class="row">
+				<label class="col-3" name="prixInitial">Prix initial : </label>
+				<input class="col-7" required value="${sessionScope.prixInitial}" type="number" value="0" min="1" max="10000" name="prixInitial">
 			</div>
-			<div>
-				<label name="finEnchere">Fin de l'enchère : </label> <input required
-					value="${sessionScope.finEchere}" type="date" name="finEnchere">
+			<div  class="row">
+				<label class="col-5" name="finEnchere">Fin de l'enchère : </label>
+				<input class="col-5" required value="${sessionScope.finEchere}" type="date" name="finEnchere">
 			</div>
-			<div>
-				<label name="adresse">Retrait : </label> ${requestScope.rue}
-				${requestScope.codePostal} ${requestScope.ville}
+			<div class="row">
+				<label class="col-3" name="adresse">Retrait : </label> ${requestScope.rue} ${requestScope.codePostal} ${requestScope.ville}
 			</div>
 		</div>
 		<div class="container">
-			<button name="bouton" value="publier">Publier</button>
-			<button name="bouton" value="enregistrer">Enregistrer</button>
-
-
+			<button name="bouton" id="publier" value="publier">Publier</button>
+			<button name="bouton" id="enregistrer" value="enregistrer">Enregistrer</button>
 		</div>
 	</form>
-	<form action="${pageContext.request.contextPath}/Secure/ServletAccueil"
-		method="post">
-		<button name="annuler" value="annuler">Annuler</button>
-	</form>
+	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil">
+		<button name="annuler" id="annuler" value="annuler">Annuler</button>
+	</a>
 </body>
 </html>
