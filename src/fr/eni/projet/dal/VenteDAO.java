@@ -51,13 +51,18 @@ public class VenteDAO {
 	public static List<Vente> selectAllVentesEnCours(int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
-		String[] tableauMotsCles;
-		tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		String[] tableauMotsCles = null;
+		if (motsCles != "") {
+			tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		}
 		StringBuffer requete = new StringBuffer();
 		requete.append(SELECT_ALL_VENTES_BY_);
 		requete.append("WHERE ");
 		//élaboration de la requête si des mots clé sont renseignés en fonction de leur nombre
-		if (motsCles != null) {
+		if (motsCles != "") {
+			System.out.println("la longueur du tableau de mots clé est : " + tableauMotsCles.length);
+		}
+		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
 				if (i == tableauMotsCles.length-1) {
@@ -68,11 +73,11 @@ public class VenteDAO {
 			}
 			requete.append(") AND ");
 		}
-		
 		//élaboration de la requête en fonction de la catégorie : /!\ prévoir sur la servlet émettrice de configurer noCategorie à 0 si Catégories = toutes
 		if (noCategorie != 0) {
 			requete.append("no_categorie = ? AND ");
 		}
+		//élaboration de la requête en fonction de l'utilisateur
 		requete.append("date_fin_encheres > GETDATE()");
 		System.out.println(requete);
 		
@@ -80,24 +85,33 @@ public class VenteDAO {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
 			//balayage du tableau de mots clés pour paramétrer la requête
-			if (motsCles != null) {
+			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
-					pstmt.setString(i+1, tableauMotsCles[i]);
+					pstmt.setString(i+1, "%"+tableauMotsCles[i]+"%");
+					System.out.println("parametre requete "+ (i+1) +" = " + tableauMotsCles[i]);
 				}
 			}
 			
 			//paramétrage de la requête si catégorie renseignée
+			System.out.println("la chaine de mots clés est : " + motsCles);
+			System.out.println("la catégorie est : " + noCategorie);
 			if (noCategorie != 0) {
-				pstmt.setInt(tableauMotsCles.length + 1, noCategorie);
+				if (motsCles != "") {
+					pstmt.setInt(tableauMotsCles.length + 1, noCategorie);
+					System.out.println("parametre requete "+ (tableauMotsCles.length + 1) +" = " + noCategorie);
+				} else {
+					pstmt.setInt(1, noCategorie);
+				}
+				
 			}
 			
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vente = new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
+			while (rs.next()) {
+				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
-				listeVentes.add(vente);
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
 			}
+			
 			rs.close();
 			pstmt.close();
 			cnx.close();
@@ -111,14 +125,16 @@ public class VenteDAO {
 	public static List<Vente> selectAllVentesUtilisateur(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
-		String[] tableauMotsCles;
+		String[] tableauMotsCles = null;
 		int nbVariablesAparametrer = 0;
-		tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		if (motsCles != "") {
+			tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		}
 		StringBuffer requete = new StringBuffer();
 		requete.append(SELECT_ALL_VENTES_BY_);
 		requete.append("WHERE ");
 		//élaboration de la requête si des mots clé sont renseignés en fonction de leur nombre
-		if (motsCles != null) {
+		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
 				if (i == tableauMotsCles.length-1) {
@@ -144,25 +160,26 @@ public class VenteDAO {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
 			//balayage du tableau de mots clés pour paramétrer la requête
-			if (motsCles != null) {
+			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
-					pstmt.setString(i+1, tableauMotsCles[i]);
+					pstmt.setString(i+1, "%"+tableauMotsCles[i]+"%");
+					System.out.println("parametre requete "+ (i+1) +" = " + tableauMotsCles[i]);
 				}
 			}
 			
 			//paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer-1, noCategorie);
+				System.out.println("parametre requete "+ (nbVariablesAparametrer-1) +" = " + noCategorie);
 			}
 			//paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
-			
+			System.out.println("parametre requete "+ nbVariablesAparametrer +" = " + noUtilisateur);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vente = new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
+			while (rs.next()) {
+				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
-				listeVentes.add(vente);
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
 			}
 			rs.close();
 			pstmt.close();
@@ -178,14 +195,16 @@ public class VenteDAO {
 	public static List<Vente> selectAllEncheresUtilisateurEnCours(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
-		String[] tableauMotsCles;
+		String[] tableauMotsCles = null;
 		int nbVariablesAparametrer = 0;
-		tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		if (motsCles != "") {
+			tableauMotsCles = motsCles.split(" ");//prévoir séparateur "," ?
+		}
 		StringBuffer requete = new StringBuffer();
 		requete.append(SELECT_ALL_VENTES_BY_);
 		requete.append("INNER JOIN ENCHERES e ON e.no_vente = v.no_vente INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur WHERE ");
 		//élaboration de la requête si des mots clé sont renseignés en fonction de leur nombre
-		if (motsCles != null) {
+		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
 				if (i == tableauMotsCles.length-1) {
@@ -203,7 +222,7 @@ public class VenteDAO {
 			requete.append("no_categorie = ? AND ");
 			nbVariablesAparametrer++;
 		}
-		requete.append("no_utilisateur = ? AND ");
+		requete.append("e.no_utilisateur = ? AND ");
 		nbVariablesAparametrer++;
 		requete.append("date_fin_encheres > GETDATE()");
 		System.out.println(requete);
@@ -212,25 +231,27 @@ public class VenteDAO {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
 			//balayage du tableau de mots clés pour paramétrer la requête
-			if (motsCles != null) {
+			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
-					pstmt.setString(i+1, tableauMotsCles[i]);
+					pstmt.setString(i+1, "%"+tableauMotsCles[i]+"%");
+					System.out.println("parametre requete "+ (i+1) +" = " + tableauMotsCles[i]);
 				}
 			}
 			
 			//paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer-1, noCategorie);
+				System.out.println("parametre requete "+ (nbVariablesAparametrer-1) +" = " + noCategorie);
 			}
 			//paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
+			System.out.println("parametre requete "+ nbVariablesAparametrer +" = " + noUtilisateur);
 			
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vente = new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
+			while (rs.next()) {
+				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
-				listeVentes.add(vente);
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
 			}
 			rs.close();
 			pstmt.close();
