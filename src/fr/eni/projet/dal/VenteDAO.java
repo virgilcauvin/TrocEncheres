@@ -147,7 +147,7 @@ public class VenteDAO {
 			while (rs.next()) {
 				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), rs.getString("photo")));//  /!\ NEW : ajout photo
 			}
 			
 			rs.close();
@@ -219,7 +219,7 @@ public class VenteDAO {
 			while (rs.next()) {
 				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), rs.getString("photo")));//  /!\ NEW : ajout photo
 			}
 			rs.close();
 			pstmt.close();
@@ -292,7 +292,7 @@ public class VenteDAO {
 			while (rs.next()) {
 				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"), 
-						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")));
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), rs.getString("photo")));//  /!\ NEW : ajout photo
 			}
 			rs.close();
 			pstmt.close();

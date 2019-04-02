@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projet.bo.Enchere;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.bo.Vente;
+import fr.eni.projet.dal.EnchereDAO;
 import fr.eni.projet.dal.UtilisateurDAO;
 import fr.eni.projet.dal.VenteDAO;
 
@@ -60,6 +62,11 @@ public class ServletAccueil extends HttpServlet {
 			motsCles = request.getParameter("recherche");
 			listeVentesUtilisateur = VenteDAO.selectAllVentesUtilisateur(noUtilisateur, noCategorie, motsCles);
 			for (Vente vente : listeVentesUtilisateur) {
+				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateur.getPseudo());
+				vente.setRue(utilisateur.getRue());
+				vente.setCodePostal(utilisateur.getCodePostal());
+				vente.setVille(utilisateur.getVille());
 				System.out.println(vente.toString());
 			}
 			request.setAttribute("listeVentesUtilisateur", listeVentesUtilisateur);
@@ -67,6 +74,8 @@ public class ServletAccueil extends HttpServlet {
 		
 		if (request.getParameter("mesEncheresEnCours") != null) {
 			List<Vente> listeEncheresUtilisateurEnCours = new ArrayList<>();
+			List<Enchere> listeEncheresUtilisateur = new ArrayList<>();
+			List<Enchere> listeEncheresVente = new ArrayList<>();
 			int noUtilisateur = 0;
 			int noCategorie = 0;
 			String motsCles = null;
@@ -76,8 +85,39 @@ public class ServletAccueil extends HttpServlet {
 			motsCles = request.getParameter("recherche");
 			listeEncheresUtilisateurEnCours = VenteDAO.selectAllEncheresUtilisateurEnCours(noUtilisateur, noCategorie, motsCles);
 			for (Vente vente : listeEncheresUtilisateurEnCours) {
+				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateur.getPseudo());
+				vente.setRue(utilisateur.getRue());
+				vente.setCodePostal(utilisateur.getCodePostal());
+				vente.setVille(utilisateur.getVille());
 				System.out.println(vente.toString());
 			}
+			listeEncheresUtilisateur = EnchereDAO.selectByNoUtilisateur(noUtilisateur);
+			
+			//parcourir la liste des encheres de l'utilisateur
+			for (Enchere enchereUtilisateur : listeEncheresUtilisateur) {
+				int noVente = enchereUtilisateur.getNoVente();
+				//pour chacune des ventes sur lesquelles il a encheri, on recupère la liste d'enchères faites sur cette vente
+				listeEncheresVente = EnchereDAO.selectEncheresByNoVente(noVente);
+				int classement = 1;
+				//on parcourt cette liste pour retrouver le no de l'utilisateur et établir son classement
+				for (Enchere enchere : listeEncheresVente) {
+					if (enchere.getNoUtilisateur() != enchereUtilisateur.getNoUtilisateur()) {
+						classement++;
+					} else {
+						enchereUtilisateur.setClassement(classement);
+						break;
+					}
+				}
+				System.out.println("Le classement de l'utilisateur " + noUtilisateur + " dans la vente n°" + noVente + " est : " + classement);
+			}
+			
+			for (Enchere enchere : listeEncheresUtilisateur) {
+				System.out.println("enchère de l'utilisateur :" + enchere.toString());
+			}
+			
+			request.setAttribute("listeEncheresUtilisateur", listeEncheresUtilisateur);
+			
 			request.setAttribute("listeEncheresUtilisateurEnCours", listeEncheresUtilisateurEnCours);
 		}
 		
@@ -97,6 +137,11 @@ public class ServletAccueil extends HttpServlet {
 			motsCles = request.getParameter("recherche");
 			listeVentesEnCours = VenteDAO.selectAllVentesEnCours(noCategorie, motsCles);
 			for (Vente vente : listeVentesEnCours) {
+				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateur.getPseudo());
+				vente.setRue(utilisateur.getRue());
+				vente.setCodePostal(utilisateur.getCodePostal());
+				vente.setVille(utilisateur.getVille());
 				System.out.println(vente.toString());
 			}
 			request.setAttribute("listeVentesEnCours", listeVentesEnCours);

@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.projet.bo.Enchere;
 
 public class EnchereDAO {
-	private static final String SELECT_BY_NO_VENTE = "select * from ENCHERES where no_vente = ?";
+	private static final String SELECT_BY_NO_VENTE = "select * from ENCHERES where no_vente = ? ORDER BY montant DESC";
 	private static final String INSERT_ENCHERE = "insert into ENCHERES (date_enchere,no_utilisateur_no_vente,montant)values(?,?,?,?)";
+	/* /!\ NEW */private static final String SELECT_BY_NO_UTILISATEUR = "select * from ENCHERES where no_utilisateur = ?";
 	
 	public static void insertEnchere(Enchere enchere) {
 		
@@ -38,7 +41,7 @@ public class EnchereDAO {
 			pstmt.setInt(1, noVente);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				enchere = new Enchere(rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"));
+				enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"));
 			}
 			rs.close();
 			pstmt.close();
@@ -49,6 +52,50 @@ public class EnchereDAO {
 		}
 		
 		return enchere;
+	}
+
+	/* /!\ NEW : méthode de recherche de toutes les encheres d'un utilisateur donné*/
+	public static List<Enchere> selectEncheresByNoVente(int noVente) {
+		List<Enchere> listeEncheresUtilisateur = new ArrayList<Enchere>();
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_NO_VENTE);
+			pstmt.setInt(1, noVente);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				listeEncheresUtilisateur.add(new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"), rs.getInt("montant")));
+			}
+			rs.close();
+			pstmt.close();
+			cnx.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeEncheresUtilisateur;
+	}
+	
+	/* /!\ NEW : méthode de recherche de toutes les encheres d'une vente donnée*/
+	public static List<Enchere> selectByNoUtilisateur(int noUtilisateur) {
+		List<Enchere> listeEncheresUtilisateur = new ArrayList<Enchere>();
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_NO_UTILISATEUR);
+			pstmt.setInt(1, noUtilisateur);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				listeEncheresUtilisateur.add(new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"), rs.getInt("montant")));
+			}
+			rs.close();
+			pstmt.close();
+			cnx.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeEncheresUtilisateur;
 	}
 	
 }

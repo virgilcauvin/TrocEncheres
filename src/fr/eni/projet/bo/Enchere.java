@@ -11,6 +11,7 @@ public class Enchere implements Serializable {
 	private int noUtilisateur;
 	private int noVente;
 	private int montant;
+	private int classement;// /!\ NEW
 
 	public Enchere() {
 	}
@@ -31,6 +32,15 @@ public class Enchere implements Serializable {
 		this.dateEnchere = dateEnchere;
 	}
 
+	/*/!\ NEW : Constructeur avec classement*/
+	public Enchere(LocalDate dateEnchere, int noUtilisateur, int noVente, int montant, int classement) {
+		this.noUtilisateur = noUtilisateur;
+		this.noVente = noVente;
+		this.dateEnchere = dateEnchere;
+		this.montant = montant;
+		this.classement = classement;
+	}
+	
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}
@@ -39,16 +49,19 @@ public class Enchere implements Serializable {
 		this.dateEnchere = dateEnchere;
 	}
 
+	/*/!\ NEW : MAJ méthode toString avec tous les paramètres*/
 	@Override
 	public String toString() {
-		return "Enchere [dateEnchere=" + dateEnchere + "]";
+		return "Enchere [dateEnchere=" + dateEnchere + ", noUtilisateur=" + noUtilisateur + ", noVente=" + noVente
+				+ ", montant=" + montant + ", classement=" + classement + "]";
 	}
+
 
 	public int getNoVente() {
 		return noVente;
 	}
 
-	public void setNoVente(int noVente) {
+		public void setNoVente(int noVente) {
 		this.noVente = noVente;
 	}
 
@@ -68,4 +81,13 @@ public class Enchere implements Serializable {
 		this.montant = montant;
 	}
 
+	public int getClassement() {
+		return classement;
+	}
+
+	public void setClassement(int classement) {
+		this.classement = classement;
+	}
+
+	
 }
