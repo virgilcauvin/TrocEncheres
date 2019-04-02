@@ -42,15 +42,16 @@ public class ServletEnchere extends HttpServlet {
 	int noVente = 0;
 	Utilisateur acheteur = new Utilisateur();
 	Utilisateur vendeur = new Utilisateur();
+	Utilisateur meilleurEncherisseur = new Utilisateur();
+	Vente vente = new Vente();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		noVente = (int) request.getAttribute("noVente");
-		Utilisateur meilleurEncherisseur = new Utilisateur();
+		noVente = Integer.parseInt(request.getParameter("noVente"));
 
 		HttpSession session = request.getSession();
 
-		Vente vente = VenteDAO.selectVenteByNoVente(noVente);
+		vente = VenteDAO.selectVenteByNoVente(noVente);
 
 		if (vente.getPrixVente() >= vente.getMiseAPrix()) {
 			enchereMin = vente.getPrixVente() + 1;
@@ -58,8 +59,13 @@ public class ServletEnchere extends HttpServlet {
 			enchereMin = vente.getMiseAPrix();
 		}
 		acheteur = UtilisateurDAO.selectByPseudo((String) session.getAttribute("pseudo"));
-		meilleurEncherisseur = UtilisateurDAO
-				.selectById(EnchereDAO.selectByNoVente(vente.getNoVente()).getNoUtilisateur());
+
+		Enchere meilleureEnchere = new Enchere();
+		meilleureEnchere = EnchereDAO.selectByNoVente(noVente);
+		if (meilleureEnchere != null) {
+			meilleurEncherisseur = UtilisateurDAO.selectById(meilleureEnchere.getNoUtilisateur());
+		}
+
 		vendeur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
 
 		enchereMax = acheteur.getCredit();
@@ -67,7 +73,9 @@ public class ServletEnchere extends HttpServlet {
 		request.setAttribute("nomArticle", vente.getNomArticle());
 		request.setAttribute("photo", vente.getPhoto());
 		request.setAttribute("meilleureOffre", vente.getPrixVente());
-		request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
+		if (meilleureEnchere != null) {
+			request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
+		}
 		request.setAttribute("miseAPrix", vente.getMiseAPrix());
 		request.setAttribute("dateFinEchere", vente.getDateFinEncheres());
 		request.setAttribute("rue", vendeur.getRue());
@@ -92,6 +100,7 @@ public class ServletEnchere extends HttpServlet {
 		String erreurObjetPropre = null;
 		String erreurPasAssez = null;
 		String erreurTrop = null;
+		Enchere ancienneEnchere = null;
 		int enchere = Integer.parseInt(request.getParameter("enchere"));
 		Enchere enchereSaisie = new Enchere(LocalDate.now(), acheteur.getNoUtilisateur(), noVente, enchere);
 		if (acheteur.getNoUtilisateur() == vendeur.getNoUtilisateur()) {
@@ -107,12 +116,39 @@ public class ServletEnchere extends HttpServlet {
 					erreurTrop = "Ecnhère pas assez élevée.";
 				} else {
 					VenteDAO.updatePrixVente(noVente, enchere);
-					UtilisateurDAO.updateCredit(acheteur.getNoUtilisateur(), acheteur.getCredit() - enchere);
-					EnchereDAO.insertEnchere(enchereSaisie);
+					ancienneEnchere = EnchereDAO.selectByPK(acheteur.getNoUtilisateur(), noVente);
+					if (ancienneEnchere == null) {
+						UtilisateurDAO.updateCredit(acheteur.getNoUtilisateur(), acheteur.getCredit() - enchere);
+						EnchereDAO.insertEnchere(enchereSaisie);
+					} else {
+						UtilisateurDAO.updateCredit(acheteur.getNoUtilisateur(),
+								acheteur.getCredit() + ancienneEnchere.getMontant() - enchere);
+						EnchereDAO.updateEnchere(acheteur.getNoUtilisateur(), noVente, enchere);
+					}
+
 					destination = "/WEB-INF/PageListeEncheres.jsp";
 				}
 			}
 		}
+		vente = VenteDAO.selectVenteByNoVente(noVente);
+
+		if (vente.getPrixVente() >= vente.getMiseAPrix()) {
+			enchereMin = vente.getPrixVente() + 1;
+		} else {
+			enchereMin = vente.getMiseAPrix();
+		}
+		request.setAttribute("nomArticle", vente.getNomArticle());
+		request.setAttribute("photo", vente.getPhoto());
+		request.setAttribute("meilleureOffre", vente.getPrixVente());
+		request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
+		request.setAttribute("miseAPrix", vente.getMiseAPrix());
+		request.setAttribute("dateFinEchere", vente.getDateFinEncheres());
+		request.setAttribute("rue", vendeur.getRue());
+		request.setAttribute("codePostal", vendeur.getCodePostal());
+		request.setAttribute("ville", vendeur.getVille());
+		request.setAttribute("vendeur", vendeur.getPseudo());
+		request.setAttribute("enchereMin", enchereMin);
+		request.setAttribute("enchereMax", enchereMax);
 		request.setAttribute("erreurObjetPropre", erreurObjetPropre);
 		request.setAttribute("erreurPasAssez", erreurPasAssez);
 		request.setAttribute("erreurTrop", erreurTrop);
