@@ -72,7 +72,7 @@
 					
 					<c:forEach var="venteEnCours" items="${listeVentesEnCours}">
 	   					<div class="border">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${venteEnCours.nomArticle}</a>
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}" >${venteEnCours.nomArticle}</a>
 	   						<p>
 	   							<span>Prix : ${venteEnCours.prixVente==0 ? venteEnCours.miseAPrix : venteEnCours.prixVente} points</span><span>classement : (� faire)</span>
 	   						</p>

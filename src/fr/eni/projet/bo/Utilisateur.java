@@ -19,8 +19,27 @@ public class Utilisateur implements Serializable {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private boolean visionNom;
+	private boolean visionPrenom;
+	private boolean visionEmail;
+	private boolean visionTelephone;
 	
 	public Utilisateur(){}
+	
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, boolean visionNom,boolean visionPrenom,boolean visionEmail,boolean visionTelephone) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.visionNom = visionNom;
+		this.visionPrenom = visionPrenom;
+		this.visionEmail = visionEmail;
+		this.visionTelephone = visionTelephone;
+	}
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur){
 		this.noUtilisateur = noUtilisateur;
@@ -150,6 +169,38 @@ public class Utilisateur implements Serializable {
 
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
+	}
+
+	public boolean isVisionNom() {
+		return visionNom;
+	}
+
+	public void setVisionNom(boolean visionNom) {
+		this.visionNom = visionNom;
+	}
+
+	public boolean isVisionPrenom() {
+		return visionPrenom;
+	}
+
+	public void setVisionPrenom(boolean visionPrenom) {
+		this.visionPrenom = visionPrenom;
+	}
+
+	public boolean isVisionEmail() {
+		return visionEmail;
+	}
+
+	public void setVisionEmail(boolean visionEmail) {
+		this.visionEmail = visionEmail;
+	}
+
+	public boolean isVisionTelephone() {
+		return visionTelephone;
+	}
+
+	public void setVisionTelephone(boolean visionTelephone) {
+		this.visionTelephone = visionTelephone;
 	}
 
 	@Override

@@ -63,6 +63,10 @@ public class ServletProfil extends HttpServlet {
 		String pseudoInitial;
 		String emailInitial;
 		String telephoneInitial;
+		boolean visionNom;
+		boolean visionPrenom;
+		boolean visionEmail;
+		boolean visionTelephone;
 		 
 		HttpSession session = request.getSession();
 		
@@ -81,6 +85,12 @@ public class ServletProfil extends HttpServlet {
 		ville = request.getParameter("ville");
 		motDePasse = request.getParameter("motDePasse");
 		confirmationMDP = request.getParameter("confirmation");
+		visionNom = Boolean.parseBoolean(request.getParameter("visionNom"));
+		visionPrenom = Boolean.parseBoolean(request.getParameter("visionPrenom"));
+		visionEmail = Boolean.parseBoolean(request.getParameter("visionEmail"));
+		visionTelephone = Boolean.parseBoolean(request.getParameter("visionTelephone"));
+		
+		UtilisateurDAO.updateVision(utilisateurCourant.getNoUtilisateur(), visionNom, visionPrenom, visionEmail, visionTelephone);
 		
 		//Verifier la non nullite et la validite de tous les champs en regroupant toutes les erreurs dans une MapList
 		Map<String, StringBuffer> listeErreurChamps = new TreeMap<>();
