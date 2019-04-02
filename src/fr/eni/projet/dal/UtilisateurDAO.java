@@ -20,6 +20,22 @@ public class UtilisateurDAO {
 	private static final String SELECT_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
 	private static final String SELECT_BY_TELEPHONE = "SELECT * FROM UTILISATEURS WHERE telephone = ?";
 	private static final String UPDATE_PROFIL = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur = ?";
+	private static final String UPDATE_CREDIT_BY_ID = "UPDATE Utilisateurs SET credit=? WHERE no_utilisateur = ?";
+	
+	public static void updateCredit(int noUtilisateur,int nouveauCredit) {
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_CREDIT_BY_ID);
+			pstmt.setInt(1, nouveauCredit);
+			pstmt.setInt(2, noUtilisateur);
+			pstmt.executeUpdate();
+			cnx.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	public static void updateProfil(Utilisateur utilisateur) {
 		try {
