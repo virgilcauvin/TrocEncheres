@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+body{
+	background: grey;
+	font-size: 1.8em;
+}
+label{
+	margin:1em;
+	color:white;
+}
+input{
+	margin: 1em;
+}
+#annuler{
+	font-size: 1.5em;
+	position:relative;
+	top:-150px; left:400px;
+	width: 200px;
+	height: 150px;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+  	border:1px black;
+}
+#creer{
+	font-size: 1.5em;
+	width: 200px;
+	height: 150px;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+ 	border:1px black;
+}

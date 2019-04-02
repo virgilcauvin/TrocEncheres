@@ -1,0 +1,57 @@
+@charset "ISO-8859-1";
+
+body{
+	background:grey;
+	font-size:1.8em;
+}
+select{
+	margin: 1em;
+}
+h3{
+	background-color:orange;
+	border:border:1px red;
+}
+label{
+	margin:1em;
+	color:white;
+}
+input{
+	margin: 1em;
+}
+#description{
+	margin-left-top-right:1em;
+}
+#exampleFormControlTextarea1{
+	font-size: 1em;
+}
+#publier{
+	font-size: 1em;
+	width: 200px;
+	height: 150px;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+ 	border:1px black;
+}
+#enregistrer{
+	font-size: 1em;
+	position:relative;
+	top:0px; left:30px;
+	width: 200px;
+	height: 150px;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+  	border:1px black;
+}
+#annuler{
+	font-size: 1em;
+	position:relative;
+	top:-150px; left:625px;
+	width: 200px;
+	height: 150px;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+  	border:1px black;
+}

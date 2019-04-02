@@ -1,103 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Page Connexion</title>
+<link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
-	<main class="container-fluid">
+	<div class="container-fluid">
 		<div class="jumbotron jumbotron-fluid">
-		  <div class="container">
-		    <h1 class="display-4">TrocEncheres.org</h1>
-		    <p class="lead">Identification</p>
-		  </div>
-		</div>
-		<c:if test="${sessionScope.compteCree}">
-			<div>
-				<p>Votre compte est créé : vous pouvez vous connecter.</p>
-			</div>
-		</c:if>
-	<form action="${pageContext.request.contextPath}/ServletConnexionCompte" method="post">
-		<div class="container">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-3">
-					<p class="text-right">Identifiant :
-				</div>
-				<div class="col-7">
-					<input class="form-control form-control-sm" name="identifiant" type="text"
-						placeholder="Votre identifiant ici" value="${pseudo}">
-				</div>
-				<div class="col-1"></div>
+			<div class="container">
+				<h1 class="display-4">TrocEncheres.org</h1>
+				<p class="lead">Identification</p>
 			</div>
 		</div>
-		<div class="container">
+	</div>
+	<c:if test="${sessionScope.compteCree}">
+		<div>
+			<p class="text-center m-2">Votre compte est créé : vous pouvez vous connecter.</p>
+		</div>
+	</c:if>
+	<form action="${pageContext.request.contextPath}/ServletConnexionCompte"method="post">
+		<div class="container" id="logPass">
 			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-3">
-					<p class="text-right">Mot de passe :
+				<div class="col-5 m-1">
+					<p>Identifiant :
 				</div>
-				<div class="col-7">
-					<input class="form-control form-control-sm" name="password" type="password"
-						placeholder="Votre identifiant ici"  value="${motDePasse}">
+				<div class="col-6">
+					<input name="identifiant" type="text" placeholder="Votre identifiant ici" value="${pseudo}">
 				</div>
-				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-5 m-1">
+					<p>Mot de passe :
+				</div>
+				<div class="col-6">
+					<input name="password" type="password" placeholder="Votre mot de passe ici" value="${motDePasse}">
+				</div>
 			</div>
 		</div>
-		<div>${messageErreurConnexion}</div>
+		<div class="text-center m-2">${messageErreurConnexion}</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-2">
-					<button type="submit" class="btn btn-primary"
-						class="btn btn-primary btn-lg" style="padding: 16px 16px">Connexion</button>
+				<div class="col-5 offset-1">
+					<button type="submit" id="bouton-connexion">Connexion</button>
 				</div>
-				<div class="col-8" class="input-group mb-3">
+				<div class="col-6">
 					<div class="container">
-						<div class="input-group-prepend">
-
-							<div class="input-group-text">
-								<input type="checkbox">
-							</div>
-
-							<div class="row">
-								<div class="col-12">Se souvenir de moi</div>
-							</div>
+						<div class="row">
+							<input type="checkbox" id="check"> <label for="check">Se souvenir de moi</label>
 						</div>
-						<div class="container">
-							<div class="row">
-								<a href="https://example.com">Mot de passe oublié</a>
-							</div>
+						<div class="row">
+							<a href="https://example.com">Mot de passe oublié</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-1"></div>
-			</div>
-		</div>
-
-	</form>
-
-	<form action="">
-		<div class="container">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-10">
-					<a href="${pageContext.request.contextPath}/ServletCreationCompte"><button type="button" style="padding: 48px 16px"
-						class="btn btn-primary btn-lg btn-block">Créer un compte</button></a>
-				</div>
-				<div class="col-1"></div>
-
 			</div>
 		</div>
 	</form>
-
-
+	<div class="container">
+		<div class="row">
+			<a href="${pageContext.request.contextPath}/ServletCreationCompte"><button type="button" class="col-12" id="bouton-creer">Créer un compte</button></a>
+		</div>
+	</div>
 </body>
 </html>

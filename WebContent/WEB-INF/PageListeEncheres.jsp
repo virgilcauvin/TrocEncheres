@@ -19,7 +19,7 @@
 					<h1>TrocEncheres.org</h1>
 				</div>
 				<div>
-					<p>${sessionScope.pseudo} est connecté !</p>
+					<p>${sessionScope.pseudo} est connectï¿½ !</p>
 				</div>
 				<div>
 					<a href="${pageContext.request.contextPath}/Secure/ServletVendre">Vendre
@@ -32,7 +32,7 @@
 				<div>
 					<!-- /!\NEW -->
 					<a
-						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion">Déconnexion</a>
+						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion">Dï¿½connexion</a>
 				</div>
 				<h2>Filtres :</h2>
 				<div>
@@ -43,7 +43,7 @@
 						</div>
 						<div>
 							<input type="checkbox" name="mesEncheresEnCours">
-							<label>Mes enchères en cours</label>
+							<label>Mes enchï¿½res en cours</label>
 						</div>
 						<div>
 							<input type="checkbox" name="mesAcquisitions">
@@ -51,10 +51,10 @@
 						</div>
 						<div>
 							<input type="checkbox" name="autresEncheres">
-							<label>Autres enchères</label>
+							<label>Autres enchï¿½res</label>
 						</div>
 						<div>
-							<label>Catégories</label>
+							<label>Catï¿½gories</label>
 							<select id="pet-select" name="categorie">
 			    				<option value="0">Toutes</option>
 			    				<c:forEach var="categorie" items="${sessionScope.listeCategories}">
@@ -75,9 +75,9 @@
 							<img alt="${venteEnCours.nomArticle}" src="${venteEnCours.photo}">
 	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle}</a>
 	   						<p>
-	   							<span>Prix : ${venteEnCours.prixVente==0 ? venteEnCours.miseAPrix : venteEnCours.prixVente} points</span><span>classement : (à faire ?)</span>
+	   							<span>Prix : ${venteEnCours.prixVente==0 ? venteEnCours.miseAPrix : venteEnCours.prixVente} points</span><span>classement : (ï¿½ faire ?)</span>
 	   						</p>
-							<p>Fin de l'enchère : ${venteEnCours.dateFinEncheres}</p>
+							<p>Fin de l'enchï¿½re : ${venteEnCours.dateFinEncheres}</p>
 							<p>Retrait : ${venteEnCours.rue}</p>
 							<p>${venteEnCours.codePostal} ${venteEnCours.ville}</p>
 							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${venteEnCours.pseudo}">${venteEnCours.pseudo}</a>
@@ -89,7 +89,7 @@
 	   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
 	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${venteUtilisateur.nomArticle}</a>
 	   						<p>Prix : ${venteUtilisateur.prixVente==0 ? venteUtilisateur.miseAPrix : venteUtilisateur.prixVente} points</p>
-							<p>Fin de l'enchère : ${venteUtilisateur.dateFinEncheres}</p>
+							<p>Fin de l'enchï¿½re : ${venteUtilisateur.dateFinEncheres}</p>
 							<p>Retrait : ${venteUtilisateur.rue}</p>
 							<p>${venteUtilisateur.codePostal} ${venteUtilisateur.ville}</p>
 							<div>Vendeur : ${sessionScope.pseudo}</div>
@@ -106,7 +106,7 @@
 	   								${enchereUtilisateur.noVente == enchereUtilisateurEnCours.noVente ? enchereUtilisateur.classement : erreur} 
 	   							</c:forEach>
 	   						</p>
-							<p>Fin de l'enchère : ${enchereUtilisateurEnCours.dateFinEncheres}</p>
+							<p>Fin de l'enchï¿½re : ${enchereUtilisateurEnCours.dateFinEncheres}</p>
 							<p>Retrait : ${enchereUtilisateurEnCours.rue}</p>
 							<p>${enchereUtilisateurEnCours.codePostal} ${enchereUtilisateurEnCours.ville}</p>
 							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${enchereUtilisateurEnCours.pseudo}">${enchereUtilisateurEnCours.pseudo}</a>
