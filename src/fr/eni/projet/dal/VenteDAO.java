@@ -11,15 +11,51 @@ import fr.eni.projet.bo.Vente;
 
 public class VenteDAO {
 	private static final String INSERT_VENTE = "insert into VENTES(nomarticle, description, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie,photo ) values(?,?,?,?,?,?,?,?)";
-	/*/!\ NEW : préparation requête de recherche article*/private static final String SELECT_ALL_VENTES_BY_ = "SELECT v.* FROM VENTES v ";
-	
+	private static final String SELECT_ALL_VENTES_BY_ = "SELECT v.* FROM VENTES v ";
+	private static final String SELECT_VENTE_BY_NO_VENTE = "select * from VENTES where no_vente = ?";
+	private static final String UPDATE_PRIX_VENTE_BY_NO_VENTE = "UPDATE VENTES SET prix_vente = ? WHERE no_vente =  ? ";
+
+	public static void updatePrixVente(int noVente, int prixVente) {
+		Connection cnx;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_PRIX_VENTE_BY_NO_VENTE);
+			pstmt.setInt(1, prixVente);
+			pstmt.setInt(2, noVente);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static Vente selectVenteByNoVente(int noVente) {
+		Vente vente = null;
+		try {
+
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_VENTE_BY_NO_VENTE);
+			pstmt.setInt(1, noVente);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vente = new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"),
+						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"),
+						rs.getString("photo"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vente;
+	}
+
 	public static void insertVente(Vente vente) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			try {
-				PreparedStatement pstmt = cnx.prepareStatement(INSERT_VENTE,
-						PreparedStatement.RETURN_GENERATED_KEYS);
-				
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT_VENTE, PreparedStatement.RETURN_GENERATED_KEYS);
+
 				pstmt.setString(1, vente.getNomArticle());
 				pstmt.setString(2, vente.getDescription());
 				pstmt.setDate(3, java.sql.Date.valueOf(vente.getDateFinEncheres()));
@@ -45,9 +81,11 @@ public class VenteDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	/*/!\ NEW : méthode de recherche de toutes les ventes en cours avec option par mots clés du nom article et/ou noCategorie*/
+
+	/*
+	 * /!\ NEW : méthode de recherche de toutes les ventes en cours avec option par
+	 * mots clés du nom article et/ou noCategorie
+	 */
 	public static List<Vente> selectAllVentesEnCours(int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
@@ -65,7 +103,7 @@ public class VenteDAO {
 		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
-				if (i == tableauMotsCles.length-1) {
+				if (i == tableauMotsCles.length - 1) {
 					requete.append("nomarticle LIKE ?");
 				} else {
 					requete.append("nomarticle LIKE ? OR ");
@@ -80,7 +118,7 @@ public class VenteDAO {
 		//élaboration de la requête en fonction de l'utilisateur
 		requete.append("date_fin_encheres > GETDATE()");
 		System.out.println(requete);
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
@@ -104,7 +142,7 @@ public class VenteDAO {
 				}
 				
 			}
-			
+
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"), rs.getString("description"), 
@@ -120,8 +158,9 @@ public class VenteDAO {
 		}
 		return listeVentes;
 	}
-	
-	//méthode de recherche de toutes les ventes de l'utilisateur avec option par mots clés du nom article et/ou noCategorie
+
+	// méthode de recherche de toutes les ventes de l'utilisateur avec option par
+	// mots clés du nom article et/ou noCategorie
 	public static List<Vente> selectAllVentesUtilisateur(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
@@ -137,7 +176,7 @@ public class VenteDAO {
 		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
-				if (i == tableauMotsCles.length-1) {
+				if (i == tableauMotsCles.length - 1) {
 					requete.append("nomarticle LIKE ?");
 				} else {
 					requete.append("nomarticle LIKE ? OR ");
@@ -146,8 +185,9 @@ public class VenteDAO {
 			}
 			requete.append(") AND ");
 		}
-		
-		//élaboration de la requête en fonction de la catégorie : /!\ prévoir sur la servlet émettrice de configurer noCategorie à 0 si Catégories = toutes
+
+		// élaboration de la requête en fonction de la catégorie : /!\ prévoir sur la
+		// servlet émettrice de configurer noCategorie à 0 si Catégories = toutes
 		if (noCategorie != 0) {
 			requete.append("no_categorie = ? AND ");
 			nbVariablesAparametrer++;
@@ -155,7 +195,7 @@ public class VenteDAO {
 		requete.append("no_utilisateur = ?");
 		nbVariablesAparametrer++;
 		System.out.println(requete);
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
@@ -166,13 +206,13 @@ public class VenteDAO {
 					System.out.println("parametre requete "+ (i+1) +" = " + tableauMotsCles[i]);
 				}
 			}
-			
-			//paramétrage de la requête si catégorie renseignée
+
+			// paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer-1, noCategorie);
 				System.out.println("parametre requete "+ (nbVariablesAparametrer-1) +" = " + noCategorie);
 			}
-			//paramétrage du numero utilisateur de la requête
+			// paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
 			System.out.println("parametre requete "+ nbVariablesAparametrer +" = " + noUtilisateur);
 			ResultSet rs = pstmt.executeQuery();
@@ -189,9 +229,9 @@ public class VenteDAO {
 		}
 		return listeVentes;
 	}
-	
-	
-	//méthode de recherche de toutes les encheres en cours de l'utilisateur avec option par mots clés du nom article et/ou noCategorie
+
+	// méthode de recherche de toutes les encheres en cours de l'utilisateur avec
+	// option par mots clés du nom article et/ou noCategorie
 	public static List<Vente> selectAllEncheresUtilisateurEnCours(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		Vente vente = null;
@@ -207,7 +247,7 @@ public class VenteDAO {
 		if (motsCles != "") {
 			requete.append("(");
 			for (int i = 0; i < tableauMotsCles.length; i++) {
-				if (i == tableauMotsCles.length-1) {
+				if (i == tableauMotsCles.length - 1) {
 					requete.append("nomarticle LIKE ?");
 				} else {
 					requete.append("nomarticle LIKE ? OR ");
@@ -216,8 +256,9 @@ public class VenteDAO {
 			}
 			requete.append(") AND ");
 		}
-		
-		//élaboration de la requête en fonction de la catégorie : /!\ prévoir sur la servlet émettrice de configurer noCategorie à 0 si Catégories = toutes
+
+		// élaboration de la requête en fonction de la catégorie : /!\ prévoir sur la
+		// servlet émettrice de configurer noCategorie à 0 si Catégories = toutes
 		if (noCategorie != 0) {
 			requete.append("no_categorie = ? AND ");
 			nbVariablesAparametrer++;
@@ -226,7 +267,7 @@ public class VenteDAO {
 		nbVariablesAparametrer++;
 		requete.append("date_fin_encheres > GETDATE()");
 		System.out.println(requete);
-		
+
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
 			
@@ -237,13 +278,13 @@ public class VenteDAO {
 					System.out.println("parametre requete "+ (i+1) +" = " + tableauMotsCles[i]);
 				}
 			}
-			
-			//paramétrage de la requête si catégorie renseignée
+
+			// paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer-1, noCategorie);
 				System.out.println("parametre requete "+ (nbVariablesAparametrer-1) +" = " + noCategorie);
 			}
-			//paramétrage du numero utilisateur de la requête
+			// paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
 			System.out.println("parametre requete "+ nbVariablesAparametrer +" = " + noUtilisateur);
 			
@@ -261,11 +302,7 @@ public class VenteDAO {
 		}
 		return listeVentes;
 	}
-		
-	
-	/*/!\ FIN NEW */
-	
-	
-	
-	
+
+	/* /!\ FIN NEW */
+
 }

@@ -1,6 +1,7 @@
 package fr.eni.projet.bo;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Vente implements Serializable {
@@ -45,6 +46,18 @@ public class Vente implements Serializable {
 		this.description = description;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.photo = photo;
+	}
+	
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, String photo) {
+		this.noVente = noVente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 		this.photo = photo;

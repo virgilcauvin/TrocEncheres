@@ -28,7 +28,7 @@
 		<h3>${requestScope.messageErreurFinEnchere}</h3>
 		<h3>${requestScope.messageErreurPrixPositif}</h3>
 		<h3>${requestScope.messageErreurPrix}</h3>
-		
+
 	</div>
 	<form action="${pageContext.request.contextPath}/Secure/ServletVendre"
 		method="post">
@@ -39,7 +39,7 @@
 						name="libelle">Choisissez une catégorie</label>
 				</div>
 				<select class="custom-select" id="inputGroupSelect01" name="libelle"
-					 required>
+					required>
 					<option selected>${sessionScope.libelle}</option>
 					<option value="animaux">Animaux</option>
 					<option value="vehicule">Véhicules</option>
@@ -86,8 +86,13 @@
 		<div class="container">
 			<button name="bouton" value="publier">Publier</button>
 			<button name="bouton" value="enregistrer">Enregistrer</button>
-			<button name="annuler" value="annuler">Annuler</button>
+
+
 		</div>
+	</form>
+	<form action="${pageContext.request.contextPath}/Secure/ServletAccueil"
+		method="post">
+		<button name="annuler" value="annuler">Annuler</button>
 	</form>
 </body>
 </html>
