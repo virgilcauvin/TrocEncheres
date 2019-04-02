@@ -1,6 +1,8 @@
 package fr.eni.projet.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.CategorieDAO;
 import fr.eni.projet.dal.UtilisateurDAO;
 
 /**
@@ -75,6 +79,9 @@ public class ServletConnexionCompte extends HttpServlet {
 					session.setAttribute("pseudo", utilisateurPseudo.getPseudo());
 					request.setAttribute("utilisateur", utilisateurPseudo);
 					System.out.println("L'utilisateur existant dans la BDD est : " + utilisateurPseudo);
+					List<Categorie> listeCategories = new ArrayList<Categorie>();
+					listeCategories = CategorieDAO.selectAll();
+					session.setAttribute("listeCategories", listeCategories);
 					RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
 					rd.forward(request, response);
 				} else {
@@ -90,6 +97,9 @@ public class ServletConnexionCompte extends HttpServlet {
 					session.setAttribute("pseudo", utilisateurEmail.getPseudo());
 					request.setAttribute("utilisateur", utilisateurEmail);
 					System.out.println("L'utilisateur existant dans la BDD est : " + utilisateurEmail);
+					List<Categorie> listeCategories = new ArrayList<Categorie>();
+					listeCategories = CategorieDAO.selectAll();
+					session.setAttribute("listeCategories", listeCategories);
 					RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageListeEncheres.jsp");
 					rd.forward(request, response);
 				} else {

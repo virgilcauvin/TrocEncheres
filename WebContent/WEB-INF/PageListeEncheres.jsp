@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <title>Page Liste Encheres</title>
 </head>
 <body>
@@ -13,52 +16,94 @@
 		<div class="row">
 			<div class="col-11 offset-1">
 				<div>
-					<h1 >TrocEncheres.org</h1>
+					<h1>TrocEncheres.org</h1>
 				</div>
 				<div>
-					<p>${utilisateur.pseudo} est connecté !</p>
+					<p>${sessionScope.pseudo} est connectï¿½ !</p>
 				</div>
 				<div>
-					<a href="${pageContext.request.contextPath}/Secure/ServletVendre" >Vendre un article</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletVendre">Vendre
+						un article</a>
 				</div>
 				<div>
-					<a href="${pageContext.request.contextPath}/Secure/ServletProfil" >Mon profil</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletProfil">Mon
+						profil</a>
 				</div>
 				<div>
-					<!-- /!\NEW --><a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion" >Déconnexion</a>
+					<!-- /!\NEW -->
+					<a
+						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion">Dï¿½connexion</a>
 				</div>
-				<h2 >Filtres :</h2>
+				<h2>Filtres :</h2>
 				<div>
-					<div >
-						<input type="checkbox">
-						<label>Mes ventes</label>
-					</div>
-					<div>
-						<input type="checkbox">
-						<label>Mes enchères en cours</label>
-					</div>
-					<div>
-						<input type="checkbox">
-						<label>Mes acquisitions</label>
-					</div>
-					<div>
-						<input type="checkbox">
-						<label>Autres enchères</label>
-					</div>
-					<div>
-						<label>Catégories</label>
-						<select id="pet-select">
-		    				<option value="">--Please choose an option--</option>
-		    				<option value="toute">Toutes</option>
-		    				<option value="rien">Aucune</option>
-						</select>
-					</div>
-					<div>
-						<input type="text" name="recherche" class="rounded" placeholder="Votre recherche">
-					</div>
-					<div>
-						<button type="button" class="btn btn-primary p-3 m-2">Rechercher</button>
-					</div>
+					<form action="${pageContext.request.contextPath}/Secure/ServletAccueil" method="post">
+						<div >
+							<input type="checkbox" name="mesVentes">
+							<label>Mes ventes</label>
+						</div>
+						<div>
+							<input type="checkbox" name="mesEncheresEnCours">
+							<label>Mes enchï¿½res en cours</label>
+						</div>
+						<div>
+							<input type="checkbox" name="mesAcquisitions">
+							<label>Mes acquisitions</label>
+						</div>
+						<div>
+							<input type="checkbox" name="autresEncheres">
+							<label>Autres enchï¿½res</label>
+						</div>
+						<div>
+							<label>Catï¿½gories</label>
+							<select id="pet-select" name="categorie">
+			    				<option value="0">Toutes</option>
+			    				<c:forEach var="categorie" items="${sessionScope.listeCategories}">
+			    					<option value="${categorie.noCategorie}">${categorie.libelle}</option>
+			    				</c:forEach>
+							</select>
+						</div>
+						<div>
+							<input type="text" name="recherche" class="rounded" placeholder="Votre recherche">
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary p-3 m-2">Rechercher</button>
+						</div>
+					</form>
+					
+					<c:forEach var="venteEnCours" items="${listeVentesEnCours}">
+	   					<div class="border">
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${venteEnCours.nomArticle}</a>
+	   						<p>
+	   							<span>Prix : ${venteEnCours.prixVente==0 ? venteEnCours.miseAPrix : venteEnCours.prixVente} points</span><span>classement : (ï¿½ faire)</span>
+	   						</p>
+							<p>Fin de l'enchï¿½re : ${venteEnCours.dateFinEncheres}</p>
+							<p>Retrait : (ï¿½ faire)</p>
+							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletEnchere">${venteEnCours.noUtilisateur} (ï¿½ remplacer par pseudo et href ï¿½ crï¿½er)</a>
+	   					</div>
+	   				</c:forEach>
+					
+					<c:forEach var="venteUtilisateur" items="${listeVentesUtilisateur}">
+	   					<div class="border">
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${venteUtilisateur.nomArticle}</a>
+	   						<p>Prix : ${venteUtilisateur.prixVente==0 ? venteUtilisateur.miseAPrix : venteUtilisateur.prixVente} points</p>
+							<p>Fin de l'enchï¿½re : ${venteUtilisateur.dateFinEncheres}</p>
+							<p>Retrait : </p>
+							<div>Vendeur : ${sessionScope.pseudo}</div>
+	   					</div>
+	   				</c:forEach>
+					
+					<c:forEach var="enchereUtilisateurEnCours" items="${listeEncheresUtilisateurEnCours}">
+	   					<div class="border">
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${enchereUtilisateurEnCours.nomArticle}</a>
+	   						<p>
+	   							<span>Prix : ${enchereUtilisateurEnCours.prixVente} points</span><span>classement : (ï¿½ faire)</span>
+	   						</p>
+							<p>Fin de l'enchï¿½re : ${enchereUtilisateurEnCours.dateFinEncheres}</p>
+							<p>Retrait : </p>
+							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletEnchere">${enchereUtilisateurEnCours.noUtilisateur} (ï¿½ remplacer par pseudo et href ï¿½ crï¿½er)</a>
+	   					</div>
+	   				</c:forEach>
+	   				
 				</div>
 			</div>
 		</div>

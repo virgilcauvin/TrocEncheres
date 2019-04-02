@@ -44,14 +44,17 @@ public class CategorieDAO {
 		return categorie;
 	}
 
-	public static ArrayList<String> selectAll() {
-		ArrayList<String> listeCategories = new ArrayList<>();
+	/*/!\ NEW : modif retour de recherche du selectAll : liste de Categories au lieu de libelles de categorie*/
+	public static ArrayList<Categorie> selectAll() {
+		ArrayList<Categorie> listeCategories = new ArrayList<>();
+		Categorie categorie;
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				listeCategories.add(rs.getString("libelle"));
+				categorie = new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"));
+				listeCategories.add(categorie);
 			}
 			rs.close();
 			pstmt.close();
