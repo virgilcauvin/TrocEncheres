@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+
+body{
+	background:grey;
+	font-size: 1.8em;
+}
+img{
+	width: 200px;
+	height:auto;
+	margin:1em;
+}
+#rechercher{
+	font-size: 1em;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+  	border:1px black;
+}
+#finder{
+	border-radius:15px;
+}

@@ -6,6 +6,10 @@ body{
 }
 select{
 	margin: 1em;
+	font-size:1em;
+}
+option{
+	font-size:0.5em;
 }
 h3{
 	background-color:orange;
@@ -18,11 +22,17 @@ label{
 input{
 	margin: 1em;
 }
+#adresse{
+	margin:1em;
+	color:white;
+}
 #description{
-	margin-left-top-right:1em;
+	/*margin-top:1em;*/
 }
 #exampleFormControlTextarea1{
 	font-size: 1em;
+	resize:none;
+	width:385px;
 }
 #publier{
 	font-size: 1em;

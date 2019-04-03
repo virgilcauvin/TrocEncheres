@@ -2,14 +2,15 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
+<head>
+<meta charset="utf-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="../css/nouvelleVente.css">
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Nouvelle Vente</title>
 </head>
@@ -34,7 +35,7 @@
 		<div class="container">
 			<div class="row">
 				<label class="col-3" for="inputGroupSelect01" name="libelle" id="libelle">Catégorie</label>
-				<select class="col-7 custom-select" id="inputGroupSelect01" name="libelle"
+				<select class="col-7 custom-select pull-right" id="inputGroupSelect01" name="libelle"
 					required>
 					<option selected>${sessionScope.libelle}</option>
 					<option value="animaux">Animaux</option>
@@ -48,11 +49,11 @@
 			</div>
 			<div  class="row">
 				<label  class="col-4" for="exampleFormControlTextarea1" name="descritpion" id="description">Description :</label>
-				<span class="container"><textarea required id="exampleFormControlTextarea1" name="descritpion">${sessionScope.descritpion}</textarea></span>
+				<textarea required id="exampleFormControlTextarea1" name="descritpion">${sessionScope.descritpion}</textarea>
 			</div>
 			<div class="row">
-				<label class="col-5" name="lienPhoto">Lien vers la photo : </label>
-				<input class="col-5" type="text" name="lienPhoto" value="${sessionScope.lienPhoto}">
+				<label class="col-4" name="lienPhoto">Lien vers la photo : </label>
+				<input class="col-6" type="text" name="lienPhoto" value="${sessionScope.lienPhoto}">
 			</div>
 			<div  class="row">
 				<label class="col-12" name="photo">Photo de l'article :</label>
@@ -67,7 +68,7 @@
 				<input class="col-5" required value="${sessionScope.finEchere}" type="date" name="finEnchere">
 			</div>
 			<div class="row">
-				<label class="col-3" name="adresse">Retrait : </label> ${requestScope.rue} ${requestScope.codePostal} ${requestScope.ville}
+				<label class="col-3" name="adresse">Retrait : </label> <span id="adresse" class="col-7">${requestScope.rue} ${requestScope.codePostal} ${requestScope.ville}</span>
 			</div>
 		</div>
 		<div class="container">
