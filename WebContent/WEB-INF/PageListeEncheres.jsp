@@ -120,7 +120,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="venteUtilisateur" items="${listeVentesUtilisateur}">
-	   					<div class="border m-1">
+	   					<div class="col-12 border m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
@@ -140,7 +140,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="enchereUtilisateurEnCours" items="${listeEncheresUtilisateurEnCours}">
-	   					<div class="border m-1">
+	   					<div class="col-12 border m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 									<img alt="${venteEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
@@ -164,36 +164,48 @@
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="acquisitionUtilisateur" items="${listeAcquisitionsUtilisateur}">
-	   					<div class="border">
-							<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
-	   						<p>
-	   							<span>Prix : ${acquisitionUtilisateur.prixVente} points</span>
-	   						</p>
-							<p>Fin de l'enchère : ${acquisitionUtilisateur.dateFinEncheres}</p>
-							<p>Retrait : ${acquisitionUtilisateur.rue}</p>
-							<p>${acquisitionUtilisateur.codePostal} ${acquisitionUtilisateur.ville}</p>
-							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${acquisitionUtilisateur.pseudo}">${acquisitionUtilisateur.pseudo}</a>
+	   					<div class="col-12 border">
+	   						<div class="row">
+		   						<div class="col-4">
+									<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
+								</div>
+								<div class="col-8">
+	   								<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
+	   								<p><span>Prix : ${acquisitionUtilisateur.prixVente} points</span></p>
+									<p>Fin de l'enchère : ${acquisitionUtilisateur.dateFinEncheres}</p>
+									<div class="row">
+										<div class="col-4">Retrait : ${acquisitionUtilisateur.rue}</div>
+										<div class="col-8">${acquisitionUtilisateur.codePostal} ${acquisitionUtilisateur.ville}</div>
+									</div>
+									<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${acquisitionUtilisateur.pseudo}">${acquisitionUtilisateur.pseudo}</a>
+	   							</div>
+	   						</div>
 	   					</div>
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="ventesPerduesUtilisateur" items="${listeVentesPerduesUtilisateur}">
-	   					<div class="border">
-							<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${ventesPerduesUtilisateur.nomArticle}</a>
-	   						<p>
-	   							<span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
-	   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
-	   								${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente ? enchereUtilisateur.classement : erreur} 
-	   							</c:forEach>
-	   						</p>
-							<p>Fin de l'enchère : ${ventesPerduesUtilisateur.dateFinEncheres}</p>
-							<p>Retrait : ${ventesPerduesUtilisateur.rue}</p>
-							<p>${ventesPerduesUtilisateur.codePostal} ${ventesPerduesUtilisateur.ville}</p>
-							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${ventesPerduesUtilisateur.pseudo}">${ventesPerduesUtilisateur.pseudo}</a>
+	   					<div class="col-12 border">
+	   						<div class="row">
+		   						<div class="col-4">
+									<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
+								</div>
+								<div class="col-8">
+			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${ventesPerduesUtilisateur.nomArticle}</a>
+			   						<p><span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
+			   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
+			   								${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente ? enchereUtilisateur.classement : erreur} 
+			   							</c:forEach>
+			   						</p>
+			   						<p>Fin de l'enchère : ${ventesPerduesUtilisateur.dateFinEncheres}</p>
+			   						<div class="row">
+										<div class="col-4">Retrait : ${ventesPerduesUtilisateur.rue}</div>
+										<div class="col-8">${ventesPerduesUtilisateur.codePostal} ${ventesPerduesUtilisateur.ville}</div>
+									</div>
+									<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${ventesPerduesUtilisateur.pseudo}">${ventesPerduesUtilisateur.pseudo}</a>
+	   							</div>
+	   						</div>
 	   					</div>
-	   				</c:forEach>
-	   				
+	   				</c:forEach>	
 				</div>
 		</div>
 	</div>
