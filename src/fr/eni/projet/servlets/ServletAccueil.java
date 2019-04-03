@@ -83,6 +83,7 @@ public class ServletAccueil extends HttpServlet {
 			noUtilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo")).getNoUtilisateur();
 			noCategorie = Integer.parseInt(request.getParameter("categorie"));
 			motsCles = request.getParameter("recherche");
+			//sélection de toutes les ventes en cours sur lesquelles l'utilisateur a enchéri
 			listeEncheresUtilisateurEnCours = VenteDAO.selectAllEncheresUtilisateurEnCours(noUtilisateur, noCategorie, motsCles);
 			for (Vente vente : listeEncheresUtilisateurEnCours) {
 				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
@@ -92,10 +93,12 @@ public class ServletAccueil extends HttpServlet {
 				vente.setVille(utilisateur.getVille());
 				System.out.println(vente.toString());
 			}
+			//sélection de toutes les enchères de l'utilisateur (en cours et passées)
 			listeEncheresUtilisateur = EnchereDAO.selectByNoUtilisateur(noUtilisateur);
 			
-			//parcourir la liste des encheres de l'utilisateur
+			//on parcourt la liste des encheres de l'utilisateur
 			for (Enchere enchereUtilisateur : listeEncheresUtilisateur) {
+				//on récupère le n° de vente de chacune de ces enchères
 				int noVente = enchereUtilisateur.getNoVente();
 				//pour chacune des ventes sur lesquelles il a encheri, on recupère la liste d'enchères faites sur cette vente
 				listeEncheresVente = EnchereDAO.selectEncheresByNoVente(noVente);
@@ -105,6 +108,7 @@ public class ServletAccueil extends HttpServlet {
 					if (enchere.getNoUtilisateur() != enchereUtilisateur.getNoUtilisateur()) {
 						classement++;
 					} else {
+						//on met à jour le classement de l'utilisateur sur cette enchère
 						enchereUtilisateur.setClassement(classement);
 						break;
 					}
@@ -121,13 +125,139 @@ public class ServletAccueil extends HttpServlet {
 			request.setAttribute("listeEncheresUtilisateurEnCours", listeEncheresUtilisateurEnCours);
 		}
 		
+		/*/!\ NEW : gestion des paramètres pour l'affichage de la liste des ventes remportées par l'utilisateur*/
 		if (request.getParameter("mesAcquisitions") != null) {
-			//A FAIRE
+			List<Vente> listeEncheresUtilisateurTerminees = new ArrayList<>();
+			List<Enchere> listeEncheresUtilisateur = new ArrayList<>();
+			List<Enchere> listeEncheresVente = new ArrayList<>();
+			List<Vente> listeAcquisitionsUtilisateur = new ArrayList<>();
+			int noUtilisateur = 0;
+			int noCategorie = 0;
+			String motsCles = null;
+			HttpSession session = request.getSession();
+			noUtilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo")).getNoUtilisateur();
+			noCategorie = Integer.parseInt(request.getParameter("categorie"));
+			motsCles = request.getParameter("recherche");
+			//sélection de toutes les ventes terminées sur lesquelles l'utilisateur a enchéri
+			listeEncheresUtilisateurTerminees = VenteDAO.selectAllEncheresTermineesUtilisateur(noUtilisateur, noCategorie, motsCles);
+			for (Vente vente : listeEncheresUtilisateurTerminees) {
+				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateur.getPseudo());
+				vente.setRue(utilisateur.getRue());
+				vente.setCodePostal(utilisateur.getCodePostal());
+				vente.setVille(utilisateur.getVille());
+				System.out.println(vente.toString());
+			}
+			//sélection de toutes les enchères de l'utilisateur (en cours et passées)
+			listeEncheresUtilisateur = EnchereDAO.selectByNoUtilisateur(noUtilisateur);
+			
+			//parcourir la liste de ces encheres
+			for (Enchere enchereUtilisateur : listeEncheresUtilisateur) {
+				//on récupère le n° de vente de chacune de ces enchères
+				int noVente = enchereUtilisateur.getNoVente();
+				//pour chacune des ventes sur lesquelles il a encheri, on recupère la liste d'enchères faites sur cette vente
+				listeEncheresVente = EnchereDAO.selectEncheresByNoVente(noVente);
+				int classement = 1;
+				//on parcourt cette liste pour retrouver le no de l'utilisateur et établir son classement
+				for (Enchere enchere : listeEncheresVente) {
+					if (enchere.getNoUtilisateur() != enchereUtilisateur.getNoUtilisateur()) {
+						classement++;
+					} else {
+						//on met à jour le classement de l'utilisateur sur cette enchère
+						enchereUtilisateur.setClassement(classement);
+						break;
+					}
+				}
+				System.out.println("Le classement de l'utilisateur " + noUtilisateur + " dans la vente n°" + noVente + " est : " + classement);
+			}
+			
+			//on parcourt la liste des ventes terminées sur lesquelles l'utilisateur a enchéri
+			for (Vente vente : listeEncheresUtilisateurTerminees) {
+				//pour chacune de ces ventes, on parcourt la liste de toutes les enchères de l'utilisateur pour retrouver son classement
+				for (Enchere enchere : listeEncheresUtilisateur) {
+					//si le classement de l'utilisateur sur cette vente est égal à 1, on ajoute cette vente à la liste d'acquisition
+					if (enchere.getNoVente() == vente.getNoVente() && enchere.getClassement()==1) {
+						listeAcquisitionsUtilisateur.add(vente);
+					}
+				}
+				
+			}
+			
+			for (Vente vente : listeAcquisitionsUtilisateur) {
+				System.out.println("Acquisition de l'utilisateur : " + vente.toString());
+			}
+				
+			request.setAttribute("listeAcquisitionsUtilisateur", listeAcquisitionsUtilisateur);
+			
 		}
 		
+		// /!\ NEW : gestion des paramètres pour l'affichage de la liste des ventes perdues par l'utilisateur (autres enchères)*/
 		if (request.getParameter("autresEncheres") != null) {
-			//A FAIRE
+			List<Vente> listeEncheresUtilisateurTerminees = new ArrayList<>();
+			List<Enchere> listeEncheresUtilisateur = new ArrayList<>();
+			List<Enchere> listeEncheresVente = new ArrayList<>();
+			List<Vente> listeVentesPerduesUtilisateur = new ArrayList<>();
+			int noUtilisateur = 0;
+			int noCategorie = 0;
+			String motsCles = null;
+			HttpSession session = request.getSession();
+			noUtilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo")).getNoUtilisateur();
+			noCategorie = Integer.parseInt(request.getParameter("categorie"));
+			motsCles = request.getParameter("recherche");
+			//sélection de toutes les ventes terminées sur lesquelles l'utilisateur a enchéri
+			listeEncheresUtilisateurTerminees = VenteDAO.selectAllEncheresTermineesUtilisateur(noUtilisateur, noCategorie, motsCles);
+			for (Vente vente : listeEncheresUtilisateurTerminees) {
+				Utilisateur utilisateur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateur.getPseudo());
+				vente.setRue(utilisateur.getRue());
+				vente.setCodePostal(utilisateur.getCodePostal());
+				vente.setVille(utilisateur.getVille());
+				System.out.println(vente.toString());
+			}
+			//sélection de toutes les enchères de l'utilisateur (en cours et passées)
+			listeEncheresUtilisateur = EnchereDAO.selectByNoUtilisateur(noUtilisateur);
+			
+			//parcourir la liste de ces encheres
+			for (Enchere enchereUtilisateur : listeEncheresUtilisateur) {
+				//on récupère le n° de vente de chacune de ces enchères
+				int noVente = enchereUtilisateur.getNoVente();
+				//pour chacune des ventes sur lesquelles il a encheri, on recupère la liste d'enchères faites sur cette vente
+				listeEncheresVente = EnchereDAO.selectEncheresByNoVente(noVente);
+				int classement = 1;
+				//on parcourt cette liste pour retrouver le no de l'utilisateur et établir son classement
+				for (Enchere enchere : listeEncheresVente) {
+					if (enchere.getNoUtilisateur() != enchereUtilisateur.getNoUtilisateur()) {
+						classement++;
+					} else {
+						//on met à jour le classement de l'utilisateur sur cette enchère
+						enchereUtilisateur.setClassement(classement);
+						break;
+					}
+				}
+				System.out.println("Le classement de l'utilisateur " + noUtilisateur + " dans la vente n°" + noVente + " est : " + classement);
+			}
+			
+			//on parcourt la liste des ventes terminées sur lesquelles l'utilisateur a enchéri
+			for (Vente vente : listeEncheresUtilisateurTerminees) {
+				//pour chacune de ces ventes, on parcourt la liste de toutes les enchères de l'utilisateur pour retrouver son classement
+				for (Enchere enchere : listeEncheresUtilisateur) {
+					//si le classement de l'utilisateur sur cette vente est différent de 1, on ajoute cette vente à la liste de ventes perdues
+					if (enchere.getNoVente() == vente.getNoVente() && enchere.getClassement()!=1) {
+						listeVentesPerduesUtilisateur.add(vente);
+					}
+				}
+				
+			}
+			
+			for (Vente vente : listeVentesPerduesUtilisateur) {
+				System.out.println("Ventes perdues de l'utilisateur : " + vente.toString());
+			}
+			
+			request.setAttribute("listeEncheresUtilisateur", listeEncheresUtilisateur);
+			request.setAttribute("listeVentesPerduesUtilisateur", listeVentesPerduesUtilisateur);
+			
 		}
+		
 		
 		if (request.getParameter("mesVentes") == null && request.getParameter("mesEncheresEnCours") == null && request.getParameter("mesAcquisitions") == null && request.getParameter("autresEncheres") == null) {
 			List<Vente> listeVentesEnCours = new ArrayList<>();
