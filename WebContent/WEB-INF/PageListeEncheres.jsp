@@ -84,7 +84,7 @@
 								<div class="col-8">
 			   						<c:choose>
 										<c:when test="${venteEnCours.pseudo == sessionScope.pseudo}">
-											<!-- url à changer --><a href="${pageContext.request.contextPath}/Secure/ServletProfil?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection vente</a>
+											<!-- url à changer --><a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection vente</a>
 										</c:when>
 										<c:otherwise>
 											<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection enchere</a>
@@ -128,7 +128,7 @@
 			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
 			   					</div>
 		   						<div class="col-8">
-			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${venteUtilisateur.nomArticle}</a>
+			   						<!-- url à changer --><a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteUtilisateur.noVente}" >${venteUtilisateur.nomArticle}</a>
 			   						<p>Prix : ${venteUtilisateur.prixVente==0 ? venteUtilisateur.miseAPrix : venteUtilisateur.prixVente} points</p>
 									<p>Fin de l'enchère : ${venteUtilisateur.dateFinEncheres}</p>
 									<div class="row">
@@ -145,10 +145,10 @@
 	   					<div class="border m-1">
 	   						<div class="row">
 		   						<div class="col-4">
-									<img alt="${venteEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
+									<img alt="${enchereUtilisateurEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
 			   					</div>
 		   						<div class="col-8">	
-			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${enchereUtilisateurEnCours.nomArticle}</a>
+			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${enchereUtilisateurEnCours.noVente}" >${enchereUtilisateurEnCours.nomArticle}</a>
 			   						<p><span>Prix : ${enchereUtilisateurEnCours.prixVente} points</span><span>classement : </span>
 			   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
 			   								${enchereUtilisateur.noVente == enchereUtilisateurEnCours.noVente ? enchereUtilisateur.classement : erreur} 
@@ -168,7 +168,7 @@
 	   				<c:forEach var="acquisitionUtilisateur" items="${listeAcquisitionsUtilisateur}">
 	   					<div class="border">
 							<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${acquisitionUtilisateur.nomArticle}</a>
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
 	   						<p>
 	   							<span>Prix : ${acquisitionUtilisateur.prixVente} points</span>
 	   						</p>
@@ -182,7 +182,11 @@
 	   				<c:forEach var="ventesPerduesUtilisateur" items="${listeVentesPerduesUtilisateur}">
 	   					<div class="border">
 							<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${ventesPerduesUtilisateur.nomArticle}</a>
+   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
+   								<c:if test="${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente}">
+   								 <a href="${pageContext.request.contextPath}/Secure/ServletEncherePerdue?noVente=${ventesPerduesUtilisateur.noVente}&classement=${enchereUtilisateur.classement}">${ventesPerduesUtilisateur.nomArticle}</a>
+   								 </c:if> 
+   							</c:forEach>
 	   						<p>
 	   							<span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
 	   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
