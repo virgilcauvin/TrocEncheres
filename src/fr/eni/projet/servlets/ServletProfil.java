@@ -85,10 +85,19 @@ public class ServletProfil extends HttpServlet {
 		ville = request.getParameter("ville");
 		motDePasse = request.getParameter("motDePasse");
 		confirmationMDP = request.getParameter("confirmation");
-		visionNom = Boolean.parseBoolean(request.getParameter("visionNom"));
-		visionPrenom = Boolean.parseBoolean(request.getParameter("visionPrenom"));
-		visionEmail = Boolean.parseBoolean(request.getParameter("visionEmail"));
-		visionTelephone = Boolean.parseBoolean(request.getParameter("visionTelephone"));
+		if (request.getParameter("visionNom")==null) {
+			visionNom = false;
+		}else {visionNom=true;}
+		if (request.getParameter("visionPrenom")==null) {
+			visionPrenom = false;
+		}else {visionPrenom=true;}
+		if (request.getParameter("visionEmail")==null) {
+			visionEmail = false;
+		}else {visionEmail=true;}
+		if (request.getParameter("visionTelephone")==null) {
+			visionTelephone = false;
+		}else {visionTelephone=true;}
+		
 		
 		UtilisateurDAO.updateVision(utilisateurCourant.getNoUtilisateur(), visionNom, visionPrenom, visionEmail, visionTelephone);
 		

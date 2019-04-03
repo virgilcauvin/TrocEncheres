@@ -37,19 +37,20 @@ public class ServletInfoUtilisateur extends HttpServlet {
 		String pseudo = request.getParameter("pseudo");
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur = UtilisateurDAO.selectByPseudo(pseudo);
+		
 		request.setAttribute("pseudo", utilisateur.getPseudo());
 		if (utilisateur.isVisionNom()) {
 			request.setAttribute("nom", utilisateur.getNom());
-		}
+		}else {request.setAttribute("nom", "Information cachée");}
 		if (utilisateur.isVisionPrenom()) {
 			request.setAttribute("prenom", utilisateur.getPrenom());
-		}
+		}else {request.setAttribute("prenom", "Information cachée");}
 		if (utilisateur.isVisionEmail()) {
 			request.setAttribute("email", utilisateur.getEmail());
-		}
+		}else {request.setAttribute("email", "Information cachée");}
 		if (utilisateur.isVisionTelephone()) {
 			request.setAttribute("telephone", utilisateur.getTelephone());
-		}
+		}else {request.setAttribute("telephone", "Information cachée");}
 		request.setAttribute("rue", utilisateur.getRue());
 		request.setAttribute("codePostal", utilisateur.getCodePostal());
 		request.setAttribute("ville", utilisateur.getVille());
