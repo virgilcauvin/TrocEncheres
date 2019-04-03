@@ -36,6 +36,7 @@
 			<div class="col-7">${requestScope.rue}</br>${requestScope.codePostal} ${requestScope.ville}</div>
 			<div class="col-12 m-1">Vendeur : ${requestScope.vendeur}</div>
 		</div>
+		<div class="col-12 m-1">Montant de votre enchère précédente : ${requestScope.montantEcnherePrecedent}</div>
 		<div class="row mt-5">
 			<form action="${pageContext.request.contextPath}/Secure/ServletEnchere" method="post">
 				<span class="col-5">Ma proposition :
