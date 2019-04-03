@@ -32,32 +32,30 @@
 					<a href="${pageContext.request.contextPath}/Secure/ServletProfil"><button>Mon profil</button></a>
 				</div>
 				<div class="col-12">
-					<!-- /!\NEW -->
-					<a
-						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
+					<a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
 				</div>
 				<h2 class="col-12">Filtres :</h2>
 				<div class="col-12">
 					<form action="${pageContext.request.contextPath}/Secure/ServletAccueil" method="post">
-						<div >
-							<input type="checkbox" name="mesVentes">
+						<div>
+							<input class="offset-1" type="checkbox" name="mesVentes" id="mesVentes">
 							<label for="mesVentes">Mes ventes</label>
 						</div>
 						<div>
-							<input type="checkbox" name="mesEncheresEnCours">
+							<input class="offset-1" type="checkbox" name="mesEncheresEnCours" id="mesEncheresEnCours">
 							<label for="mesEncheresEnCours">Mes enchères en cours</label>
 						</div>
 						<div>
-							<input type="checkbox" name="mesAcquisitions">
+							<input class="offset-1" type="checkbox" name="mesAcquisitions" id="mesAcquisitions">
 							<label for="mesAcquisitions">Mes acquisitions</label>
 						</div>
 						<div>
-							<input type="checkbox" name="autresEncheres">
+							<input  class="offset-1" type="checkbox" name="autresEncheres" id="autresEncheres">
 							<label for="autresEncheres">Autres enchères</label>
 						</div>
 						<div class="row">
-							<label class="col-4">Catégories</label>
-							<select class="col-8" id="pet-select" name="categorie">
+							<label class="col-3">Catégories</label>
+							<select class="col-9" id="pet-select" name="categorie">
 			    				<option value="0">Toutes</option>
 			    				<c:forEach var="categorie" items="${sessionScope.listeCategories}">
 			    					<option value="${categorie.noCategorie}">${categorie.libelle}</option>
@@ -122,7 +120,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="venteUtilisateur" items="${listeVentesUtilisateur}">
-	   					<div class="border m-1">
+	   					<div class="col-12 border m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
@@ -142,7 +140,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="enchereUtilisateurEnCours" items="${listeEncheresUtilisateurEnCours}">
-	   					<div class="border m-1">
+	   					<div class="col-12 border m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 									<img alt="${enchereUtilisateurEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
@@ -166,16 +164,22 @@
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="acquisitionUtilisateur" items="${listeAcquisitionsUtilisateur}">
-	   					<div class="border">
-							<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
-	   						<p>
-	   							<span>Prix : ${acquisitionUtilisateur.prixVente} points</span>
-	   						</p>
-							<p>Fin de l'enchère : ${acquisitionUtilisateur.dateFinEncheres}</p>
-							<p>Retrait : ${acquisitionUtilisateur.rue}</p>
-							<p>${acquisitionUtilisateur.codePostal} ${acquisitionUtilisateur.ville}</p>
-							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${acquisitionUtilisateur.pseudo}">${acquisitionUtilisateur.pseudo}</a>
+	   					<div class="col-12 border">
+	   						<div class="row">
+		   						<div class="col-4">
+									<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
+								</div>
+								<div class="col-8">
+	   								<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
+	   								<p><span>Prix : ${acquisitionUtilisateur.prixVente} points</span></p>
+									<p>Fin de l'enchère : ${acquisitionUtilisateur.dateFinEncheres}</p>
+									<div class="row">
+										<div class="col-4">Retrait : ${acquisitionUtilisateur.rue}</div>
+										<div class="col-8">${acquisitionUtilisateur.codePostal} ${acquisitionUtilisateur.ville}</div>
+									</div>
+									<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${acquisitionUtilisateur.pseudo}">${acquisitionUtilisateur.pseudo}</a>
+	   							</div>
+	   						</div>
 	   					</div>
 	   				</c:forEach>
 	   				
@@ -198,8 +202,7 @@
 							<p>${ventesPerduesUtilisateur.codePostal} ${ventesPerduesUtilisateur.ville}</p>
 							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${ventesPerduesUtilisateur.pseudo}">${ventesPerduesUtilisateur.pseudo}</a>
 	   					</div>
-	   				</c:forEach>
-	   				
+	   				</c:forEach>	
 				</div>
 		</div>
 	</div>

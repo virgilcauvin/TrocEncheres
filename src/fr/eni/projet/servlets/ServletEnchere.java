@@ -67,8 +67,16 @@ public class ServletEnchere extends HttpServlet {
 		}
 
 		vendeur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
-
-		enchereMax = acheteur.getCredit();
+		Enchere encherePrecedente = EnchereDAO.selectByPK(acheteur.getNoUtilisateur(), noVente);
+		int montantEncherePrecedent=0;
+		if (encherePrecedente == null) {
+			enchereMax = acheteur.getCredit();
+		} else {
+			montantEncherePrecedent = encherePrecedente.getMontant();
+			enchereMax = acheteur.getCredit() + montantEncherePrecedent;
+			
+			
+		}
 
 		request.setAttribute("nomArticle", vente.getNomArticle());
 		request.setAttribute("photo", vente.getPhoto());
@@ -84,6 +92,7 @@ public class ServletEnchere extends HttpServlet {
 		request.setAttribute("vendeur", vendeur.getPseudo());
 		request.setAttribute("enchereMin", enchereMin);
 		request.setAttribute("enchereMax", enchereMax);
+		request.setAttribute("montantEcnherePrecedent", montantEncherePrecedent);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
 		rd.forward(request, response);

@@ -40,6 +40,11 @@ public class ServletProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
 		request.setAttribute("utilisateur", utilisateur);
+		request.setAttribute("visionNom", utilisateur.isVisionNom() ? "on" : null);
+		request.setAttribute("visionPrenom", utilisateur.isVisionPrenom() ? "on" : null);
+		request.setAttribute("visionEmail", utilisateur.isVisionEmail() ? "on" : null);
+		request.setAttribute("visionTelephone", utilisateur.isVisionTelephone() ? "on" : null);
+		
 		System.out.println(session.getAttribute("pseudo"+ "servlet profil"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MonProfil.jsp");
 		rd.forward(request, response);
