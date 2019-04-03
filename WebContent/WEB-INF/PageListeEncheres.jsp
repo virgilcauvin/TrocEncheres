@@ -184,23 +184,31 @@
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="ventesPerduesUtilisateur" items="${listeVentesPerduesUtilisateur}">
-	   					<div class="border">
-							<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
-   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
-   								<c:if test="${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente}">
-   								 <a href="${pageContext.request.contextPath}/Secure/ServletEncherePerdue?noVente=${ventesPerduesUtilisateur.noVente}&classement=${enchereUtilisateur.classement}">${ventesPerduesUtilisateur.nomArticle}</a>
-   								 </c:if> 
-   							</c:forEach>
-	   						<p>
-	   							<span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
-	   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
-	   								${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente ? enchereUtilisateur.classement : erreur} 
-	   							</c:forEach>
-	   						</p>
-							<p>Fin de l'enchère : ${ventesPerduesUtilisateur.dateFinEncheres}</p>
-							<p>Retrait : ${ventesPerduesUtilisateur.rue}</p>
-							<p>${ventesPerduesUtilisateur.codePostal} ${ventesPerduesUtilisateur.ville}</p>
-							<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${ventesPerduesUtilisateur.pseudo}">${ventesPerduesUtilisateur.pseudo}</a>
+	   					<div class="col-12 border">
+	   						<div class="row">
+		   						<div class="col-4">
+									<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
+								</div>
+								<div class="col-8">
+   									<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
+   										<c:if test="${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente}">
+   								 			<a href="${pageContext.request.contextPath}/Secure/ServletEncherePerdue?noVente=${ventesPerduesUtilisateur.noVente}&classement=${enchereUtilisateur.classement}">${ventesPerduesUtilisateur.nomArticle}</a>
+   								 		</c:if> 
+   									</c:forEach>
+	   								<p>
+	   								<span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
+	   								<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
+	   									${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente ? enchereUtilisateur.classement : erreur} 
+	   								</c:forEach>
+	   								</p>
+									<p>Fin de l'enchère : ${ventesPerduesUtilisateur.dateFinEncheres}</p>
+									<div class="row">
+										<div class="col-4">Retrait : ${ventesPerduesUtilisateur.rue}</div>
+										<div class="col-8">${ventesPerduesUtilisateur.codePostal} ${ventesPerduesUtilisateur.ville}</div>
+									</div>
+									<span>Vendeur : </span><a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${ventesPerduesUtilisateur.pseudo}">${ventesPerduesUtilisateur.pseudo}</a>
+	   							</div>
+	   						</div>
 	   					</div>
 	   				</c:forEach>	
 				</div>
