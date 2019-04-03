@@ -1,57 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/detailvente.css">
+<link rel="stylesheet" href="/TrocEncheres/css/detailvente.css">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Détail Vente</title>
+<meta charset="utf-8">
+<title>DÃ©tail Vente</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
-				<p class="lead">Détail Vente</p>
+				<h2 class="">DÃ©tail Vente</h2>
 			</div>
 		</div>
 	</div>
-	<div>${requestScope.nomArticle}</div>
-	<div>${requestScope.photo}</div>
-	<div>Meilleure offre : ${requestScope.meilleureOffre}
-		${requestScope.meilleurEncherisseur}</div>
-	<div>Mise à prix : ${requestScope.miseAPrix}</div>
-	<div>Fin de l'enchère : ${requestScope.dateFinEchere}</div>
-	<div>${requestScope.rue}</div>
-	<div>${requestScope.codePostal}${requestScope.ville}</div>
-	<div>Vendeur : ${requestScope.vendeur}</div>
-	<form action="${pageContext.request.contextPath}/Secure/ServletEnchere"
-		method="post">
-		<div>Ma proposition :</div>
-		<div class="form-group row">
-			<label for="enchereEntree" class="col-2 col-form-label">mon
-				enchère</label>
-			<div class="col-10">
-				<input class="form-control" type="number"
-					value="<%int enchereMin = (int) request.getAttribute("enchereMin");%>"
-					name="enchere"
-					min="<%enchereMin = (int) request.getAttribute("enchereMin");%>"
-					max="<%int enchereMax = (int) request.getAttribute("enchereMax");%>">
+	<div class="container">
+		<div class="row">
+			<div class="col-12" id="article">${requestScope.nomArticle}</div>
+			<div class="col-12 text-center">
+				<img alt="truc" src="${requestScope.photo}">
 			</div>
+			<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre}
+				${requestScope.meilleurEncherisseur}</div>
+			<div class="col-12 m-1">Mise Ã  prix : ${requestScope.miseAPrix}</div>
+			<div class="col-12 m-1">Fin de l'enchÃ¨re : ${requestScope.dateFinEchere}</div>
+			<div class="col-3">Retrait : </div>
+			<div class="col-7">${requestScope.rue}</br>${requestScope.codePostal} ${requestScope.ville}</div>
+			<div class="col-12 m-1">Vendeur : ${requestScope.vendeur}</div>
 		</div>
-		<div>
-			<button name="bouton" value="encherir">Enchérir</button>
+		<div class="row mt-5">
+			<form action="${pageContext.request.contextPath}/Secure/ServletEnchere" method="post">
+				<span class="col-5">Ma proposition :
+				</span>
+				<span class="col-4">
+					<input type="number"
+						value="${requestScope.enchereMin}"
+						name="enchere"
+						min="${requestScope.enchereMin}"
+						max="${requestScope.enchereMax}">
+				</span>
+				<div>
+					<button class="m-5" name="bouton" id="encherir" value="encherir">EnchÃ©rir</button>
+				</div>
+			</form>
 		</div>
-	</form>
-	<form action="${pageContext.request.contextPath}/Secure/ServletAccueil"
-		method="post">
-		<button name="retour" value="retour">Retour</button>
-	</form>
+		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil"><button name="retour" id="retour" value="retour">Retour</button></a>				
+	</div>
 </body>
 </html>
