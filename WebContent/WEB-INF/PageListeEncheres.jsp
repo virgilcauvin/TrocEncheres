@@ -168,7 +168,7 @@
 	   				<c:forEach var="acquisitionUtilisateur" items="${listeAcquisitionsUtilisateur}">
 	   					<div class="border">
 							<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
-	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere" >${acquisitionUtilisateur.nomArticle}</a>
+	   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
 	   						<p>
 	   							<span>Prix : ${acquisitionUtilisateur.prixVente} points</span>
 	   						</p>
