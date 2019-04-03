@@ -32,32 +32,30 @@
 					<a href="${pageContext.request.contextPath}/Secure/ServletProfil"><button>Mon profil</button></a>
 				</div>
 				<div class="col-12">
-					<!-- /!\NEW -->
-					<a
-						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
+					<a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
 				</div>
 				<h2 class="col-12">Filtres :</h2>
 				<div class="col-12">
 					<form action="${pageContext.request.contextPath}/Secure/ServletAccueil" method="post">
-						<div >
-							<input type="checkbox" name="mesVentes">
+						<div>
+							<input class="offset-1" type="checkbox" name="mesVentes" id="mesVentes">
 							<label for="mesVentes">Mes ventes</label>
 						</div>
 						<div>
-							<input type="checkbox" name="mesEncheresEnCours">
+							<input class="offset-1" type="checkbox" name="mesEncheresEnCours" id="mesEncheresEnCours">
 							<label for="mesEncheresEnCours">Mes enchères en cours</label>
 						</div>
 						<div>
-							<input type="checkbox" name="mesAcquisitions">
+							<input class="offset-1" type="checkbox" name="mesAcquisitions" id="mesAcquisitions">
 							<label for="mesAcquisitions">Mes acquisitions</label>
 						</div>
 						<div>
-							<input type="checkbox" name="autresEncheres">
+							<input  class="offset-1" type="checkbox" name="autresEncheres" id="autresEncheres">
 							<label for="autresEncheres">Autres enchères</label>
 						</div>
 						<div class="row">
-							<label class="col-4">Catégories</label>
-							<select class="col-8" id="pet-select" name="categorie">
+							<label class="col-3">Catégories</label>
+							<select class="col-9" id="pet-select" name="categorie">
 			    				<option value="0">Toutes</option>
 			    				<c:forEach var="categorie" items="${sessionScope.listeCategories}">
 			    					<option value="${categorie.noCategorie}">${categorie.libelle}</option>

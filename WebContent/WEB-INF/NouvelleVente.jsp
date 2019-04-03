@@ -82,12 +82,14 @@
 			</div>
 		</div>
 		<div class="container">
-			<button name="bouton" id="publier" value="publier">Publier</button>
-			<button name="bouton" id="enregistrer" value="enregistrer">Enregistrer</button>
+			<button class="col-12 mt-2" name="bouton" id="publier" value="publier">Publier</button>
+			<button class="col-12 mt-4" name="bouton" id="enregistrer" value="enregistrer">Enregistrer</button>
 		</div>
 	</form>
-	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil">
-		<button name="annuler" id="annuler" value="annuler">Annuler</button>
-	</a>
+	<div class="container">
+		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil">
+			<button class="col-12 mb-5" name="annuler" id="annuler" value="annuler">Annuler</button>
+		</a>
+	</div>
 </body>
 </html>

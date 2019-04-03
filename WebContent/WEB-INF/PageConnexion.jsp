@@ -49,7 +49,7 @@
 				<div class="col-5 offset-1">
 					<button type="submit" id="bouton-connexion">Connexion</button>
 				</div>
-				<div class="col-6">
+				<div class="col-12 col-md-6">
 					<div class="container">
 						<div class="row">
 							<input type="checkbox" id="check"> <label for="check">Se souvenir de moi</label>
