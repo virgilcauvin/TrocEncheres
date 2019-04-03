@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/listeencheres.css">
+<link rel="stylesheet" href="/TrocEncheres/css/listeencheres.css">
 <title>Page Liste Encheres</title>
 </head>
 <body>
@@ -26,15 +26,15 @@
 					<p>${sessionScope.pseudo} est connect� !</p>
 				</div>
 				<div class="col-12">
-					<a href="${pageContext.request.contextPath}/Secure/ServletVendre">Vendre un article</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletVendre"><button>Vendre un article</button></a>
 				</div>
 				<div class="col-12">
-					<a href="${pageContext.request.contextPath}/Secure/ServletProfil">Mon profil</a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletProfil"><button>Mon profil</button></a>
 				</div>
 				<div class="col-12">
 					<!-- /!\NEW -->
 					<a
-						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion">Déconnexion</a>
+						href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
 				</div>
 				<h2 class="col-12">Filtres :</h2>
 				<div class="col-12">
@@ -65,10 +65,10 @@
 							</select>
 						</div>
 						<div>
-							<input type="text" name="recherche" class="col-12 m-3" id="finder" placeholder="Votre recherche">
+							<input type="text" name="recherche" class="col-12" id="finder" placeholder="Votre recherche">
 						</div>
 						<div>
-							<button type="submit" class="col-12 p-3 m-2" id="rechercher">Rechercher</button>
+							<button type="submit" class="col-12 p-3">Rechercher</button>
 						</div>
 					</form>
 				</div>
@@ -76,7 +76,7 @@
 			<div class="container">
 				<div class="row">
 					<c:forEach var="venteEnCours" items="${listeVentesEnCours}">
-	   					<div class="border m-1">
+	   					<div class="col-12 border m-1">
 	   						<div class="row">
 	   							<div class="col-4">
 									<img alt="${venteEnCours.nomArticle}" src="${venteEnCours.photo}">
@@ -91,17 +91,17 @@
 										<div class="col-4">Retrait : </div>
 										<div class="col-8">${venteEnCours.rue} <br>${venteEnCours.codePostal} ${venteEnCours.ville}</div>
 									</div>
-	   							</div>
+									<span>Vendeur : </span>
+									<c:choose>
+										<c:when test="${venteEnCours.pseudo == sessionScope.pseudo}">
+											${venteEnCours.pseudo}
+										</c:when>
+										<c:otherwise>
+											<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${venteEnCours.pseudo}">${venteEnCours.pseudo}</a>
+										</c:otherwise>
+									</c:choose>
+								</div>
    							</div>
-							<c:choose>
-								<c:when test="${venteEnCours.pseudo == sessionScope.pseudo}">
-									${venteEnCours.pseudo}
-								</c:when>
-								<c:otherwise>
-									<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${venteEnCours.pseudo}">${venteEnCours.pseudo}</a>
-								</c:otherwise>
-							</c:choose>
-							<span>Vendeur : </span>
 	   					</div>
 	   				</c:forEach>
 					

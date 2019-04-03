@@ -9,13 +9,18 @@ img{
 	height:auto;
 	margin:1em;
 }
-#rechercher{
+button{
+	margin-top: 1em;
 	font-size: 1em;
 	background: green;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;
 }
+h2{
+	margin-top:1em;
+}
 #finder{
+	margin-top:2em;
 	border-radius:15px;
 }
