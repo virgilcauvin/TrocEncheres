@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 <!DOCTYPE>
@@ -11,14 +11,14 @@
 <link rel="stylesheet" href="/TrocEncheres/css/detailvente.css">
 <head>
 <meta charset="utf-8">
-<title>Détail Vente</title>
+<title>DÃ©tail Vente</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
-				<h2 class="">Détail Vente</h2>
+				<h2 class="">DÃ©tail Vente</h2>
 			</div>
 		</div>
 	</div>
@@ -30,8 +30,8 @@
 			</div>
 			<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre}
 				${requestScope.meilleurEncherisseur}</div>
-			<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix}</div>
-			<div class="col-12 m-1">Fin de l'enchère : ${requestScope.dateFinEchere}</div>
+			<div class="col-12 m-1">Mise Ã  prix : ${requestScope.miseAPrix}</div>
+			<div class="col-12 m-1">Fin de l'enchÃ¨re : ${requestScope.dateFinEchere}</div>
 			<div class="col-3">Retrait : </div>
 			<div class="col-7">${requestScope.rue}</br>${requestScope.codePostal} ${requestScope.ville}</div>
 			<div class="col-12 m-1">Vendeur : ${requestScope.vendeur}</div>
@@ -42,13 +42,13 @@
 				</span>
 				<span class="col-4">
 					<input type="number"
-						value="<%int enchereMin = (int) request.getAttribute("enchereMin");%>"
+						value="${requestScope.enchereMin}"
 						name="enchere"
-						min="<%enchereMin = (int) request.getAttribute("enchereMin");%>"
-						max="<%int enchereMax = (int) request.getAttribute("enchereMax");%>">
+						min="${requestScope.enchereMin}"
+						max="${requestScope.enchereMax}">
 				</span>
 				<div>
-					<button class="m-5" name="bouton" id="encherir" value="encherir">Enchérir</button>
+					<button class="m-5" name="bouton" id="encherir" value="encherir">EnchÃ©rir</button>
 				</div>
 			</form>
 		</div>

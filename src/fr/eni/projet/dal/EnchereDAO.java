@@ -11,7 +11,6 @@ import fr.eni.projet.bo.Enchere;
 
 public class EnchereDAO {
 	private static final String SELECT_BY_NO_UTILISATEUR = "select * from ENCHERES where no_utilisateur = ?";
-	
 	private static final String SELECT_BY_NO_VENTE = "select * from ENCHERES where no_vente = ?";
 	private static final String INSERT_ENCHERE = "insert into ENCHERES (date_enchere,no_utilisateur,no_vente,montant)values(?,?,?,?)";
 	private static final String SELECT_BY_PK = "SELECT * FROM ENCHERES WHERE no_utilisateur = ? and no_vente = ?";
