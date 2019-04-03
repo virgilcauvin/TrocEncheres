@@ -1,6 +1,4 @@
-@charset "ISO-8859-1";
-
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 body{
 	background:grey;
@@ -18,31 +16,24 @@ input{
 	color:white;
 }
 #enregistrer{
+	color:white;
 	font-size: 1em;
-	width: 200px;
-	height: 150px;
 	background: green;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
  	border:1px black;
 }
 #supprimer{
+	color:white;
 	font-size: 1em;
-	position:relative;
-	top:-20px; left:30px;
-	width: 200px;
-	height: 150px;
 	background: green;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;
 }
 #retour{
+	color:white;
 	font-size: 1em;
-	position:relative;
-	top:-170px; left:625px;
-	width: 200px;
-	height: 150px;
 	background: green;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
