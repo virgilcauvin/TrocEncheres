@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/creation.css">
+<link rel="stylesheet" href="/TrocEncheres/css/creation.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -27,53 +27,52 @@
 				<label for="pseudo" class="col-sm-4">Pseudo :</label>
 				<input type="text" name="pseudo" class="col-sm-6" placeholder="Votre pseudo" autofocus required value="${pseudoValide}">
 			</div>
-			<div>${pseudoMessageErreur}</div>
-	
+			<div class="erreur">${pseudoMessageErreur}</div>
 			<div class="row">
 				<label for="nom" class="col-sm-4">Nom :</label>
 				<input type="text" name="nom" class="col-sm-6" placeholder="Votre nom" required value="${nomValide}">
 			</div>
-			<div>${nomMessageErreur}</div>
+			<div class="erreur">${nomMessageErreur}</div>
 			<div class="row">
 				<label for="prenom" class="col-sm-4">Prénom :</label>
 				<input type="text" name="prenom" class="col-sm-6" placeholder="Votre prénom" required value="${prenomValide}">
 			</div>
-			<div>${prenomMessageErreur}</div>
+			<div class="erreur">${prenomMessageErreur}</div>
 			<div class="row">
 				<label for="email" class="col-sm-4">Email :</label>
 				<input type="email" name="email" class="col-sm-6" placeholder="Votre email" required value="${emailValide}">
 			</div>
-			<div>${emailMessageErreur}</div>
+			<div class="erreur">${emailMessageErreur}</div>
 			<div class="row">
 				<label for="telephone" class="col-sm-4">Téléphone :</label>
 				<input type="tel" name="telephone" class="col-sm-6" placeholder="Votre téléphone" required value="${telephoneValide}">
 			</div>
-			<div>${telephoneMessageErreur}</div>
+			<div class="erreur">${telephoneMessageErreur}</div>
 			<div class="row">
 				<label for="rue" class="col-sm-4">Rue :</label>
 				<input type="text" name="rue" class="col-sm-6" placeholder="Votre rue" required value="${rueValide}">
 			</div>
-			<div>${rueMessageErreur}</div>
+			<div class="erreur">${rueMessageErreur}</div>
 			<div class="row">
 				<label for="codePostal" class="col-sm-4">Code postal :</label>
 				<input type="text" name="codePostal" class="col-sm-6" placeholder="Votre code postal" required value="${codePostalValide}">
 			</div>
-			<div>${codePostalMessageErreur}</div>
+			<div class="erreur">${codePostalMessageErreur}</div>
 			<div class="row">
 				<label for="ville" class="col-sm-4">Ville :</label>
 				<input type="text" name="ville" class="col-sm-6" placeholder="Votre ville" required value="${villeValide}">
 			</div>
-			<div>${villeMessageErreur}</div>
+			<div class="erreur">${villeMessageErreur}</div>
 			<div class="row">
 				<label for="motDePasse" class="col-sm-4">Mot de passe :</label>
 				<input type="password" name="motDePasse" class="col-sm-6" placeholder="Votre mot de passe" required value="${motDePasseValide}">
 			</div>
-			<div>${motDePasseMessageErreur}</div>
+			<div class="erreur">${motDePasseMessageErreur}</div>
 			<div class="row">
 				<label for="confirmation" class="col-sm-4">Confirmation :</label>
 				<input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required value="${confirmationMDPValide}">
 			</div>
-			<div>${confirmationMDPMessageErreur}</div>
+			<div class="erreur">${confirmationMDPMessageErreur}</div>
 			<span class="col-4 offset-1">
 				<button type="submit" class="btn btn-primary" id="creer">Créer</button>
 			</span>

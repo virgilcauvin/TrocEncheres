@@ -21,17 +21,17 @@ public class UtilisateurDAO {
 	private static final String SELECT_BY_TELEPHONE = "SELECT * FROM UTILISATEURS WHERE telephone = ?";
 	private static final String UPDATE_PROFIL = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur = ?";
 	private static final String UPDATE_CREDIT_BY_ID = "UPDATE Utilisateurs SET credit=? WHERE no_utilisateur = ?";
-	private static final String UPDATE_VISION = "UPDATE Utilisateurs SET visionNom=? visionPrenom=? visionEmail=? visionTelephone = ? WHERE no_utilisateur = ?";
+	private static final String UPDATE_VISION = "UPDATE Utilisateurs SET visionNom=?, visionPrenom=?, visionEmail=?, visionTelephone = ? WHERE no_utilisateur = ?";
 
 	public static void updateVision(int noUtilisateur, boolean visionNom, boolean visionPrenom, boolean visionEmail,
 			boolean visionTelephone) {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_VISION);
-			pstmt.setBoolean(1, visionNom);
-			pstmt.setBoolean(2, visionPrenom);
-			pstmt.setBoolean(3, visionEmail);
-			pstmt.setBoolean(4, visionTelephone);
+			pstmt.setInt(1, visionNom ? 1 : 0);
+			pstmt.setInt(2, visionPrenom ? 1 : 0);
+			pstmt.setInt(3, visionEmail ? 1 : 0);
+			pstmt.setInt(4, visionTelephone ? 1 : 0);
 			pstmt.setInt(5, noUtilisateur);
 			pstmt.executeUpdate();
 			cnx.close();
@@ -114,7 +114,7 @@ public class UtilisateurDAO {
 				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
 						rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
-						rs.getInt("credit"), rs.getBoolean("administrateur"));
+						rs.getInt("credit"), rs.getBoolean("administrateur"), rs.getBoolean("visionNom"), rs.getBoolean("visionPrenom"), rs.getBoolean("visionEmail"), rs.getBoolean("visionTelephone"));
 			}
 			rs.close();
 			pstmt.close();
