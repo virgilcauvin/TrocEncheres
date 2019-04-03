@@ -36,7 +36,7 @@
 					name="nom" class="col-sm-6"
 					value="${!empty nomValide?nomValide:utilisateur.nom}" required>
 				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="visionNom" id="customSwitch1"> 
+					<input value = "${requestScope.visionNom}" type="checkbox" class="custom-control-input" name="visionNom" id="customSwitch1"> 
 					Caché<label class="custom-control-label" for="customSwitch1">Visible</label>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 					value="${!empty prenomValide?prenomValide:utilisateur.prenom}"
 					required>
 				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="visionPrenom" id="customSwitch2"> 
+					<input value = "${requestScope.visionPrenom}" type="checkbox" class="custom-control-input" name="visionPrenom" id="customSwitch2"> 
 					Caché<label class="custom-control-label" for="customSwitch2">Visible</label>
 				</div>
 			</div>
@@ -61,7 +61,7 @@
 					required>
 				<div class="form-check"></div>
 				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="visionEmail" id="customSwitch3"> 
+					<input value = "${requestScope.visionEmail}" type="checkbox" class="custom-control-input" name="visionEmail" id="customSwitch3"> 
 					Caché<label class="custom-control-label" for="customSwitch3">Visible</label>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 					value="${!empty telephoneValide?telephoneValide:utilisateur.telephone}"
 					required>
 				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="visionTelephone" id="customSwitch4"> 
+					<input value = "${requestScope.visionTelephone}" type="checkbox" class="custom-control-input" name="visionTelephone" id="customSwitch4"> 
 					Caché<label class="custom-control-label" for="customSwitch4">Visible</label>
 				</div>
 			</div>
