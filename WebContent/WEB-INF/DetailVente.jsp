@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 				<h2 class="">Détail Vente</h2>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-12 m-1">Montant de votre enchère précédente : ${requestScope.montantEcnherePrecedent}</div>
 		<div class="row mt-5">
-			<form action="${pageContext.request.contextPath}/Secure/ServletEnchere" method="post">
+			<form class="col-12" action="${pageContext.request.contextPath}/Secure/ServletEnchere" method="post">
 				<span class="col-5">Ma proposition :
 				</span>
 				<span class="col-4">
@@ -49,11 +49,13 @@
 						max="${requestScope.enchereMax}">
 				</span>
 				<div>
-					<button class="m-5" name="bouton" id="encherir" value="encherir">Enchérir</button>
+					<button class="col-12 mt-5" name="bouton" id="encherir" value="encherir">Enchérir</button>
 				</div>
 			</form>
 		</div>
-		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil"><button name="retour" id="retour" value="retour">Retour</button></a>				
+	</div>
+	<div class="container">
+		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil"><button class="col-12 mt-5 mb-5" name="retour" id="retour" value="retour">Retour</button></a>				
 	</div>
 </body>
 </html>

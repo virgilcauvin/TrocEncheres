@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/TrocEncheres/css/listeencheres.css">
+<link rel="stylesheet" href="/TrocEncheres/css/mavente.css">
 <title>Detail ma vente</title>
 </head>
 <body>
@@ -54,7 +54,9 @@
 		<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}">
 		<button name="retraitEffectue" id="retraitEffectue">Contacter ${requestScope.meilleurEncherisseur}</button></a>
 	</c:if>
-	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
-	<button name="retour" id="retour">Retour</button></a>
+	<div class="container">
+		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
+		<button class="col-12 mt-5 mb-5" name="retour" id="retour">Retour</button></a>
+	</div>
 </body>
 </html>

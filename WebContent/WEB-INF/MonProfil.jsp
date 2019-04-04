@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 				<p class="lead">Mon Profil</p>

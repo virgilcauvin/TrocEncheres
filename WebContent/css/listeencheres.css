@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body{
-	background:grey;
+	background:#F5F5DC;
 	font-size: 1.8em;
 }
 img{
@@ -13,10 +13,17 @@ button{
 	color:white;
 	margin-top: 1em;
 	font-size: 1em;
-	background: green;
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;
+}
+#entete{
+	background:#279EF5;
+	box-shadow: 10px 10px black;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+	color:white;
 }
 h2{
 	margin-top:1em;

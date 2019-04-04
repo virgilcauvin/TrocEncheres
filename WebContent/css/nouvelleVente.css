@@ -1,7 +1,7 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 body{
-	background:grey;
+	background:#F5F5DC;
 	font-size:1.8em;
 }
 select{
@@ -17,14 +17,20 @@ h3{
 }
 label{
 	margin:1em;
-	color:white;
 }
 input{
 	margin: 1em;
+	border:1px solid black;
+}
+#entete{
+	background:#279EF5;
+	box-shadow: 10px 10px black;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+	color:white;
 }
 #adresse{
 	margin:1em;
-	color:white;
 }
 #description{
 	/*margin-top:1em;*/
@@ -33,11 +39,13 @@ input{
 	font-size: 1em;
 	resize:none;
 	width:385px;
+	border:1px solid black;
+	margin:1em;
 }
 #publier{
 	color:white;
 	font-size: 1em;
-	background: green;
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
  	border:1px black;
@@ -45,7 +53,7 @@ input{
 #enregistrer{
 	color:white;
 	font-size: 1em;
-	background: green;
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;
@@ -53,7 +61,7 @@ input{
 #annuler{
 	color:white;
 	font-size: 1em;
-	background: green;
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;

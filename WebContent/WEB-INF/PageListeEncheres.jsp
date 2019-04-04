@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 			</div>
@@ -25,14 +25,14 @@
 				<div class="col-12">
 					<p>${sessionScope.pseudo} est connecté !</p>
 				</div>
-				<div class="col-12">
-					<a href="${pageContext.request.contextPath}/Secure/ServletVendre"><button>Vendre un article</button></a>
+				<div>
+					<a href="${pageContext.request.contextPath}/Secure/ServletVendre"><button class="col-12">Vendre un article</button></a>
+				<div>
 				</div>
-				<div class="col-12">
-					<a href="${pageContext.request.contextPath}/Secure/ServletProfil"><button>Mon profil</button></a>
+					<a href="${pageContext.request.contextPath}/Secure/ServletProfil"><button class="col-12">Mon profil</button></a>
+				<div>
 				</div>
-				<div class="col-12">
-					<a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button>Déconnexion</button></a>
+					<a href="${pageContext.request.contextPath}/ServletConnexionCompte?deconnexion"><button class="col-12">Déconnexion</button></a>
 				</div>
 				<h2 class="col-12">Filtres :</h2>
 				<div class="col-12">
@@ -54,8 +54,8 @@
 							<label for="autresEncheres">Autres enchères</label>
 						</div>
 						<div class="row">
-							<label class="col-3">Catégories</label>
-							<select class="col-9" id="pet-select" name="categorie">
+							<label class="col-3 mt-5">Catégories</label>
+							<select class="col-9 mt-5" id="pet-select" name="categorie">
 			    				<option value="0">Toutes</option>
 			    				<c:forEach var="categorie" items="${sessionScope.listeCategories}">
 			    					<option value="${categorie.noCategorie}">${categorie.libelle}</option>

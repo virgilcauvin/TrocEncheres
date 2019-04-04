@@ -3,7 +3,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Vous avez remporté l'enchère</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 			</div>
@@ -22,9 +22,8 @@
 	<div class="container">
 		<div class="row">
 		<div class="col-12 m-3">Vous avez remporté l'enchère :</div>
-	
 		<div class="col-12 m-3">${requestScope.nomArticle}</div>
-		<div class="col-12 m-3">
+		<div class="col-12 m-3 text-center">
 			<img src="${requestScope.photo}">
 		</div>
 		<div class="col-12 m-3">Meilleure offre :

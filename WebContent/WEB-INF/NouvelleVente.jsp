@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 <!DOCTYPE>
@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 				<p class="lead">Nouvelle vente</p>
@@ -35,7 +35,8 @@
 		method="post">
 		<div class="container">
 			<div class="row">
-				<label class="col-4">Catégories</label> <select class="col-8"
+				<label class="col-3">CatÃ©gories</label>
+				<select class="col-7"
 					id="pet-select" name="libelle">
 					<option value="0">Toutes</option>
 					<c:forEach var="categorie" items="${sessionScope.listeCategories}">
@@ -53,8 +54,9 @@
 			<div class="row">
 				<label class="col-4" for="exampleFormControlTextarea1"
 					name="descritpion" id="description">Description :</label>
-				<textarea required id="exampleFormControlTextarea1"
-					name="descritpion">${sessionScope.descritpion}</textarea>
+				<textarea class="col-6" required id="exampleFormControlTextarea1"
+						name="descritpion">${sessionScope.descritpion}</textarea>
+				
 			</div>
 			<div class="row">
 				<label class="col-4" name="lienPhoto">Lien vers la photo : </label>
@@ -71,7 +73,7 @@
 					type="number" value="0" min="1" max="10000" name="prixInitial">
 			</div>
 			<div class="row">
-				<label class="col-5" name="finEnchere">Fin de l'enchère : </label> <input
+				<label class="col-5" name="finEnchere">Fin de l'enchÃ¨re : </label> <input
 					class="col-5" required value="${sessionScope.finEchere}"
 					type="date" name="finEnchere">
 			</div>

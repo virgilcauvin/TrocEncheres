@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Créer un compte</title>
+<meta charset="UTF-8">
+<title>CrÃ©er un compte</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -14,10 +14,10 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
-				<p class="lead">Créer un compte</p>
+				<p class="lead">CrÃ©er un compte</p>
 			</div>
 		</div>
 	</div>
@@ -34,8 +34,8 @@
 			</div>
 			<div class="erreur">${nomMessageErreur}</div>
 			<div class="row">
-				<label for="prenom" class="col-sm-4">Prénom :</label>
-				<input type="text" name="prenom" class="col-sm-6" placeholder="Votre prénom" required value="${prenomValide}">
+				<label for="prenom" class="col-sm-4">PrÃ©nom :</label>
+				<input type="text" name="prenom" class="col-sm-6" placeholder="Votre prÃ©nom" required value="${prenomValide}">
 			</div>
 			<div class="erreur">${prenomMessageErreur}</div>
 			<div class="row">
@@ -44,8 +44,8 @@
 			</div>
 			<div class="erreur">${emailMessageErreur}</div>
 			<div class="row">
-				<label for="telephone" class="col-sm-4">Téléphone :</label>
-				<input type="tel" name="telephone" class="col-sm-6" placeholder="Votre téléphone" required value="${telephoneValide}">
+				<label for="telephone" class="col-sm-4">TÃ©lÃ©phone :</label>
+				<input type="tel" name="telephone" class="col-sm-6" placeholder="Votre tÃ©lÃ©phone" required value="${telephoneValide}">
 			</div>
 			<div class="erreur">${telephoneMessageErreur}</div>
 			<div class="row">
@@ -73,13 +73,13 @@
 				<input type="password" name="confirmation" class="col-sm-6" placeholder="Votre mot de passe" required value="${confirmationMDPValide}">
 			</div>
 			<div class="erreur">${confirmationMDPMessageErreur}</div>
-			<span class="col-4 offset-1">
-				<button type="submit" class="btn btn-primary" id="creer">Créer</button>
-			</span>
+			<div>
+				<button type="submit" class="col-12 mt-5" id="creer">CrÃ©er</button>
+			</div>
 		</form>
-		<span class="col-4"> 
-			<a href="${pageContext.request.contextPath}/ServletConnexionCompte"><button class="btn btn-primary" id="annuler">Annuler</button></a>
-		</span>
+	</div>
+	<div class="container"> 
+			<a href="${pageContext.request.contextPath}/ServletConnexionCompte"><button class="col-12 mt-5 mb-5" id="annuler">Annuler</button></a>
 	</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body{
-	background:grey;
+	background: #F5F5DC;
 	font-size:1.8em;
 }
 img{
@@ -9,26 +9,33 @@ img{
 	height:auto;
 	margin:1em;
 }
+input{
+	border:1px solid black;
+}
+#entete{
+	background:#279EF5;
+	box-shadow: 10px 10px black;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+	color:white;
+}
 #article{
 	font-size: 2.5em;
 }
 #encherir{
 	font-size: 1.5em;
-	width: 200px;
-	height: 150px;
-	background: green;
+
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
  	border:1px black;
+ 	color:white;
 }
 #retour{
 	font-size: 1.5em;
-	position:relative;
-	top :-230px; left:470px;
-	width: 200px;
-	height: 150px;
-	background: green;
+	background: #279EF5;
 	border-radius: 15px;
 	box-shadow: 10px 10px black;
   	border:1px black;
+  	color:white;
 }
