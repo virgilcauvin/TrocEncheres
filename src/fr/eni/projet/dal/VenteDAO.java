@@ -116,7 +116,6 @@ public class VenteDAO {
 				cnx.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-				cnx.rollback();
 				throw e;
 			}
 		} catch (Exception e) {

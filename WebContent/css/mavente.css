@@ -9,7 +9,13 @@ img{
 	height:auto;
 	margin:1em;
 }
-
+#entete{
+	background:#279EF5;
+	box-shadow: 10px 10px black;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+	color:white;
+}
 #retour{
 	font-size: 1.5em;
 	background: #279EF5;

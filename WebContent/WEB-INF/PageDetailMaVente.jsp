@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 			</div>
@@ -27,7 +27,7 @@
 						<h2>${requestScope.meilleurEncherisseur} a remporté l'enchère</h2>
 					</c:if>
 				</div>
-				<div class="col-12 mt-5" id="article">${requestScope.nomArticle}</div>
+				<div class="col-12 mt-5" id="article"><h2>${requestScope.nomArticle}</h2></div>
 				<div class="col-12 text-center">
 					<img alt="truc" src="${requestScope.photo}">
 				</div>

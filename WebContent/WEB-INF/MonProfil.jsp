@@ -106,14 +106,14 @@
 			</div>
 			<div class="row">
 				<label for="motDePasse" class="col-md-3">Mot de passe :</label> <input
-					type="password" name="motDePasse" class="col-md-5" required
-					value="${!empty motDePasseValide?motDePasseValide:utilisateur.motDePasse}">
+					type="password" name="motDePasse" class="col-md-5" required placeholder="********">
+					<!-- value="${!empty motDePasseValide?motDePasseValide:utilisateur.motDePasse}">  -->
 			</div>
 			<div class="erreur">${motDePasseMessageErreur}</div>
 			<div class="row">
 				<label for="confirmation" class="col-md-3">Confirmation :</label> <input
-					type="password" name="confirmation" class="col-md-5" required
-					value="${!empty confirmationMDPValide?confirmationMDPValide:utilisateur.motDePasse}">
+					type="password" name="confirmation" class="col-md-5" required placeholder="********">
+					<!-- value="${!empty confirmationMDPValide?confirmationMDPValide:utilisateur.motDePasse}" -->
 			</div>
 			<div class="erreur">${confirmationMDPMessageErreur}</div>
 		</div>
