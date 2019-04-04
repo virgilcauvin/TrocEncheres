@@ -43,11 +43,11 @@ public class FiltreIdentification implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		
-		System.out.println(httpRequest.getServletPath());
-		System.out.println(session.getAttribute("connecte"));
+//		System.out.println(httpRequest.getServletPath());
+//		System.out.println(session.getAttribute("connecte"));
 		
 		if (session.getAttribute("connecte") == null) {
-			System.out.println("c'est le premier passage dans le filtre");
+//			System.out.println("c'est le premier passage dans le filtre");
 			RequestDispatcher rd = httpRequest.getRequestDispatcher("/WEB-INF/PageConnexion.jsp");
 			rd.forward(httpRequest, httpResponse);
 		} else {

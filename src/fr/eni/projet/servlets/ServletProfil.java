@@ -45,7 +45,7 @@ public class ServletProfil extends HttpServlet {
 		request.setAttribute("visionEmail", utilisateur.isVisionEmail() ? "on" : null);
 		request.setAttribute("visionTelephone", utilisateur.isVisionTelephone() ? "on" : null);
 		
-		System.out.println(session.getAttribute("pseudo"+ "servlet profil"));
+//		System.out.println(session.getAttribute("pseudo"+ "servlet profil"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/MonProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -155,7 +155,7 @@ public class ServletProfil extends HttpServlet {
 			Utilisateur utilisateur = new Utilisateur(utilisateurCourant.getNoUtilisateur() ,pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, utilisateurCourant.getCredit(), utilisateurCourant.isAdministrateur());
 			UtilisateurDAO.updateProfil(utilisateur);
 			
-			System.out.println("utilisateur : " + utilisateur.toString() + " a été modifié.");
+//			System.out.println("utilisateur : " + utilisateur.toString() + " a été modifié.");
 			
 			session.setAttribute("pseudo",request.getParameter("pseudo"));
 			request.setAttribute("utilisateur", utilisateur);

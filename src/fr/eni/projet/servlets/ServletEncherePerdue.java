@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.bo.Vente;
-import fr.eni.projet.dal.UtilisateurDAO;
 import fr.eni.projet.dal.VenteDAO;
 
 /**
@@ -36,7 +34,6 @@ public class ServletEncherePerdue extends HttpServlet {
 		int noVente = Integer.parseInt(request.getParameter("noVente"));
 		int classement = Integer.parseInt(request.getParameter("classement"));
 		Vente vente = VenteDAO.selectVenteByNoVente(noVente);
-		Utilisateur vendeur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
 		request.setAttribute("nomArticle", vente.getNomArticle());
 		request.setAttribute("dateFinEncheres", vente.getDateFinEncheres());
 		request.setAttribute("photo", vente.getPhoto());

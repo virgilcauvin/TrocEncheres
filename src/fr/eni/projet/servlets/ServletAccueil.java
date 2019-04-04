@@ -41,13 +41,11 @@ public class ServletAccueil extends HttpServlet {
 		HttpSession session = request.getSession();	
 		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
 		request.setAttribute("utilisateur", utilisateur);
-		System.out.println(session.getAttribute("pseudo" + "servlet accueil"));
+//		System.out.println(session.getAttribute("pseudo" + "servlet accueil"));
 		/*/!\ NEW : pour maintenir les critères de recherches de vente sur la pages d'accueil en retour de la page DetailMaVente*/
 		if (request.getParameter("mesVentes") != null) {
 			List<Vente> listeVentesUtilisateur = new ArrayList<>();
 			int noUtilisateur = 0;
-			int noCategorie = 0;
-			String motsCles = null;
 			noUtilisateur = utilisateur.getNoUtilisateur();
 			listeVentesUtilisateur = VenteDAO.selectAllVentesUtilisateur(noUtilisateur, 0, "");
 			for (Vente vente : listeVentesUtilisateur) {
@@ -56,7 +54,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateurVendeur.getRue());
 				vente.setCodePostal(utilisateurVendeur.getCodePostal());
 				vente.setVille(utilisateurVendeur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			request.setAttribute("listeVentesUtilisateur", listeVentesUtilisateur);
 		}
@@ -86,7 +84,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateur.getRue());
 				vente.setCodePostal(utilisateur.getCodePostal());
 				vente.setVille(utilisateur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			request.setAttribute("listeVentesUtilisateur", listeVentesUtilisateur);
 		}
@@ -109,7 +107,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateur.getRue());
 				vente.setCodePostal(utilisateur.getCodePostal());
 				vente.setVille(utilisateur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			
 			listeEncheresUtilisateur = genererClassementEncheres(noUtilisateur);
@@ -139,7 +137,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateur.getRue());
 				vente.setCodePostal(utilisateur.getCodePostal());
 				vente.setVille(utilisateur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			listeEncheresUtilisateur = genererClassementEncheres(noUtilisateur);
 			
@@ -155,10 +153,10 @@ public class ServletAccueil extends HttpServlet {
 				
 			}
 			
-			for (Vente vente : listeAcquisitionsUtilisateur) {
+/*			for (Vente vente : listeAcquisitionsUtilisateur) {
 				System.out.println("Acquisition de l'utilisateur : " + vente.toString());
 			}
-				
+*/				
 			request.setAttribute("listeAcquisitionsUtilisateur", listeAcquisitionsUtilisateur);
 			
 		}
@@ -183,7 +181,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateur.getRue());
 				vente.setCodePostal(utilisateur.getCodePostal());
 				vente.setVille(utilisateur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			listeEncheresUtilisateur = genererClassementEncheres(noUtilisateur);
 			
@@ -199,10 +197,10 @@ public class ServletAccueil extends HttpServlet {
 				
 			}
 			
-			for (Vente vente : listeVentesPerduesUtilisateur) {
+/*			for (Vente vente : listeVentesPerduesUtilisateur) {
 				System.out.println("Ventes perdues de l'utilisateur : " + vente.toString());
 			}
-			
+*/			
 			request.setAttribute("listeEncheresUtilisateur", listeEncheresUtilisateur);
 			request.setAttribute("listeVentesPerduesUtilisateur", listeVentesPerduesUtilisateur);
 			
@@ -225,7 +223,7 @@ public class ServletAccueil extends HttpServlet {
 				vente.setRue(utilisateur.getRue());
 				vente.setCodePostal(utilisateur.getCodePostal());
 				vente.setVille(utilisateur.getVille());
-				System.out.println(vente.toString());
+//				System.out.println(vente.toString());
 			}
 			
 			HttpSession session = request.getSession();
@@ -267,13 +265,13 @@ public class ServletAccueil extends HttpServlet {
 					break;
 				}
 			}
-			System.out.println("Le classement de l'utilisateur " + noUtilisateur + " dans la vente n°" + noVente + " est : " + classement);
+//			System.out.println("Le classement de l'utilisateur " + noUtilisateur + " dans la vente n°" + noVente + " est : " + classement);
 		}
 		
-		for (Enchere enchere : listeEncheresUtilisateur) {
+/*		for (Enchere enchere : listeEncheresUtilisateur) {
 			System.out.println("enchère de l'utilisateur :" + enchere.toString());
 		}
-		
+*/		
 		return listeEncheresUtilisateur;
 	}
 	
