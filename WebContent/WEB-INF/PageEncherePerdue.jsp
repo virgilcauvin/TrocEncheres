@@ -9,12 +9,12 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="/TrocEncheres/css/listeencheres.css">
+<link rel="stylesheet" href="/TrocEncheres/css/enchereperdu.css">
 <title>Page Enchere Perdue</title>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
 			</div>
@@ -34,7 +34,7 @@
 				</c:choose>
 			</div>
 			<div class="col-12 m-3">${requestScope.nomArticle}</div>
-			<div class="col-12 m-3">
+			<div class="col-12 m-3 text-center">
 				<img src="${requestScope.photo}">
 			</div>
 			<div class="container">
