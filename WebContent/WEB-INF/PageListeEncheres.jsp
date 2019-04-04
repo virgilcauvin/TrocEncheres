@@ -72,9 +72,9 @@
 				</div>
 			</div>
 			<div class="container">
-				<div class="row">
+				<div class="row mb-5">
 					<c:forEach var="venteEnCours" items="${listeVentesEnCours}">
-	   					<div class="col-12 border m-1">
+	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 	   							<div class="col-4">
 									<img alt="${venteEnCours.nomArticle}" src="${venteEnCours.photo}">
@@ -120,7 +120,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="venteUtilisateur" items="${listeVentesUtilisateur}">
-	   					<div class="col-12 border m-1">
+	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
@@ -140,7 +140,7 @@
 	   				</c:forEach>
 					
 					<c:forEach var="enchereUtilisateurEnCours" items="${listeEncheresUtilisateurEnCours}">
-	   					<div class="col-12 border m-1">
+	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 									<img alt="${enchereUtilisateurEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
@@ -164,7 +164,7 @@
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="acquisitionUtilisateur" items="${listeAcquisitionsUtilisateur}">
-	   					<div class="col-12 border">
+	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 									<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
@@ -184,7 +184,7 @@
 	   				</c:forEach>
 	   				
 	   				<c:forEach var="ventesPerduesUtilisateur" items="${listeVentesPerduesUtilisateur}">
-	   					<div class="col-12 border">
+	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
 									<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">

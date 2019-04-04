@@ -24,10 +24,10 @@
 		<div class="row">
 				<div class="col-12 text-center">
 					<c:if test="${requestScope.etatVente == 0}">
-						${requestScope.meilleurEncherisseur} a remporté l'enchère
+						<h2>${requestScope.meilleurEncherisseur} a remporté l'enchère</h2>
 					</c:if>
 				</div>
-				<div class="col-12" id="article">${requestScope.nomArticle}</div>
+				<div class="col-12 mt-5" id="article">${requestScope.nomArticle}</div>
 				<div class="col-12 text-center">
 					<img alt="truc" src="${requestScope.photo}">
 				</div>
@@ -49,10 +49,12 @@
 		</div>
 	</div>
 	<c:if test="${requestScope.etatVente == 0}">
+	<div class="container">
 		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
-		<button name="retraitEffectue" id="retraitEffectue">Retrait effectué</button></a>
+		<button class="col-12 mt-5" id="retrait" name="retraitEffectue" id="retraitEffectue">Retrait effectué</button></a>
 		<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}&venteValidee">
-		<button name="retraitEffectue" id="retraitEffectue">Contacter ${requestScope.meilleurEncherisseur}</button></a>
+		<button class="col-12 mt-5" id="contact" name="retraitEffectue" id="retraitEffectue">Contacter ${requestScope.meilleurEncherisseur}</button></a>
+	</div>
 	</c:if>
 	<div class="container">
 		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">

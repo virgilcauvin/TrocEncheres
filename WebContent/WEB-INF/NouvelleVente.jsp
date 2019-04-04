@@ -40,7 +40,7 @@
 					id="pet-select" name="libelle">
 					<c:forEach var="categorie" items="${sessionScope.listeCategories}">
 						<c:choose>
-							<c:when test="${sessionScope.libelle == categorie.libelle}">
+							<c:when test="${!empty sessionScope.libelle}">
 								<option value="${categorie.libelle}" selected>${categorie.libelle}</option>
 							</c:when>
 							<c:otherwise>
@@ -68,10 +68,15 @@
 				<input class="col-6" type="text" name="lienPhoto"
 					value="${sessionScope.lienPhoto}">
 			</div>
-			<div class="row">
-				<label class="col-12" name="photo">Photo de l'article :</label>
-				 <img src="${sessionScope.lienPhoto}">
-			</div>
+			
+			<c:if test="${!empty sessionScope.lienPhoto}">
+				<div class="row">
+					<label class="col-12" name="photo">Photo de l'article :</label>
+					 <img src="${sessionScope.lienPhoto}">
+				</div>
+			</c:if>
+			
+			
 			<div class="row">
 				<label class="col-3" name="prixInitial">Prix initial : </label> <input
 					class="col-7" required value="${sessionScope.prixInitial}"
