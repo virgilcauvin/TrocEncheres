@@ -68,10 +68,10 @@ public class ServletDetailMaVente extends HttpServlet {
 		
 		
 		if (vente.getDateFinEncheres().isBefore(dateDuJour)) {
-			System.out.println("la vente est terminée");
+//			System.out.println("la vente est terminée");
 			request.setAttribute("etatVente", 0);
 		} else {
-			System.out.println("la vente est en cours");
+//			System.out.println("la vente est en cours");
 			request.setAttribute("etatVente", 1);
 		}
 

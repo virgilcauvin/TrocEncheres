@@ -125,7 +125,6 @@ public class VenteDAO {
 
 	public static List<Vente> selectAllVentesEnCours(int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
-		Vente vente = null;
 		String[] tableauMotsCles = null;
 		if (motsCles != "") {
 			tableauMotsCles = motsCles.split(" ");// prévoir séparateur "," ?
@@ -136,7 +135,7 @@ public class VenteDAO {
 		// élaboration de la requête si des mots clé sont renseignés en fonction de leur
 		// nombre
 		if (motsCles != "") {
-			System.out.println("la longueur du tableau de mots clé est : " + tableauMotsCles.length);
+//			System.out.println("la longueur du tableau de mots clé est : " + tableauMotsCles.length);
 		}
 		if (motsCles != "") {
 			requete.append("(");
@@ -156,7 +155,7 @@ public class VenteDAO {
 		}
 		// élaboration de la requête en fonction de l'utilisateur
 		requete.append("date_fin_encheres > GETDATE()");
-		System.out.println(requete);
+//		System.out.println(requete);
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
@@ -165,17 +164,17 @@ public class VenteDAO {
 			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
 					pstmt.setString(i + 1, "%" + tableauMotsCles[i] + "%");
-					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
+//					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
 				}
 			}
 
 			// paramétrage de la requête si catégorie renseignée
-			System.out.println("la chaine de mots clés est : " + motsCles);
-			System.out.println("la catégorie est : " + noCategorie);
+//			System.out.println("la chaine de mots clés est : " + motsCles);
+//			System.out.println("la catégorie est : " + noCategorie);
 			if (noCategorie != 0) {
 				if (motsCles != "") {
 					pstmt.setInt(tableauMotsCles.length + 1, noCategorie);
-					System.out.println("parametre requete " + (tableauMotsCles.length + 1) + " = " + noCategorie);
+//					System.out.println("parametre requete " + (tableauMotsCles.length + 1) + " = " + noCategorie);
 				} else {
 					pstmt.setInt(1, noCategorie);
 				}
@@ -203,7 +202,6 @@ public class VenteDAO {
 	// mots clés du nom article et/ou noCategorie
 	public static List<Vente> selectAllVentesUtilisateur(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
-		Vente vente = null;
 		String[] tableauMotsCles = null;
 		int nbVariablesAparametrer = 0;
 		if (motsCles != "") {
@@ -235,7 +233,7 @@ public class VenteDAO {
 		}
 		requete.append("no_utilisateur = ?");
 		nbVariablesAparametrer++;
-		System.out.println(requete);
+//		System.out.println(requete);
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
@@ -244,18 +242,18 @@ public class VenteDAO {
 			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
 					pstmt.setString(i + 1, "%" + tableauMotsCles[i] + "%");
-					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
+//					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
 				}
 			}
 
 			// paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer - 1, noCategorie);
-				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
+//				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
 			}
 			// paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
-			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
+//			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				listeVentes.add(new Vente(rs.getInt("no_vente"), rs.getString("nomarticle"),
@@ -276,7 +274,6 @@ public class VenteDAO {
 	// option par mots clés du nom article et/ou noCategorie
 	public static List<Vente> selectAllEncheresUtilisateurEnCours(int noUtilisateur, int noCategorie, String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
-		Vente vente = null;
 		String[] tableauMotsCles = null;
 		int nbVariablesAparametrer = 0;
 		if (motsCles != "") {
@@ -309,7 +306,7 @@ public class VenteDAO {
 		requete.append("e.no_utilisateur = ? AND ");
 		nbVariablesAparametrer++;
 		requete.append("date_fin_encheres > GETDATE()");
-		System.out.println(requete);
+//		System.out.println(requete);
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
@@ -318,18 +315,18 @@ public class VenteDAO {
 			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
 					pstmt.setString(i + 1, "%" + tableauMotsCles[i] + "%");
-					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
+//					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
 				}
 			}
 
 			// paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer - 1, noCategorie);
-				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
+//				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
 			}
 			// paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
-			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
+//			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -354,7 +351,6 @@ public class VenteDAO {
 	public static List<Vente> selectAllEncheresTermineesUtilisateur(int noUtilisateur, int noCategorie,
 			String motsCles) {
 		List<Vente> listeVentes = new ArrayList<Vente>();
-		Vente vente = null;
 		String[] tableauMotsCles = null;
 		int nbVariablesAparametrer = 0;
 		if (motsCles != "") {
@@ -387,7 +383,7 @@ public class VenteDAO {
 		requete.append("e.no_utilisateur = ? AND ");
 		nbVariablesAparametrer++;
 		requete.append("date_fin_encheres < GETDATE()");
-		System.out.println(requete);
+//		System.out.println(requete);
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(requete.toString());
@@ -396,18 +392,18 @@ public class VenteDAO {
 			if (motsCles != "") {
 				for (int i = 0; i < tableauMotsCles.length; i++) {
 					pstmt.setString(i + 1, "%" + tableauMotsCles[i] + "%");
-					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
+//					System.out.println("parametre requete " + (i + 1) + " = " + tableauMotsCles[i]);
 				}
 			}
 
 			// paramétrage de la requête si catégorie renseignée
 			if (noCategorie != 0) {
 				pstmt.setInt(nbVariablesAparametrer - 1, noCategorie);
-				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
+//				System.out.println("parametre requete " + (nbVariablesAparametrer - 1) + " = " + noCategorie);
 			}
 			// paramétrage du numero utilisateur de la requête
 			pstmt.setInt(nbVariablesAparametrer, noUtilisateur);
-			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
+//			System.out.println("parametre requete " + nbVariablesAparametrer + " = " + noUtilisateur);
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {

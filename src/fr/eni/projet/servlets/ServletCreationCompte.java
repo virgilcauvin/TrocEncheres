@@ -131,7 +131,7 @@ public class ServletCreationCompte extends HttpServlet {
 		} else {
 			utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 			UtilisateurDAO.insertUtilisateur(utilisateur);
-			System.out.println("utilisateur : " + utilisateur.toString() + " créé.");
+//			System.out.println("utilisateur : " + utilisateur.toString() + " créé.");
 			request.setAttribute("pseudo", pseudo);
 			request.setAttribute("motDePasse", motDePasse);
 			session.setAttribute("compteCree", true);

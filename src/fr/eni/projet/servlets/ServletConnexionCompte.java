@@ -52,7 +52,7 @@ public class ServletConnexionCompte extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.removeAttribute("connecte");
 			session.removeAttribute("compteCree");
-			System.out.println("Vous êtes déconnecté : " + session.getAttribute("connecte"));
+//			System.out.println("Vous êtes déconnecté : " + session.getAttribute("connecte"));
 		} // FIN NEW
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageConnexion.jsp");
 		rd.forward(request, response);
