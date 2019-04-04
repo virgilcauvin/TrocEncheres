@@ -27,14 +27,16 @@
 		<div class="col-12 m-3">
 			<img src="${requestScope.photo}">
 		</div>
-		<div class="col-12 m-3">Meilleure offre :
-			${requestScope.meilleureOffre}</div>
-		<div class="col-12 m-3">mise à prix : ${requestScope.miseAPrix}</div>
-		<div class="col-12 m-5">Retrait :</div>
-		<div class="col-12 m-3 text-center">${requestScope.rue}</div>
-		<div class="col-12 m-3 text-center">${requestScope.codePostal}</div>
+		<div class="col-12 m-3">Meilleure offre : ${requestScope.meilleureOffre} points</div>
+		<div class="col-12 m-3">mise à prix : ${requestScope.miseAPrix} points</div>
+		<div class="col-12 m-3">Retrait :</div>
+		<div class="col-12 m-3">${requestScope.rue}</div>
+		<div class="col-12 m-3">${requestScope.codePostal}</div>
 		<div class="col-12 m-3">${requestScope.ville}</div>
-		<div class="col-12 m-3">Vendeur : ${requestScope.ville}</div>
+		<div class="col-12 m-3">Vendeur : 
+			<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.pseudo}&venteValidee">${requestScope.pseudo}</a>
+		</div>
+		
 		<div class="col-12 m-3">Téléphone : ${requestScope.telephone}</div>
 		</div>
 		<div class="container">

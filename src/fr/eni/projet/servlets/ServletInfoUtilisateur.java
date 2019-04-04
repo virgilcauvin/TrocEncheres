@@ -55,6 +55,11 @@ public class ServletInfoUtilisateur extends HttpServlet {
 		request.setAttribute("codePostal", utilisateur.getCodePostal());
 		request.setAttribute("ville", utilisateur.getVille());
 		
+		if (request.getParameter("venteValidee") != null) {
+			request.setAttribute("telephone", utilisateur.getTelephone());
+		}
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageInfoUtilisateur.jsp");
 		rd.forward(request, response);
 	}
