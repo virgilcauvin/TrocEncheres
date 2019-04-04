@@ -1,19 +1,29 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 body{
-  background:grey;
+  background:#F5F5DC;
   font-size: 1.8em;
   /*background-image:url("../images/fondecran.jpg");
   background-position: top left ;
   background-repeat: no-repeat ;
   background-size: 100% 150%;*/
 }
+input{
+	border:1px solid black;
+}
+#entete{
+	background:#279EF5;
+	box-shadow: 10px 10px black;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+	color:white;
+}
 #bouton-creer{
   margin: 1em;
   margin-top: 3em;
   padding: 1em;
   color: white;
-  background: green;
+  background: #279EF5;
   border-radius: 30px;
   font-size: 2em;
   box-shadow: 10px 10px black;
@@ -21,7 +31,7 @@ body{
 }
 #bouton-connexion{
   color: white;
-  background: green;
+  background: #279EF5;
   border-radius: 15px;
   font-size: 1.6em;
   box-shadow: 10px 10px black;
