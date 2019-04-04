@@ -48,7 +48,6 @@ public class ServletDetailMaVente extends HttpServlet {
 		noVente = Integer.parseInt(request.getParameter("noVente"));
 		vente = VenteDAO.selectVenteByNoVente(noVente);
 		meilleureEnchere = EnchereDAO.selectByNoVente(noVente);
-		System.out.println("la meilleure encheree est : " + meilleureEnchere.toString());
 		if (meilleureEnchere != null) {
 			meilleurEncherisseur = UtilisateurDAO.selectById(meilleureEnchere.getNoUtilisateur());
 		}

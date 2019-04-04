@@ -41,6 +41,9 @@ input{
   font-size: 1.3em;
   margin-top: 8em;
 }
+#erreur{
+	color:red;
+}
 
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {

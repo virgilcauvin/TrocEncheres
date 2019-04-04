@@ -18,6 +18,9 @@ input{
 	border-bottom-left-radius:30px;
 	color:white;
 }
+.erreur{
+	color: red;
+}
 #credit{
 	margin: 1em;
 }

@@ -30,7 +30,7 @@
 					value="${!empty pseudoValide?pseudoValide:utilisateur.pseudo}"
 					required>
 			</div>
-			<div>${pseudoMessageErreur}</div>
+			<div class="erreur">${pseudoMessageErreur}</div>
 			<div class="row">
 				<label for="nom" class="col-md-3 col-12">Nom : </label>
 				<input type="text"
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 
-			<div>${nomMessageErreur}</div>
+			<div class="erreur">${nomMessageErreur}</div>
 			<div class="row">
 				<label for="prenom" class="col-md-3">Prénom :</label> <input
 					type="text" name="prenom" class="col-md-5"
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 
-			<div>${prenomMessageErreur}</div>
+			<div class="erreur">${prenomMessageErreur}</div>
 			<div class="row">
 				<label for="email" class="col-md-3">Email :</label> <input
 					type="email" name="email" class="col-md-5"
@@ -67,7 +67,7 @@
 			</div>
 
 
-			<div>${emailMessageErreur}</div>
+			<div class="erreur">${emailMessageErreur}</div>
 			<div class="row">
 				<label for="telephone" class="col-md-3">Téléphone :</label> <input
 					type="tel" name="telephone" class="col-md-5"
@@ -79,27 +79,27 @@
 				</div>
 			</div>
 
-			<div>${telephoneMessageErreur}</div>
+			<div class="erreur">${telephoneMessageErreur}</div>
 			<div class="row">
 				<label for="rue" class="col-md-3">Rue : </label> <input type="text"
 					name="rue" class="col-md-5"
 					value="${!empty rueValide?rueValide:utilisateur.rue}" required>
 			</div>
-			<div>${rueMessageErreur}</div>
+			<div class="erreur">${rueMessageErreur}</div>
 			<div class="row">
 				<label for="codePostal" class="col-md-3">Code postal : </label> <input
 					type="text" name="codePostal" class="col-md-5"
 					value="${!empty codePostalValide?codePostalValide:utilisateur.codePostal}"
 					required>
 			</div>
-			<div>${codePostalMessageErreur}</div>
+			<div class="erreur">${codePostalMessageErreur}</div>
 			<div class="row">
 				<label for="ville" class="col-md-3">Ville : </label> <input
 					type="text" name="ville" class="col-md-5"
 					value="${!empty villeValide?villeValide:utilisateur.ville}"
 					required>
 			</div>
-			<div>${villeMessageErreur}</div>
+			<div class="erreur">${villeMessageErreur}</div>
 			<div class="row">
 				<label for="credit" class="col-md-3">Crédit : </label> <span
 					id="credit">${!empty credit?credit:utilisateur.credit}</span>
@@ -109,13 +109,13 @@
 					type="password" name="motDePasse" class="col-md-5" required
 					value="${!empty motDePasseValide?motDePasseValide:utilisateur.motDePasse}">
 			</div>
-			<div>${motDePasseMessageErreur}</div>
+			<div class="erreur">${motDePasseMessageErreur}</div>
 			<div class="row">
 				<label for="confirmation" class="col-md-3">Confirmation :</label> <input
 					type="password" name="confirmation" class="col-md-5" required
 					value="${!empty confirmationMDPValide?confirmationMDPValide:utilisateur.motDePasse}">
 			</div>
-			<div>${confirmationMDPMessageErreur}</div>
+			<div class="erreur">${confirmationMDPMessageErreur}</div>
 		</div>
 		<div class="container">
 			<button class="col-12 mt-2" name="enregistrer" id="enregistrer" type="submit">Enregistrer</button>
