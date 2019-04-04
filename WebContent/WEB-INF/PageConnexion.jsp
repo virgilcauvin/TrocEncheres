@@ -8,7 +8,7 @@
 
 <meta charset="UTF-8">
 <title>Page Connexion</title>
-<link rel="stylesheet" href="TrocEncheres/css/connexion.css">
+<link rel="stylesheet" href="/TrocEncheres/css/connexion.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="text-center m-2">${messageErreurConnexion}</div>
+		<div class="text-center m-2" id="erreur">${messageErreurConnexion}</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-5 offset-1">

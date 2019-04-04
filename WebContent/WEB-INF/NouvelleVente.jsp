@@ -24,12 +24,12 @@
 		</div>
 	</div>
 	<div>
-		<h3 class="text-center">${requestScope.messageErreurArticle}</h3>
-		<h3 class="text-center">${requestScope.messageErreurCategorie}</h3>
-		<h3 class="text-center">${requestScope.messageErreurDescription}</h3>
-		<h3 class="text-center">${requestScope.messageErreurFinEnchere}</h3>
-		<h3 class="text-center">${requestScope.messageErreurPrixPositif}</h3>
-		<h3 class="text-center">${requestScope.messageErreurPrix}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurArticle}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurCategorie}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurDescription}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurFinEnchere}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurPrixPositif}</h3>
+		<h3 class="erreur text-center">${requestScope.messageErreurPrix}</h3>
 	</div>
 	<form action="${pageContext.request.contextPath}/Secure/ServletVendre"
 		method="post">
@@ -64,8 +64,8 @@
 					value="${sessionScope.lienPhoto}">
 			</div>
 			<div class="row">
-				<label class="col-12" name="photo">Photo de l'article :</label> <img
-					src="${sessionScope.lienPhoto}">
+				<label class="col-12" name="photo">Photo de l'article :</label>
+				 <img src="${sessionScope.lienPhoto}">
 			</div>
 			<div class="row">
 				<label class="col-3" name="prixInitial">Prix initial : </label> <input
