@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Vente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int noVente;
 	private String nomArticle;
 	private String description;
@@ -20,11 +20,13 @@ public class Vente implements Serializable {
 	private String rue;
 	private String codePostal;
 	private String ville;
-	
-	
-	public Vente() {}
-	
-	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente) {
+	private boolean terminee;
+
+	public Vente() {
+	}
+
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix,
+			int prixVente) {
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -32,8 +34,9 @@ public class Vente implements Serializable {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 	}
-	
-	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
+
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix,
+			int prixVente, int noUtilisateur, int noCategorie) {
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -43,8 +46,9 @@ public class Vente implements Serializable {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	
-	public Vente(String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int noUtilisateur, int noCategorie, String photo) {
+
+	public Vente(String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int noUtilisateur,
+			int noCategorie, String photo) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateFinEncheres = dateFinEncheres;
@@ -53,8 +57,9 @@ public class Vente implements Serializable {
 		this.noCategorie = noCategorie;
 		this.photo = photo;
 	}
-		
-	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, String photo) {
+
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix,
+			int prixVente, int noUtilisateur, int noCategorie, String photo) {
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -66,8 +71,10 @@ public class Vente implements Serializable {
 		this.photo = photo;
 	}
 
-	/*/!\ NEW : Constructeur avec pseudo et adresse du vendeur*/
-	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, String photo, String pseudo, String rue, String codePostal, String ville) {
+	/* /!\ NEW : Constructeur avec pseudo et adresse du vendeur */
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix,
+			int prixVente, int noUtilisateur, int noCategorie, String photo, String pseudo, String rue,
+			String codePostal, String ville) {
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -82,8 +89,21 @@ public class Vente implements Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-	
-	
+
+	public Vente(int noVente, String nomArticle, String description, LocalDate dateFinEncheres, int miseAPrix,
+			int prixVente, int noUtilisateur, int noCategorie, String photo, boolean terminee) {
+		this.noVente = noVente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.photo = photo;
+		this.setTerminee(terminee);
+	}
+
 	public int getNoVente() {
 		return noVente;
 	}
@@ -132,8 +152,7 @@ public class Vente implements Serializable {
 		this.prixVente = prixVente;
 	}
 
-	
-	/*/!\ NEW : MAJ méthode toString avec tous les paramètres*/
+	/* /!\ NEW : MAJ méthode toString avec tous les paramètres */
 	@Override
 	public String toString() {
 		return "Vente [noVente=" + noVente + ", nomArticle=" + nomArticle + ", description=" + description
@@ -165,7 +184,7 @@ public class Vente implements Serializable {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -198,5 +217,12 @@ public class Vente implements Serializable {
 		this.ville = ville;
 	}
 
-	
+	public boolean isTerminee() {
+		return terminee;
+	}
+
+	public void setTerminee(boolean terminee) {
+		this.terminee = terminee;
+	}
+
 }

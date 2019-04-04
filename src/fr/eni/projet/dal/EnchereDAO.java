@@ -15,7 +15,31 @@ public class EnchereDAO {
 	private static final String INSERT_ENCHERE = "insert into ENCHERES (date_enchere,no_utilisateur,no_vente,montant)values(?,?,?,?)";
 	private static final String SELECT_BY_PK = "SELECT * FROM ENCHERES WHERE no_utilisateur = ? and no_vente = ?";
 	private static final String UPDADE_ENCHERE = "UPDATE ENCHERES SET montant=? WHERE no_utilisateur = ? and no_vente=?";
+	private static final String SELECT_ALL_ENCHERES_BY_NO_VENTE = "select * from ENCHERES where no_vente = ?";
+	
+	public static ArrayList<Enchere> selectAllEcnhereByNoVente(int noVente) {
+		ArrayList<Enchere> listeEnchere = new ArrayList<>();
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ENCHERES_BY_NO_VENTE);
+			pstmt.setInt(1, noVente);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"), rs.getInt("montant"));
+				listeEnchere.add(enchere);
+			}
+			rs.close();
+			pstmt.close();
+			cnx.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		return listeEnchere;
+	}
+
+	
 	public static void updateEnchere(int noUtilisateur, int noVente, int nouveauCredit) {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
