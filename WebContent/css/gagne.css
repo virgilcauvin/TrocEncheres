@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+body{
+	font-size: 1.8em;
+	background:grey;
+}
+img{
+	width: 600px;
+	height:auto;
+	margin:1em;
+}
+button{
+	color:white;
+	margin-top: 1em;
+	font-size: 1em;
+	background: green;
+	border-radius: 15px;
+	box-shadow: 10px 10px black;
+  	border:1px black;

@@ -105,7 +105,7 @@ public class EnchereDAO {
 			pstmt.setInt(1, noVente);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"));
+				enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("no_utilisateur"), rs.getInt("no_vente"), rs.getInt("montant"));
 			}
 			rs.close();
 			pstmt.close();

@@ -42,6 +42,25 @@ public class ServletAccueil extends HttpServlet {
 		Utilisateur utilisateur = UtilisateurDAO.selectByPseudo((String)session.getAttribute("pseudo"));
 		request.setAttribute("utilisateur", utilisateur);
 		System.out.println(session.getAttribute("pseudo" + "servlet accueil"));
+		/*/!\ NEW : pour maintenir les critères de recherches de vente sur la pages d'accueil en retour de la page DetailMaVente*/
+		if (request.getParameter("mesVentes") != null) {
+			List<Vente> listeVentesUtilisateur = new ArrayList<>();
+			int noUtilisateur = 0;
+			int noCategorie = 0;
+			String motsCles = null;
+			noUtilisateur = utilisateur.getNoUtilisateur();
+			listeVentesUtilisateur = VenteDAO.selectAllVentesUtilisateur(noUtilisateur, 0, "");
+			for (Vente vente : listeVentesUtilisateur) {
+				Utilisateur utilisateurVendeur = UtilisateurDAO.selectById(vente.getNoUtilisateur());
+				vente.setPseudo(utilisateurVendeur.getPseudo());
+				vente.setRue(utilisateurVendeur.getRue());
+				vente.setCodePostal(utilisateurVendeur.getCodePostal());
+				vente.setVille(utilisateurVendeur.getVille());
+				System.out.println(vente.toString());
+			}
+			request.setAttribute("listeVentesUtilisateur", listeVentesUtilisateur);
+		}
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageListeEncheres.jsp");
 		rd.forward(request, response);
 	}

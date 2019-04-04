@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre}
 				${requestScope.meilleurEncherisseur}</div>
-			<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix}</div>
+			<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix} points</div>
 			<div class="col-12 m-1">Fin de l'enchère : ${requestScope.dateFinEchere}</div>
 			<div class="col-3">Retrait : </div>
 			<div class="col-7">${requestScope.rue}</br>${requestScope.codePostal} ${requestScope.ville}</div>
