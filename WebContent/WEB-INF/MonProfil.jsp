@@ -119,7 +119,7 @@
 		</div>
 		<div class="container">
 			<button class="col-12 mt-2" name="enregistrer" id="enregistrer" type="submit">Enregistrer</button>
-			<button class="col-12 mt-4" name="supprimer" id="supprimer">Supprimer mon compte</button>
+			<button disabled class="col-12 mt-4" name="supprimer" id="supprimer">Supprimer mon compte</button>
 		</div>
 	</form>
 	<div class="container">
