@@ -233,7 +233,7 @@ public class GestionErreursCompteUtilisateur {
 		}
 		//2 S'assurer que la confirmation du mot de passe correspond au mot de passe
 		if (!confirmationMDP.equals(motDePasse)) {
-			messageErreurGlobalConfirmationMDP.append("La confirmation du mot de passe est erronn�e : veuillez confirmer le m�me mot de passe. ");
+			messageErreurGlobalConfirmationMDP.append("La confirmation du mot de passe est erronnée : veuillez confirmer le même mot de passe. ");
 		}
 		//Si confirmation mot de passe non valide : ajout du message erreur confirmation mot de passe dans la MapList
 		if (messageErreurGlobalConfirmationMDP.length() != 0) {

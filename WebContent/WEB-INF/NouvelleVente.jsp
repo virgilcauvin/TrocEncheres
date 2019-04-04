@@ -38,11 +38,16 @@
 				<label class="col-3">Catégories</label>
 				<select class="col-7"
 					id="pet-select" name="libelle">
-					<option value="0">Toutes</option>
 					<c:forEach var="categorie" items="${sessionScope.listeCategories}">
-						<option value="${categorie.libelle}">${categorie.libelle}</option>
+						<c:choose>
+							<c:when test="${sessionScope.libelle == categorie.libelle}">
+								<option value="${categorie.libelle}" selected>${categorie.libelle}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${categorie.libelle}">${categorie.libelle}</option>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
-					<option selected>${sessionScope.libelle}</option>
 				</select>
 			</div>
 
