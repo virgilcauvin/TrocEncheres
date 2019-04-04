@@ -17,6 +17,7 @@
 		<div class="jumbotron jumbotron-fluid" id="entete">
 			<div class="container">
 				<h1 class="display-4">TrocEncheres.org</h1>
+				<p class="lead">Détail de ma vente</p>
 			</div>
 		</div>
 	</div>
@@ -31,15 +32,25 @@
 				<div class="col-12 text-center">
 					<img alt="truc" src="${requestScope.photo}">
 				</div>
-				<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre} pts par 
+				<div class="col-12 m-1">Meilleure offre : 
 					<c:choose>
-						<c:when test="${requestScope.etatVente == 0}">
-							<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}&venteValidee">${requestScope.meilleurEncherisseur}</a>
+						<c:when test="${empty requestScope.meilleureOffre}">
+							-
 						</c:when>
 						<c:otherwise>
-							${requestScope.meilleurEncherisseur}
+							${requestScope.meilleureOffre} pts par 
+							<c:choose>
+								<c:when test="${requestScope.etatVente == 0}">
+									<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}&venteValidee">${requestScope.meilleurEncherisseur}</a>
+								</c:when>
+								<c:otherwise>
+									${requestScope.meilleurEncherisseur}
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>
+					
+					
 				</div>
 				<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix} points</div>
 				<div class="col-12 m-1">Fin de l'enchère : ${requestScope.dateFinEchere}</div>
