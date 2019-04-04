@@ -1,7 +1,7 @@
 package fr.eni.projet.servlets;
 
 import java.io.IOException;
-
+import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,6 +64,17 @@ public class ServletDetailMaVente extends HttpServlet {
 		request.setAttribute("codePostal", utilisateurCourant.getCodePostal());
 		request.setAttribute("ville", utilisateurCourant.getVille());
 		request.setAttribute("vendeur", utilisateurCourant.getPseudo());
+		
+		LocalDate dateDuJour = LocalDate.now();
+		
+		
+		if (vente.getDateFinEncheres().isBefore(dateDuJour)) {
+			System.out.println("la vente est terminée");
+			request.setAttribute("etatVente", 0);
+		} else {
+			System.out.println("la vente est en cours");
+			request.setAttribute("etatVente", 1);
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/PageDetailMaVente.jsp");
 		rd.forward(request, response);

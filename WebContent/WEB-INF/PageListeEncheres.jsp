@@ -82,7 +82,7 @@
 								<div class="col-8">
 			   						<c:choose>
 										<c:when test="${venteEnCours.pseudo == sessionScope.pseudo}">
-											<!-- url à changer --><a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection vente</a>
+											<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection vente</a>
 										</c:when>
 										<c:otherwise>
 											<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection enchere</a>
@@ -126,7 +126,7 @@
 			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
 			   					</div>
 		   						<div class="col-8">
-			   						<!-- url à changer --><a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteUtilisateur.noVente}" >${venteUtilisateur.nomArticle}</a>
+			   						<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteUtilisateur.noVente}" >${venteUtilisateur.nomArticle}</a>
 			   						<p>Prix : ${venteUtilisateur.prixVente==0 ? venteUtilisateur.miseAPrix : venteUtilisateur.prixVente} points</p>
 									<p>Fin de l'enchère : ${venteUtilisateur.dateFinEncheres}</p>
 									<div class="row">
@@ -147,7 +147,7 @@
 			   					</div>
 		   						<div class="col-8">	
 			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${enchereUtilisateurEnCours.noVente}" >${enchereUtilisateurEnCours.nomArticle}</a>
-			   						<p><span>Prix : ${enchereUtilisateurEnCours.prixVente} points</span><span>classement : </span>
+			   						<!-- insertion espace prix / classement --><p><span>Prix : ${enchereUtilisateurEnCours.prixVente} points </span><span>classement : </span>
 			   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
 			   								${enchereUtilisateur.noVente == enchereUtilisateurEnCours.noVente ? enchereUtilisateur.classement : erreur} 
 			   							</c:forEach>
@@ -196,7 +196,7 @@
    								 		</c:if> 
    									</c:forEach>
 	   								<p>
-	   								<span>Prix : ${ventesPerduesUtilisateur.prixVente} points</span><span>classement : </span>
+	   								<!-- insertion espace prix / classement --><span>Prix : ${ventesPerduesUtilisateur.prixVente} points </span><span>classement : </span>
 	   								<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
 	   									${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente ? enchereUtilisateur.classement : erreur} 
 	   								</c:forEach>

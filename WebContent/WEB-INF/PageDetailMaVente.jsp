@@ -22,15 +22,25 @@
 	</div>
 	<div class="container">
 		<div class="row">
-				<div class="col-12">
-					<p>page détail ma vente</p>
+				<div class="col-12 text-center">
+					<c:if test="${requestScope.etatVente == 0}">
+						${requestScope.meilleurEncherisseur} a remporté l'enchère
+					</c:if>
 				</div>
 				<div class="col-12" id="article">${requestScope.nomArticle}</div>
 				<div class="col-12 text-center">
 					<img alt="truc" src="${requestScope.photo}">
 				</div>
 				<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre} pts par 
-					${requestScope.meilleurEncherisseur}</div>
+					<c:choose>
+						<c:when test="${requestScope.etatVente == 0}">
+							<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}">${requestScope.meilleurEncherisseur}</a>
+						</c:when>
+						<c:otherwise>
+							${requestScope.meilleurEncherisseur}
+						</c:otherwise>
+					</c:choose>
+				</div>
 				<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix} points</div>
 				<div class="col-12 m-1">Fin de l'enchère : ${requestScope.dateFinEchere}</div>
 				<div class="col-3">Retrait : </div>
@@ -38,7 +48,13 @@
 				<div class="col-12 m-1">Vendeur : ${requestScope.vendeur}</div>
 		</div>
 	</div>
-	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil"><button
-			name="retour" id="retour">Retour</button></a>
+	<c:if test="${requestScope.etatVente == 0}">
+		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
+		<button name="retraitEffectue" id="retraitEffectue">Retrait effectué</button></a>
+		<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}">
+		<button name="retraitEffectue" id="retraitEffectue">Contacter ${requestScope.meilleurEncherisseur}</button></a>
+	</c:if>
+	<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
+	<button name="retour" id="retour">Retour</button></a>
 </body>
 </html>
