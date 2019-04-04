@@ -82,10 +82,10 @@
 								<div class="col-8">
 			   						<c:choose>
 										<c:when test="${venteEnCours.pseudo == sessionScope.pseudo}">
-											<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection vente</a>
+											<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle}</a>
 										</c:when>
 										<c:otherwise>
-											<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle} redirection enchere</a>
+											<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${venteEnCours.noVente}">${venteEnCours.nomArticle}</a>
 										</c:otherwise>
 									</c:choose>
 			   						
