@@ -28,8 +28,7 @@
 			<div class="col-12 text-center">
 				<img alt="truc" src="${requestScope.photo}">
 			</div>
-			<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre}
-				${requestScope.meilleurEncherisseur}</div>
+			<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre} pts par ${requestScope.meilleurEncherisseur}</div>
 			<div class="col-12 m-1">Mise à prix : ${requestScope.miseAPrix} points</div>
 			<div class="col-12 m-1">Fin de l'enchère : ${requestScope.dateFinEchere}</div>
 			<div class="col-3">Retrait : </div>

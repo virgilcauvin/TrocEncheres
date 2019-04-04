@@ -77,7 +77,9 @@
 	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 	   							<div class="col-4">
-									<img alt="${venteEnCours.nomArticle}" src="${venteEnCours.photo}">
+	   								<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteEnCours.noVente}">
+										<img alt="${venteEnCours.nomArticle}" src="${venteEnCours.photo}">
+									</a>
 								</div>
 								<div class="col-8">
 			   						<c:choose>
@@ -123,7 +125,9 @@
 	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
-			   						<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
+		   							<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteUtilisateur.noVente}" >
+			   							<img alt="${venteUtilisateur.nomArticle}" src="${venteUtilisateur.photo}">
+			   						</a>
 			   					</div>
 		   						<div class="col-8">
 			   						<a href="${pageContext.request.contextPath}/Secure/ServletDetailMaVente?noVente=${venteUtilisateur.noVente}" >${venteUtilisateur.nomArticle}</a>
@@ -143,7 +147,9 @@
 	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
-									<img alt="${enchereUtilisateurEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
+		   							<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${enchereUtilisateurEnCours.noVente}" >
+										<img alt="${enchereUtilisateurEnCours.nomArticle}" src="${enchereUtilisateurEnCours.photo}">
+									</a>
 			   					</div>
 		   						<div class="col-8">	
 			   						<a href="${pageContext.request.contextPath}/Secure/ServletEnchere?noVente=${enchereUtilisateurEnCours.noVente}" >${enchereUtilisateurEnCours.nomArticle}</a>
@@ -167,7 +173,9 @@
 	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
-									<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
+		   							<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >
+										<img alt="${acquisitionUtilisateur.nomArticle}" src="${acquisitionUtilisateur.photo}">
+									</a>
 								</div>
 								<div class="col-8">
 	   								<a href="${pageContext.request.contextPath}/Secure/ServletEnchereGagnee?noVente=${acquisitionUtilisateur.noVente}" >${acquisitionUtilisateur.nomArticle}</a>
@@ -187,7 +195,13 @@
 	   					<div class="col-12 border border-primary m-1">
 	   						<div class="row">
 		   						<div class="col-4">
-									<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
+		   							<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
+   										<c:if test="${enchereUtilisateur.noVente == ventesPerduesUtilisateur.noVente}">
+   								 			<a href="${pageContext.request.contextPath}/Secure/ServletEncherePerdue?noVente=${ventesPerduesUtilisateur.noVente}&classement=${enchereUtilisateur.classement}">
+   								 				<img alt="${ventesPerduesUtilisateur.nomArticle}" src="${ventesPerduesUtilisateur.photo}">
+   								 			</a>
+   								 		</c:if> 
+   									</c:forEach>
 								</div>
 								<div class="col-8">
    									<c:forEach var="enchereUtilisateur" items="${listeEncheresUtilisateur}">
