@@ -34,7 +34,7 @@
 				<div class="col-12 m-1">Meilleure offre : ${requestScope.meilleureOffre} pts par 
 					<c:choose>
 						<c:when test="${requestScope.etatVente == 0}">
-							<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}">${requestScope.meilleurEncherisseur}</a>
+							<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}&venteValidee">${requestScope.meilleurEncherisseur}</a>
 						</c:when>
 						<c:otherwise>
 							${requestScope.meilleurEncherisseur}
@@ -51,7 +51,7 @@
 	<c:if test="${requestScope.etatVente == 0}">
 		<a href="${pageContext.request.contextPath}/Secure/ServletAccueil?mesVentes">
 		<button name="retraitEffectue" id="retraitEffectue">Retrait effectué</button></a>
-		<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}">
+		<a href="${pageContext.request.contextPath}/Secure/ServletInfoUtilisateur?pseudo=${requestScope.meilleurEncherisseur}&venteValidee">
 		<button name="retraitEffectue" id="retraitEffectue">Contacter ${requestScope.meilleurEncherisseur}</button></a>
 	</c:if>
 	<div class="container">
