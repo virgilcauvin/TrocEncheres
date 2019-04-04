@@ -58,7 +58,7 @@ public class ServletDetailMaVente extends HttpServlet {
 			request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
 		}
 		request.setAttribute("miseAPrix", vente.getMiseAPrix());
-		request.setAttribute("dateFinEchere", vente.getDateFinEncheres());
+		request.setAttribute("dateFinEchere", vente.getDateFinEncheres().toString().substring(8, 10) + "-" + vente.getDateFinEncheres().toString().substring(5, 7) +"-"+vente.getDateFinEncheres().toString().substring(0, 4));
 		request.setAttribute("rue", utilisateurCourant.getRue());
 		request.setAttribute("codePostal", utilisateurCourant.getCodePostal());
 		request.setAttribute("ville", utilisateurCourant.getVille());
