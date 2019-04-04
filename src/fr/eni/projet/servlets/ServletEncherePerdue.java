@@ -35,7 +35,7 @@ public class ServletEncherePerdue extends HttpServlet {
 		int classement = Integer.parseInt(request.getParameter("classement"));
 		Vente vente = VenteDAO.selectVenteByNoVente(noVente);
 		request.setAttribute("nomArticle", vente.getNomArticle());
-		request.setAttribute("dateFinEncheres", vente.getDateFinEncheres());
+		request.setAttribute("dateFinEncheres", vente.getDateFinEncheres().toString().substring(8, 10) + "-" + vente.getDateFinEncheres().toString().substring(5, 7) +"-"+vente.getDateFinEncheres().toString().substring(0, 4));
 		request.setAttribute("photo", vente.getPhoto());
 		request.setAttribute("classement", classement);
 

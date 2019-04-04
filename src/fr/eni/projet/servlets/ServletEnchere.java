@@ -85,7 +85,7 @@ public class ServletEnchere extends HttpServlet {
 			request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
 		}
 		request.setAttribute("miseAPrix", vente.getMiseAPrix());
-		request.setAttribute("dateFinEchere", vente.getDateFinEncheres());
+		request.setAttribute("dateFinEchere", vente.getDateFinEncheres().toString().substring(8, 10) + "-" + vente.getDateFinEncheres().toString().substring(5, 7) +"-"+vente.getDateFinEncheres().toString().substring(0, 4));
 		request.setAttribute("rue", vendeur.getRue());
 		request.setAttribute("codePostal", vendeur.getCodePostal());
 		request.setAttribute("ville", vendeur.getVille());
@@ -151,7 +151,7 @@ public class ServletEnchere extends HttpServlet {
 		request.setAttribute("meilleureOffre", vente.getPrixVente());
 		request.setAttribute("meilleurEncherisseur", meilleurEncherisseur.getPseudo());
 		request.setAttribute("miseAPrix", vente.getMiseAPrix());
-		request.setAttribute("dateFinEchere", vente.getDateFinEncheres());
+		request.setAttribute("dateFinEchere", vente.getDateFinEncheres().toString().substring(8, 10) + "-" + vente.getDateFinEncheres().toString().substring(5, 7) +"-"+vente.getDateFinEncheres().toString().substring(0, 4));
 		request.setAttribute("rue", vendeur.getRue());
 		request.setAttribute("codePostal", vendeur.getCodePostal());
 		request.setAttribute("ville", vendeur.getVille());
