@@ -55,7 +55,7 @@ public class GestionErreursCompteUtilisateur {
 		//2 Verifier la longueur du nom
 		nomLongueurCorrecte = verifierLongueur30(nom);
 		if (nomLongueurCorrecte == false) {
-			messageErreurGlobalPseudo.append("La taille du nom n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");
+			messageErreurGlobalNom.append("La taille du nom n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");// /!\ erreur pseudo !
 		}
 		//Si nom non valide : ajout du message erreur nom dans la MapList
 		if (messageErreurGlobalNom.length() != 0) {
@@ -74,7 +74,7 @@ public class GestionErreursCompteUtilisateur {
 		//2 Verifier la longueur du prénom
 		prenomLongueurCorrecte = verifierLongueur30(prenom);
 		if (prenomLongueurCorrecte == false) {
-			messageErreurGlobalPseudo.append("La taille du prénom n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");
+			messageErreurGlobalPrenom.append("La taille du prénom n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");// /!\ erreur pseudo !
 		}
 		//Si prénom non valide : ajout du message erreur prenom dans la MapList
 		if (messageErreurGlobalPrenom.length() != 0) {
@@ -111,7 +111,7 @@ public class GestionErreursCompteUtilisateur {
 		//4 Verifier la longueur de email
 		emailLongueurCorrecte = verifierLongueur20(email);
 		if (emailLongueurCorrecte == false) {
-			messageErreurGlobalPseudo.append("La taille de l'adresse email n'est pas correcte : elle doit être comprise entre 2 et 20 caractères.");
+			messageErreurGlobalEmail.append("La taille de l'adresse email n'est pas correcte : elle doit être comprise entre 2 et 20 caractères.");// /!\ erreur pseudo !
 		}
 		//Si email non valide : ajout du message erreur email dans la MapList
 		if (messageErreurGlobalEmail.length() != 0) {
@@ -161,7 +161,7 @@ public class GestionErreursCompteUtilisateur {
 		//2 Verifier la longueur de rue
 		rueLongueurCorrecte = verifierLongueur100(rue);
 		if (rueLongueurCorrecte == false) {
-			messageErreurGlobalPseudo.append("La taille de la rue n'est pas correcte : elle doit être comprise entre 2 et 100 caractères.");
+			messageErreurGlobalRue.append("La taille de la rue n'est pas correcte : elle doit être comprise entre 2 et 100 caractères.");// /!\ erreur pseudo !
 		}
 		//Si rue non valide : ajout du message erreur rue dans la MapList
 		if (messageErreurGlobalRue.length() != 0) {
@@ -181,7 +181,7 @@ public class GestionErreursCompteUtilisateur {
 		//2 Verifier la validite de code postal
 		codePostalValide = validationCodePostal(codePostal);
 		if (codePostalValide == false) {
-			messageErreurGlobalTelephone.append("Veuillez saisir un code postal valide.");
+			messageErreurGlobalCodePostal.append("Veuillez saisir un code postal valide.");// /!\ erreur telephone !
 		}
 		//Si code postal non valide : ajout du message erreur code postal dans la MapList
 		if (messageErreurGlobalCodePostal.length() != 0) {
@@ -201,7 +201,7 @@ public class GestionErreursCompteUtilisateur {
 		//2 Verifier la longueur de ville
 		villeLongueurCorrecte = verifierLongueur30(ville);
 		if (villeLongueurCorrecte == false) {
-			messageErreurGlobalPseudo.append("La taille de la ville n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");
+			messageErreurGlobalCodeVille.append("La taille de la ville n'est pas correcte : elle doit être comprise entre 2 et 30 caractères. ");// /!\ erreur pseudo !
 		}
 		//Si ville non valide : ajout du message erreur ville dans la MapList
 		if (messageErreurGlobalCodeVille.length() != 0) {
